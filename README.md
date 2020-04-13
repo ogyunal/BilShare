@@ -1,7 +1,7 @@
 # BilShare
 
-Oğulcan Ünal
-Yağmur Eryılmaz
-Gamze Elif Çenesiz
-İdil Yılmaz
+Oğulcan Ünal, 
+Yağmur Eryılmaz, 
+Gamze Elif Çenesiz, 
+İdil Yılmaz, 
 Melih Obut
