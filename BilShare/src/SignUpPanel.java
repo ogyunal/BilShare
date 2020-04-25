@@ -9,6 +9,9 @@
  * limitations under the License.
  */
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class SignUpPanel extends javax.swing.JPanel {
 
