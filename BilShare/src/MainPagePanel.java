@@ -22,9 +22,7 @@ public class MainPagePanel extends JPanel {
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JLabel jLabel3;
-
-   
-    @SuppressWarnings("unchecked")                         
+                      
     private void initComponents() {
 
         jButton1 = new JButton();
@@ -53,13 +51,13 @@ public class MainPagePanel extends JPanel {
         jButton4.setForeground(new Color(255, 153, 51));
         jButton4.setText("LECTURE NOTES");
 
-        jLabel1.setIcon(new ImageIcon("C:\\Users\\Yagmur\\Desktop\\5d6f50df-9a91-4cb4-b547-903999ee292b.jpg")); // NOI18N
+        jLabel1.setIcon(new ImageIcon("C:\\Users\\Yagmur\\Desktop\\5d6f50df-9a91-4cb4-b547-903999ee292b.jpg"));
 
-        jLabel2.setFont(new Font("Tahoma", 0, 20)); // NOI18N
+        jLabel2.setFont(new Font("Tahoma", 0, 20)); 
         jLabel2.setForeground(new Color(255, 255, 255));
         jLabel2.setText("LOOK FOR");
 
-        jLabel3.setFont(new Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new Font("Tahoma", 0, 14)); 
         jLabel3.setForeground(new Color(255, 255, 255));
         jLabel3.setText("OR");
 
