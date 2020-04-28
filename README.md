@@ -11,8 +11,8 @@ Buying and selling second-hand books and lecture notes is one of the most common
 
    
 ## Project Status
-+ **Group/project Selection:** completed (date)
-+ **Requirements:** completed (date)
++ **Group/project Selection:** completed (29.02.2020)
++ **Requirements:** completed (31.03.2020)
 + **UI Design:** completed (date)
 + **Detailed Design:** in progress
 + **Implementation:** not started!
@@ -20,11 +20,12 @@ Buying and selling second-hand books and lecture notes is one of the most common
 
 [Group Meetings Log](group/meetingslog.md)
 #### Group Members
-- [member1](group/member1_log.md)    _(full name & link to personal log file)_
-- [member2](group/member2_log.md)
-- member3
-- member4
-- member5
+- [Oğulcan Ünal](group/ogulcan_log.md)
+- [Melih Obut](group/melih_log.md)
+- [Elif Çenesiz](group/elif_log.md)
+- [Berk Türkçapar](group/berk_log.md)
+- [İdil Yılmaz](group/idil_log.md)
+- [Yağmur Eryılmaz](group/yagmur_log.md)
 
 ****
 **Instructor:** David Davenport   **TA:**  Laleh Eskandarian
