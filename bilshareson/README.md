@@ -1,8 +1,4 @@
-# Bookstore App Starter for Vaadin
-
-A project example for a Vaadin application that only requires a Servlet 3.1 container to run (no other JEE dependencies). The UI is built with Java only.
-
-The easiest way of using it is via [https://vaadin.com/start](https://vaadin.com/start) - you can choose the package naming you want.
+# BilShare App Starter for Vaadin
 
 ## Prerequisites
 
