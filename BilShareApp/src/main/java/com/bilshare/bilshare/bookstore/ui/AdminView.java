@@ -97,6 +97,4 @@ public class AdminView extends VerticalLayout {
         layout.setFlexGrow(1);
         return layout;
     }
-
 }
-//SKDJFŞOSDF
