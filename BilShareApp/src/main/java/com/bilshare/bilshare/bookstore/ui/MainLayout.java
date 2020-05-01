@@ -1,5 +1,6 @@
 package com.bilshare.bilshare.bookstore.ui;
 
+import com.bilshare.bilshare.bookstore.ui.MyProfile.ProfileView;
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Key;
@@ -73,12 +74,14 @@ public class MainLayout extends AppLayout implements RouterLayout {
 
         addToDrawer(createMenuLink(AboutView.class, AboutView.VIEW_NAME,
                 VaadinIcon.INFO_CIRCLE.create()));
-
+        addToDrawer(createMenuLink(ProfileView.class, ProfileView.VIEW_NAME,VaadinIcon.USER.create()));
         // Create logout button but don't add it yet; admin view might be added
         // in between (see #onAttach())
         logoutButton = createMenuButton("Logout", VaadinIcon.SIGN_OUT.create());
         logoutButton.addClickListener(e -> logout());
         logoutButton.getElement().setAttribute("title", "Logout (Ctrl+L)");
+
+
 
     }
 
