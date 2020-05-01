@@ -1,15 +1,11 @@
 package com.bilshare.bilshare.bookstore.backend.mock;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-
-import com.bilshare.bilshare.bookstore.backend.data.Type;
 import com.bilshare.bilshare.bookstore.backend.data.Category;
 import com.bilshare.bilshare.bookstore.backend.data.Product;
+import com.bilshare.bilshare.bookstore.backend.data.Type;
+
+import java.math.BigDecimal;
+import java.util.*;
 
 public class MockDataGenerator {
     private static int nextCategoryId = 1;
@@ -72,9 +68,6 @@ public class MockDataGenerator {
         p.setPrice(new BigDecimal((random.nextInt(250) + 50) / 10.0));
         p.setType(Type.values()[random.nextInt(Type
                 .values().length)]);
-        if (p.getType() == Type.LECTURE_NOTES) {
-            p.setStockCount(random.nextInt(523));
-        }
 
         p.setCategory(getCategory(categories, 1, 2));
         return p;

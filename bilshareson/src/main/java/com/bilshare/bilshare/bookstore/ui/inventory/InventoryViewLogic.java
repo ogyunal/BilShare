@@ -1,12 +1,12 @@
 package com.bilshare.bilshare.bookstore.ui.inventory;
 
-import java.io.Serializable;
-
-import com.vaadin.flow.component.UI;
 import com.bilshare.bilshare.bookstore.authentication.AccessControl;
 import com.bilshare.bilshare.bookstore.authentication.AccessControlFactory;
 import com.bilshare.bilshare.bookstore.backend.DataService;
 import com.bilshare.bilshare.bookstore.backend.data.Product;
+import com.vaadin.flow.component.UI;
+
+import java.io.Serializable;
 
 /**
  * This class provides an interface for the logical operations between the CRUD
@@ -30,10 +30,10 @@ public class InventoryViewLogic implements Serializable {
      * buttons if the user doesn't have access.
      */
     public void init() {
-        if (!AccessControlFactory.getInstance().createAccessControl()
-                .isUserInRole(AccessControl.ADMIN_ROLE_NAME)) {
-            view.setNewProductEnabled(false);
-        }
+        //if (!AccessControlFactory.getInstance().createAccessControl()
+                //.isUserInRole(AccessControl.ADMIN_ROLE_NAME)) {
+            //view.setNewProductEnabled(false);
+        //}
     }
 
     public void cancelProduct() {

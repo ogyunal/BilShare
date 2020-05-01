@@ -10,13 +10,16 @@ import com.vaadin.flow.server.VaadinSession;
  */
 public class BasicAccessControl implements AccessControl {
 
+    boolean userSignUp = false;
+
     @Override
     public boolean signIn(String username, String password) {
         if (username == null || username.isEmpty()) {
             return false;
         }
 
-        if (!username.equals(password)) {
+        if (!username.equals(password))
+        {
             return false;
         }
 
@@ -28,6 +31,12 @@ public class BasicAccessControl implements AccessControl {
     public boolean isUserSignedIn() {
         return !CurrentUser.get().isEmpty();
     }
+
+    @Override
+    public boolean getUserSignUp(){return userSignUp; }
+
+    @Override
+    public void setUserSignUp(boolean userSignUp){this.userSignUp = userSignUp;  }
 
     @Override
     public boolean isUserInRole(String role) {
@@ -47,6 +56,7 @@ public class BasicAccessControl implements AccessControl {
 
     @Override
     public void signOut() {
+        setUserSignUp(false);
         VaadinSession.getCurrent().getSession().invalidate();
         UI.getCurrent().navigate("");
     }

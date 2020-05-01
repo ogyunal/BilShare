@@ -109,9 +109,9 @@ public class InventoryView extends HorizontalLayout
      *
      * @param enabled
      */
-    public void setNewProductEnabled(boolean enabled) {
-        newProduct.setEnabled(enabled);
-    }
+    //public void setNewProductEnabled(boolean enabled) {
+        //newProduct.setEnabled(enabled);
+    //}
 
     /**
      * Deselects the selected row in the grid.

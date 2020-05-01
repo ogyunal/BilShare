@@ -19,4 +19,8 @@ public interface AccessControl extends Serializable {
     String getPrincipalName();
 
     void signOut();
+
+    boolean getUserSignUp();
+
+    void setUserSignUp (boolean userSignUp);
 }

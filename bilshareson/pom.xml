@@ -18,9 +18,12 @@
         <vaadin.version>14.1.25</vaadin.version>
         <drivers.dir>${project.basedir}/drivers</drivers.dir>
         <drivers.downloader.phase>pre-integration-test</drivers.downloader.phase>
-
     </properties>
-
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.0.RELEASE</version>
+    </parent>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -69,10 +72,6 @@
 
         <!-- Added to provide logging output as Vaadin uses -->
         <!-- the unbound SLF4J no-operation (NOP) logger implementation -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -97,6 +96,22 @@
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-testbench</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-spring-boot-starter</artifactId>
+            <exclusions>
+                <!-- Excluding so that webjars are not included. -->
+                <exclusion>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>vaadin-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 

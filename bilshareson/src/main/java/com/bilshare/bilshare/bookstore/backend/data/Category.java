@@ -1,10 +1,9 @@
 package com.bilshare.bilshare.bookstore.backend.data;
 
-import java.io.Serializable;
-import java.util.Objects;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.Objects;
 
 public class Category implements Serializable {
 

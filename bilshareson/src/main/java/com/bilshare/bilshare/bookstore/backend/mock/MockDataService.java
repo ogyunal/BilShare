@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.bilshare.bilshare.bookstore.backend.DataService;
+import com.bilshare.bilshare.bookstore.backend.data.Book;
 import com.bilshare.bilshare.bookstore.backend.data.Category;
 import com.bilshare.bilshare.bookstore.backend.data.Product;
 

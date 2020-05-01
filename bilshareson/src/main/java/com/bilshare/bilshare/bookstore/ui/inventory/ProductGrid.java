@@ -1,17 +1,17 @@
 package com.bilshare.bilshare.bookstore.ui.inventory;
 
-import java.text.DecimalFormat;
-import java.util.Comparator;
-import java.util.stream.Collectors;
-
+import com.bilshare.bilshare.bookstore.backend.data.Category;
+import com.bilshare.bilshare.bookstore.backend.data.Product;
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.data.renderer.TemplateRenderer;
-import com.bilshare.bilshare.bookstore.backend.data.Category;
-import com.bilshare.bilshare.bookstore.backend.data.Product;
+
+import java.text.DecimalFormat;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 /**
  * Grid of products, handling the visual presentation and filtering of a set of
@@ -32,7 +32,7 @@ public class ProductGrid extends Grid<Product> {
         decimalFormat.setMaximumFractionDigits(2);
         decimalFormat.setMinimumFractionDigits(2);
 
-        addColumn(product -> decimalFormat.format(product.getPrice()) + " €")
+        addColumn(product -> decimalFormat.format(product.getPrice()) + " ₺")
                 .setHeader("Price").setTextAlign(ColumnTextAlign.END)
                 .setComparator(Comparator.comparing(Product::getPrice))
                 .setFlexGrow(3).setKey("price");
@@ -50,14 +50,6 @@ public class ProductGrid extends Grid<Product> {
                 .setComparator(Comparator
                         .comparing(Product::getType))
                 .setFlexGrow(5).setKey("availability");
-
-            addColumn(product -> product.getStockCount() == 0 ? "-"
-                  : Integer.toString(product.getStockCount()))
-                       .setHeader("Message The User")
-                   .setTextAlign(ColumnTextAlign.END)
-                 .setComparator(
-                      Comparator.comparingInt(Product::getStockCount))
-             .setFlexGrow(3).setKey("stock");
 
         // Show all categories the product is in, separated by commas
         addColumn(this::formatCategories).setHeader("Category").setFlexGrow(12)

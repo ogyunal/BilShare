@@ -68,7 +68,6 @@ public class MainLayout extends AppLayout implements RouterLayout {
 
 
         // Navigation items
-
         addToDrawer(createMenuLink(InventoryView.class, InventoryView.VIEW_NAME,
                 VaadinIcon.EDIT.create()));
 

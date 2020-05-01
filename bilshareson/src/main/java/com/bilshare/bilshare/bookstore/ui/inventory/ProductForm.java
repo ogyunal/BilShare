@@ -1,11 +1,8 @@
 package com.bilshare.bilshare.bookstore.ui.inventory;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Collection;
-import java.util.Locale;
-
+import com.bilshare.bilshare.bookstore.backend.data.Category;
+import com.bilshare.bilshare.bookstore.backend.data.Product;
+import com.bilshare.bilshare.bookstore.backend.data.Type;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.KeyModifier;
 import com.vaadin.flow.component.button.Button;
@@ -24,9 +21,12 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.converter.StringToBigDecimalConverter;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
 import com.vaadin.flow.data.value.ValueChangeMode;
-import com.bilshare.bilshare.bookstore.backend.data.Type;
-import com.bilshare.bilshare.bookstore.backend.data.Category;
-import com.bilshare.bilshare.bookstore.backend.data.Product;
+
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Collection;
+import java.util.Locale;
 
 /**
  * A form for editing a single product.
@@ -37,7 +37,7 @@ public class ProductForm extends Div {
 
     private final TextField productName;
     private final TextField price;
-    private final TextField stockCount;
+    //private final TextField stockCount;
     private final Select<Type> availability;
     private final CheckboxGroup<Category> category;
     private Button save;
@@ -110,14 +110,13 @@ public class ProductForm extends Div {
         price.addThemeVariants(TextFieldVariant.LUMO_ALIGN_RIGHT);
         price.setValueChangeMode(ValueChangeMode.EAGER);
 
-        stockCount = new TextField("In stock");
-        stockCount.addThemeVariants(TextFieldVariant.LUMO_ALIGN_RIGHT);
-        stockCount.setValueChangeMode(ValueChangeMode.EAGER);
+        //stockCount = new TextField("In stock");
+        //stockCount.addThemeVariants(TextFieldVariant.LUMO_ALIGN_RIGHT);
+        //stockCount.setValueChangeMode(ValueChangeMode.EAGER);
 
-        final HorizontalLayout horizontalLayout = new HorizontalLayout(price,
-                stockCount);
+        final HorizontalLayout horizontalLayout = new HorizontalLayout(price);
         horizontalLayout.setWidth("100%");
-        horizontalLayout.setFlexGrow(1, price, stockCount);
+        horizontalLayout.setFlexGrow(1, price);
         content.add(horizontalLayout);
 
         availability = new Select<>();
@@ -135,8 +134,8 @@ public class ProductForm extends Div {
         binder = new BeanValidationBinder<>(Product.class);
         binder.forField(price).withConverter(new PriceConverter())
                 .bind("price");
-        binder.forField(stockCount).withConverter(new StockCountConverter())
-                .bind("stockCount");
+        //binder.forField(stockCount).withConverter(new StockCountConverter())
+                //.bind("stockCount");
         binder.bindInstanceFields(this);
 
         // enable/disable save button while editing

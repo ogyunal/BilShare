@@ -1,10 +1,11 @@
 package com.bilshare.bilshare.bookstore;
 
-import com.vaadin.flow.server.ServiceInitEvent;
-import com.vaadin.flow.server.VaadinServiceInitListener;
 import com.bilshare.bilshare.bookstore.authentication.AccessControl;
 import com.bilshare.bilshare.bookstore.authentication.AccessControlFactory;
 import com.bilshare.bilshare.bookstore.ui.login.LoginScreen;
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.server.ServiceInitEvent;
+import com.vaadin.flow.server.VaadinServiceInitListener;
 
 /**
  * This class is used to listen to BeforeEnter event of all UIs in order to
@@ -20,8 +21,11 @@ public class BookstoreInitListener implements VaadinServiceInitListener {
 
         initEvent.getSource().addUIInitListener(uiInitEvent -> {
             uiInitEvent.getUI().addBeforeEnterListener(enterEvent -> {
-                if (!accessControl.isUserSignedIn() && !LoginScreen.class
-                        .equals(enterEvent.getNavigationTarget()))
+                if (accessControl.getUserSignUp())
+                {
+                    UI.getCurrent().navigate("signup");
+                }
+                else if(!accessControl.isUserSignedIn() && !LoginScreen.class.equals(enterEvent.getNavigationTarget()))
                     enterEvent.rerouteTo(LoginScreen.class);
             });
         });
