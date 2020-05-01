@@ -80,9 +80,6 @@ public class MainLayout extends AppLayout implements RouterLayout {
         logoutButton = createMenuButton("Logout", VaadinIcon.SIGN_OUT.create());
         logoutButton.addClickListener(e -> logout());
         logoutButton.getElement().setAttribute("title", "Logout (Ctrl+L)");
-
-
-
     }
 
     private void logout() {
@@ -141,7 +138,6 @@ public class MainLayout extends AppLayout implements RouterLayout {
             addToDrawer(createMenuLink(AdminView.class, AdminView.VIEW_NAME,
                     VaadinIcon.DOCTOR.create()));
         }
-
         // Finally, add logout button for all users
         addToDrawer(logoutButton);
     }

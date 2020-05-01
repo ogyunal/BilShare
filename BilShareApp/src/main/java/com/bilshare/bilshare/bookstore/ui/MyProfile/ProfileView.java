@@ -1,5 +1,6 @@
 package com.bilshare.bilshare.bookstore.ui.MyProfile;
 
+import com.bilshare.bilshare.bookstore.ui.MainLayout;
 import com.bilshare.bilshare.bookstore.ui.signup.data.AvatarImage;
 import com.bilshare.bilshare.bookstore.ui.signup.ui.BookListView;
 import com.vaadin.flow.component.Component;
@@ -16,7 +17,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-@Route("myProfile")
+@Route(value = "myProfile", layout = MainLayout.class)
 @PageTitle("My Profile")
 public class ProfileView extends FlexLayout
 {
