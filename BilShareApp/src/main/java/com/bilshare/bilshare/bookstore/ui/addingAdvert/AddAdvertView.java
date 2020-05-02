@@ -18,6 +18,7 @@ public class AddAdvertView extends VerticalLayout {
     public static final String VIEW_NAME = "Add an Advert";
     private Button bookButton =  new Button("Add a Book");
     private Button notesButton = new Button("Add a Lecture Note");
+    private Button otherButton = new Button("Add Other");
     //private Image logo = new Image();
     H3 heading = new H3("What kind of advert would you like to add?");
 
@@ -31,11 +32,16 @@ public class AddAdvertView extends VerticalLayout {
 
         bookButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
         notesButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
+        otherButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
+
         bookButton.setIcon(VaadinIcon.BOOK.create());
         notesButton.setIcon(VaadinIcon.NOTEBOOK.create());
+        otherButton.setIcon(VaadinIcon.CHEVRON_CIRCLE_RIGHT_O
+                .create());
 
         buttonLayout.add(bookButton);
         buttonLayout.add(notesButton);
+        buttonLayout.add(otherButton);
 
         buttonLayout.setAlignItems(Alignment.CENTER);
 
