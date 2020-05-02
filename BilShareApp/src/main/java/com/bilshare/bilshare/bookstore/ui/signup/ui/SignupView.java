@@ -1,5 +1,6 @@
 package com.bilshare.bilshare.bookstore.ui.signup.ui;
 
+import com.bilshare.bilshare.bookstore.authentication.CurrentUser;
 import com.bilshare.bilshare.bookstore.ui.signup.data.UserDetails;
 import com.bilshare.bilshare.bookstore.ui.signup.data.UserDetailsService;
 import com.bilshare.bilshare.bookstore.ui.signup.data.UserDetailsService.ServiceException;
@@ -31,11 +32,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  * It demonstrates how to create a form using Vaadin and the Binder. The backend
  * service and data class are in the <code>.data</code> package.
  */
-@Route("signup")
-@PageTitle("Signup | BilShare")
 public class SignupView extends VerticalLayout {
 
-    private Checkbox allowMarketingBox;
     private PasswordField passwordField1;
     private PasswordField passwordField2;
 
@@ -177,6 +175,8 @@ public class SignupView extends VerticalLayout {
 
                 // Show success message if everything went well
                 showSuccess(detailsBean);
+                CurrentUser.set(handleField.getValue());
+                UI.getCurrent().navigate("Inventory");
 
             } catch (ValidationException e1) {
                 // validation errors are already visible for each field,

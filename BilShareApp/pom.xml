@@ -74,7 +74,6 @@
             <artifactId>vaadin-core</artifactId>
         </dependency>
 
-
         <!-- Added to provide logging output as Vaadin uses -->
         <!-- the unbound SLF4J no-operation (NOP) logger implementation -->
 
@@ -135,7 +134,6 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
-
         <!-- Repository used by many Vaadin add-ons -->
         <repository>
             <id>vaadin-addons</id>
@@ -144,7 +142,6 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
-
         <repository>
             <id>vaadin-prereleases</id>
             <url>https://maven.vaadin.com/vaadin-prereleases</url>

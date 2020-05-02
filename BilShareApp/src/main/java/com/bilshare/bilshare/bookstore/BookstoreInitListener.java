@@ -21,11 +21,7 @@ public class BookstoreInitListener implements VaadinServiceInitListener {
 
         initEvent.getSource().addUIInitListener(uiInitEvent -> {
             uiInitEvent.getUI().addBeforeEnterListener(enterEvent -> {
-                if (accessControl.getUserSignUp())
-                {
-                    UI.getCurrent().navigate("signup");
-                }
-                else if(!accessControl.isUserSignedIn() && !LoginView.class.equals(enterEvent.getNavigationTarget()))
+                if(!accessControl.isUserSignedIn() && !LoginView.class.equals(enterEvent.getNavigationTarget()))
                     enterEvent.rerouteTo(LoginView.class);
             });
         });

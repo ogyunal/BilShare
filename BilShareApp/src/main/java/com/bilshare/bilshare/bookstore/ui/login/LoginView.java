@@ -2,11 +2,15 @@ package com.bilshare.bilshare.bookstore.ui.login;
 
 import com.bilshare.bilshare.bookstore.authentication.AccessControl;
 import com.bilshare.bilshare.bookstore.authentication.AccessControlFactory;
+import com.bilshare.bilshare.bookstore.ui.signup.data.UserDetailsService;
+import com.bilshare.bilshare.bookstore.ui.signup.ui.SignupView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.contextmenu.ContextMenu;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.login.LoginForm;
@@ -15,6 +19,8 @@ import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import org.apache.catalina.User;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * UI content when the user is not logged in yet.
@@ -25,21 +31,13 @@ import com.vaadin.flow.router.Route;
 public class LoginView extends FlexLayout {
 
     private AccessControl accessControl;
-    private boolean signupButtonClicked;
-
+    private UserDetailsService uds = new UserDetailsService();
+    private SignupView signupView = new SignupView(uds);
+    private Dialog signupPopup;
+    private Button signup = new Button("Sign-up");
     public LoginView() {
         accessControl = AccessControlFactory.getInstance().createAccessControl();
         buildUI();
-    }
-
-    public boolean isSignupButtonClicked() {
-        return signupButtonClicked;
-    }
-
-    public void setSignupButtonClicked(boolean signupButtonClicked) {
-        if(signupButtonClicked)
-            accessControl.setUserSignUp(true);
-        this.signupButtonClicked = signupButtonClicked;
     }
 
     private void buildUI() {
@@ -53,22 +51,26 @@ public class LoginView extends FlexLayout {
                 event -> Notification.show("Hint: same as username"));
 
         // layout to center login form when there is sufficient screen space
+
         FlexLayout centeringLayout = new FlexLayout();
         centeringLayout.setSizeFull();
         centeringLayout.setJustifyContentMode(JustifyContentMode.CENTER);
         centeringLayout.setAlignItems(Alignment.CENTER);
+        signupPopup  = new Dialog();
+        signupPopup.add(signupView);
         centeringLayout.add(loginForm);
+        //signupPopup.setVisible(false);
+        //signupPopup.setAlign(QuickPopup.Align.TOP_LEFT);
 
         // information text about logging in
+        add(signupPopup);
         Component loginInformation = buildLoginInformation();
         add(loginInformation);
         add(centeringLayout);
     }
 
     private Component buildLoginInformation() {
-        Button signup = new Button("Sign-up", event -> {UI.getCurrent().navigate("signup");
-        setSignupButtonClicked(true);
-        });
+        signup.addClickListener(buttonClickEvent -> signupPopup.open());
         signup.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
         VerticalLayout loginInformation = new VerticalLayout();
