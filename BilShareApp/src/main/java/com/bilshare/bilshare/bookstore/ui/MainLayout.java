@@ -74,6 +74,7 @@ public class MainLayout extends AppLayout implements RouterLayout {
 
         addToDrawer(createMenuLink(AboutView.class, AboutView.VIEW_NAME,
                 VaadinIcon.INFO_CIRCLE.create()));
+
         addToDrawer(createMenuLink(ProfileView.class, ProfileView.VIEW_NAME,VaadinIcon.USER.create()));
         // Create logout button but don't add it yet; admin view might be added
         // in between (see #onAttach())
