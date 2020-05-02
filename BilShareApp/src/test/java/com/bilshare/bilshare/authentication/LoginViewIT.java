@@ -7,7 +7,7 @@ import com.vaadin.flow.theme.lumo.Lumo;
 import com.bilshare.bilshare.AbstractViewTest;
 import com.bilshare.bilshare.MainLayoutElement;
 
-public class LoginScreenIT extends AbstractViewTest {
+public class LoginViewIT extends AbstractViewTest {
 
     @Test
     public void loginForm_isLumoThemed() {

@@ -2,7 +2,7 @@ package com.bilshare.bilshare.bookstore;
 
 import com.bilshare.bilshare.bookstore.authentication.AccessControl;
 import com.bilshare.bilshare.bookstore.authentication.AccessControlFactory;
-import com.bilshare.bilshare.bookstore.ui.login.LoginScreen;
+import com.bilshare.bilshare.bookstore.ui.login.LoginView;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.server.ServiceInitEvent;
 import com.vaadin.flow.server.VaadinServiceInitListener;
@@ -25,8 +25,8 @@ public class BookstoreInitListener implements VaadinServiceInitListener {
                 {
                     UI.getCurrent().navigate("signup");
                 }
-                else if(!accessControl.isUserSignedIn() && !LoginScreen.class.equals(enterEvent.getNavigationTarget()))
-                    enterEvent.rerouteTo(LoginScreen.class);
+                else if(!accessControl.isUserSignedIn() && !LoginView.class.equals(enterEvent.getNavigationTarget()))
+                    enterEvent.rerouteTo(LoginView.class);
             });
         });
     }

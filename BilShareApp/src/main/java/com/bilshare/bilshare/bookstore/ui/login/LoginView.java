@@ -22,12 +22,12 @@ import com.vaadin.flow.router.Route;
 @Route("Login")
 @PageTitle("Login")
 @CssImport("./styles/shared-styles.css")
-public class LoginScreen extends FlexLayout {
+public class LoginView extends FlexLayout {
 
     private AccessControl accessControl;
     private boolean signupButtonClicked;
 
-    public LoginScreen() {
+    public LoginView() {
         accessControl = AccessControlFactory.getInstance().createAccessControl();
         buildUI();
     }

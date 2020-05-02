@@ -10,7 +10,7 @@ import com.vaadin.flow.router.NotFoundException;
 import com.vaadin.flow.router.ParentLayout;
 import com.bilshare.bilshare.bookstore.authentication.AccessControl;
 import com.bilshare.bilshare.bookstore.authentication.AccessControlFactory;
-import com.bilshare.bilshare.bookstore.ui.login.LoginScreen;
+import com.bilshare.bilshare.bookstore.ui.login.LoginView;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -35,7 +35,7 @@ public class ErrorView extends VerticalLayout implements HasErrorParameter<NotFo
         final AccessControl accessControl = AccessControlFactory
                 .getInstance().createAccessControl();
         if (!accessControl.isUserSignedIn()) {
-            event.rerouteTo(LoginScreen.class);
+            event.rerouteTo(LoginView.class);
             return HttpServletResponse.SC_FORBIDDEN;
         }
         explanation.setText("Could not navigate to '"

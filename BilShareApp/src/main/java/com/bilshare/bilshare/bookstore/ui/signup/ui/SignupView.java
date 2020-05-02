@@ -33,7 +33,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Route("signup")
 @PageTitle("Signup | BilShare")
-public class SignupPage extends VerticalLayout {
+public class SignupView extends VerticalLayout {
 
     private Checkbox allowMarketingBox;
     private PasswordField passwordField1;
@@ -50,7 +50,7 @@ public class SignupPage extends VerticalLayout {
     /**
      * We use Spring to inject the backend into our view
      */
-    public SignupPage(@Autowired UserDetailsService service) {
+    public SignupView(@Autowired UserDetailsService service) {
 
         this.service = service;
 
