@@ -43,19 +43,13 @@ public class ProfileView extends FlexLayout
         profileInfo.add(lastName);
         profileInfo.add(department);
         //profileInfo.add(photo);
-
         Accordion accordion = new Accordion();
         currentAdverts = new BookListView();
         accordion.add("My Current Adverts", currentAdverts);
-
-        soldMaterials = new BookListView();
-        accordion.add("Sold Materials", soldMaterials);
-
-        purchasedMaterials = new BookListView();
-        accordion.add("Purchased Materials", purchasedMaterials);
         profileInfo.add(accordion);
         setSizeFull();
         add(profileInfo);
+        accordion.setWidthFull();
 
 
     }
