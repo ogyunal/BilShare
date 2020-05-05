@@ -29,7 +29,6 @@ import java.util.List;
 @PageTitle("Book")
 public class BookView extends VerticalLayout {
 
-
     private Book book;
     private RouteConfiguration configuration = RouteConfiguration.forSessionScope();
     H3 title = new H3("Book Extended Form");
