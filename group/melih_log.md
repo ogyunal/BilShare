@@ -10,3 +10,5 @@ On this page I will keep a weekly record of what I have done for the CS102 group
 25.04.2020 - In group, we decided to make project on web so we have to learn webApp so vaadin is our next target. In order to build our project we scheduled a program and watched a youtube series which name is Full-stack web app development tutorial. 
 
 28.04.2020 - I have finished to watch this series and tried to understand webApp syntax.It is a bit different but i am very excited to learn more.
+
+02.05.2020 - BookView class is done.Try to learn database which is MySQL.
