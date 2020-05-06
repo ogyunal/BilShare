@@ -1,9 +1,16 @@
 package com.bilshare.bilshare.bookstore.ui.inventory;
 
+import com.bilshare.bilshare.bookstore.authentication.AccessControl;
+import com.bilshare.bilshare.bookstore.authentication.AccessControlFactory;
+import com.bilshare.bilshare.bookstore.backend.data.Book;
+import com.bilshare.bilshare.bookstore.ui.adverts.BookView;
+import com.bilshare.bilshare.bookstore.ui.signup.data.UserDetailsService;
+import com.bilshare.bilshare.bookstore.ui.signup.ui.SignupView;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.KeyModifier;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -33,11 +40,13 @@ public class InventoryView extends HorizontalLayout
     private final ProductGrid grid;
     private final ProductForm form;
     private TextField filter;
-
     private final InventoryViewLogic viewLogic = new InventoryViewLogic(this);
     private Button newProduct;
-
     private final ProductDataProvider dataProvider = new ProductDataProvider();
+    private AccessControl accessControl;
+    private Book uds = new Book();
+    private BookView bookView = new BookView(uds);
+    private Dialog bookPopup;
 
     public InventoryView() {
         // Sets the width and the height of InventoryView to "100%".
@@ -62,6 +71,13 @@ public class InventoryView extends HorizontalLayout
         add(form);
 
         viewLogic.init();
+
+        //If a book grid is selected more information come up
+        accessControl = AccessControlFactory.getInstance().createAccessControl();
+        bookPopup  = new Dialog();
+        bookPopup.add(bookView);
+        add(bookPopup);
+        grid.asSingleSelect().addValueChangeListener(event -> bookPopup.open());
     }
 
     public HorizontalLayout createTopBar() {

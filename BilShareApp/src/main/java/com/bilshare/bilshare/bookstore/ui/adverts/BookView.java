@@ -31,9 +31,8 @@ import java.util.List;
 
 
 public class BookView extends VerticalLayout {
-
+    //variables
     private Book book;
-
     H3 title = new H3("Book Extended Form");
     TextField name = new TextField("Book Name");
     TextField author = new TextField("Writer Name");
@@ -42,13 +41,15 @@ public class BookView extends VerticalLayout {
     TextField price = new TextField("Price of the book is");
     TextField additionalInfo = new TextField("Additional information");
     AvatarImage photo = new AvatarImage();
-    Binder<Book> bookBinder;
+    private BeanValidationBinder<Book> bookBinder;
 
-    public BookView(@Autowired Book book){
+    //constructor
+    public BookView(Book book){
+
         this.book=book;
         buildUI();
     }
-
+    //Creating layout and adding components after that binding the informations
     public void buildUI(){
 
         FormLayout form = new FormLayout(title, name, author, version, relatedCourse,price,additionalInfo);
@@ -56,18 +57,16 @@ public class BookView extends VerticalLayout {
         form.setMaxWidth("400px");
         form.getStyle().set("margin", "0 auto");
         add(form);
-
-        addClickShortcut(Key.ESCAPE);
+        form.addClickShortcut(Key.ESCAPE);
 
         bookBinder = new BeanValidationBinder<Book>(Book.class);
-
-        // Basic name fields that are required to fill in
         bookBinder.forField(name).asRequired().bind("name");
         bookBinder.forField(author).asRequired().bind("author");
         bookBinder.forField(version).asRequired().bind("version");
-        bookBinder.forField(relatedCourse).asRequired().bind("course");
+        bookBinder.forField(relatedCourse).asRequired().bind("relatedCourse");
         bookBinder.forField(price).bind("price");
-        bookBinder.forField(additionalInfo).bind("Info");
+        bookBinder.forField(additionalInfo).bind("additionalInfo");
+
     }
 
 
