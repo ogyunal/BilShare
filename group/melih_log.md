@@ -11,4 +11,6 @@ On this page I will keep a weekly record of what I have done for the CS102 group
 
 28.04.2020 - I have finished to watch this series and tried to understand webApp syntax.It is a bit different but i am very excited to learn more.
 
-02.05.2020 - BookView class is done.Try to learn database which is MySQL.
+02.05.2020 - Try to learn database which is MySQL.
+
+
