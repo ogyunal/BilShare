@@ -13,4 +13,11 @@ On this page I will keep a weekly record of what I have done for the CS102 group
 
 02.05.2020 - Try to learn database which is MySQL.
 
+04.05.2020 - Creating a table in MySQL is not so hard but connecting the MySQL over vaadin components is painful.
+
+05.05.2020 - BookView class has finished, but there is a problem with binding the values are not showed in corresponding grid.
+
+06.05.2020 - Trying to add a chat box platform for all user to ask their quesiton. It is not finished but in progress.
+
+
 
