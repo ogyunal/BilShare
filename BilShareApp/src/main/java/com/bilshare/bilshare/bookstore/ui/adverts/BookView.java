@@ -23,7 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-
 /**
  * Showing products in more detail version.
  *
@@ -37,20 +36,21 @@ public class BookView extends VerticalLayout {
     TextField name = new TextField("Book Name");
     TextField author = new TextField("Writer Name");
     TextField version = new TextField("Version of the book");
-    TextField relatedCourse = new TextField("Category of the book is");
-    TextField price = new TextField("Price of the book is");
+    TextField relatedCourse = new TextField("Category of the book ");
+    TextField price = new TextField("Price of the book ");
     TextField additionalInfo = new TextField("Additional information");
     AvatarImage photo = new AvatarImage();
-    private BeanValidationBinder<Book> bookBinder;
+    private Binder<Book> bookBinder;
 
     //constructor
     public BookView(Book book){
 
         this.book=book;
-        buildUI();
+        buildUI(book);
+
     }
     //Creating layout and adding components after that binding the informations
-    public void buildUI(){
+    public void buildUI(Book book){
 
         FormLayout form = new FormLayout(title, name, author, version, relatedCourse,price,additionalInfo);
 
@@ -58,15 +58,13 @@ public class BookView extends VerticalLayout {
         form.getStyle().set("margin", "0 auto");
         add(form);
         form.addClickShortcut(Key.ESCAPE);
-
-        bookBinder = new BeanValidationBinder<Book>(Book.class);
-        bookBinder.forField(name).asRequired().bind("name");
+        bookBinder = new Binder<>(Book.class);
+        bookBinder.bind(name, Book::getName, Book::setName);
         bookBinder.forField(author).asRequired().bind("author");
         bookBinder.forField(version).asRequired().bind("version");
         bookBinder.forField(relatedCourse).asRequired().bind("relatedCourse");
         bookBinder.forField(price).bind("price");
         bookBinder.forField(additionalInfo).bind("additionalInfo");
-
     }
 
 

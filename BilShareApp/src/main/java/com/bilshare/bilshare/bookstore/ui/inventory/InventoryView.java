@@ -77,9 +77,13 @@ public class InventoryView extends HorizontalLayout
         bookPopup  = new Dialog();
         bookPopup.add(bookView);
         add(bookPopup);
-        grid.asSingleSelect().addValueChangeListener(event -> bookPopup.open());
+        grid.asSingleSelect().addValueChangeListener(event ->
+                editContact((Book) grid.asSingleSelect().getValue()));
     }
-
+    public void editContact(Book book){
+        bookPopup.open();
+        bookView.buildUI(book);
+    }
     public HorizontalLayout createTopBar() {
         filter = new TextField();
         filter.setPlaceholder("Filter name, type or category");
