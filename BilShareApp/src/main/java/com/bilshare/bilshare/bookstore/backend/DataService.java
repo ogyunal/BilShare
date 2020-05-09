@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 
+import com.bilshare.bilshare.bookstore.backend.data.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -33,8 +34,8 @@ public abstract class DataService implements Serializable {
                 Product product = new Product();
                 product.setId(resultSet.getInt("id"));
                 product.setProductName(resultSet.getString("name"));
-                product.setType(resultSet.getType("type"));
-                product.setCategory(resultSet.getObject("category"));
+                product.setType(Type.valueOf(resultSet.getString("type")));
+                product.setCategory((Set<Category>) resultSet.getObject("category"));
                 return product;
             }
         });
@@ -42,7 +43,7 @@ public abstract class DataService implements Serializable {
     }
 
     public Collection<Category> getAllCategories() {
-
+        return null;
     }
 
     public void updateProduct(Product p) {
@@ -53,13 +54,19 @@ public abstract class DataService implements Serializable {
 
     }
 
-    public Product getProductById(int productId);
+    public Product getProductById(int productId) {
+        return null;
+    }
 
-    public void updateCategory(Category category);
+    public void updateCategory(Category category) {
 
-    public void deleteCategory(int categoryId);
+    }
 
-    public DataService get() {
+    public void deleteCategory(int categoryId) {
+
+    }
+
+    public static DataService get() {
         return MockDataService.getInstance();
     }
 

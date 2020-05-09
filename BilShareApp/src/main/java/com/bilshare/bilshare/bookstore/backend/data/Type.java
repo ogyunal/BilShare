@@ -5,7 +5,7 @@ public enum Type {
 
     private final String name;
 
-    private Type(String name) {
+     private Type(String name) {
         this.name = name;
     }
 

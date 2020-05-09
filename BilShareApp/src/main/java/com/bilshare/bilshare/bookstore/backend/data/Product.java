@@ -30,7 +30,6 @@ public class Product implements Serializable {
     private Set<Category> category;
     //@Min(value = 0, message = "Can't have negative amount in stock")
     //private int stockCount = 0;
-    @NotNull
     private Type type = Type.BOOKS;
 
     public Product() {
