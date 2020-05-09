@@ -1,13 +1,23 @@
 package com.bilshare.bilshare.bookstore.backend.data;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+@Service
 public class Product implements Serializable {
 
     @NotNull
@@ -23,6 +33,17 @@ public class Product implements Serializable {
     @NotNull
     private Type type = Type.BOOKS;
 
+    public Product() {
+
+    }
+
+    public Product (BigDecimal price, String productName, int id) {
+        this.price = price;
+        this.productName = productName;
+        this.id = id;
+    }
+
+
     public int getId() {
         return id;
     }
@@ -32,6 +53,14 @@ public class Product implements Serializable {
     }
 
     public String getProductName() {
+       /* List<Product> products = jdbcTemplate.query("SELECT name FROM products", new RowMapper<Product>() {
+            @Override
+            public Product mapRow(ResultSet resultSet, int i) throws SQLException {
+                Product product = new Product();
+                product.setProductName(resultSet.getString("name"));
+                return product;
+            }
+        });*/
         return productName;
     }
 

@@ -1,8 +1,15 @@
 package com.bilshare.bilshare.bookstore.backend;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.*;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 import com.bilshare.bilshare.bookstore.backend.data.Category;
 import com.bilshare.bilshare.bookstore.backend.data.Product;
 import com.bilshare.bilshare.bookstore.backend.mock.MockDataService;
@@ -10,23 +17,49 @@ import com.bilshare.bilshare.bookstore.backend.mock.MockDataService;
 /**
  * Back-end service interface for retrieving and updating product data.
  */
+
+@Repository
 public abstract class DataService implements Serializable {
 
-    public abstract Collection<Product> getAllProducts();
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-    public abstract Collection<Category> getAllCategories();
+    final String sql = "SELECT id, name, price, category, type FROM products";
 
-    public abstract void updateProduct(Product p);
+    public  Collection<Product> getAllProducts() {
+        List<Product> products = jdbcTemplate.query(sql, new RowMapper<Product>() {
+            @Override
+            public Product mapRow(ResultSet resultSet, int i) throws SQLException {
+                Product product = new Product();
+                product.setId(resultSet.getInt("id"));
+                product.setProductName(resultSet.getString("name"));
+                product.setType(resultSet.getType("type"));
+                product.setCategory(resultSet.getObject("category"));
+                return product;
+            }
+        });
+        return products;
+    }
 
-    public abstract void deleteProduct(int productId);
+    public Collection<Category> getAllCategories() {
 
-    public abstract Product getProductById(int productId);
+    }
 
-    public abstract void updateCategory(Category category);
+    public void updateProduct(Product p) {
 
-    public abstract void deleteCategory(int categoryId);
+    }
 
-    public static DataService get() {
+    public  void deleteProduct(int productId) {
+
+    }
+
+    public Product getProductById(int productId);
+
+    public void updateCategory(Category category);
+
+    public void deleteCategory(int categoryId);
+
+    public DataService get() {
         return MockDataService.getInstance();
     }
 

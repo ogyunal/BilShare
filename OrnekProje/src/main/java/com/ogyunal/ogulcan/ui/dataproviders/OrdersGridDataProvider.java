@@ -29,6 +29,7 @@ import com.ogyunal.ogulcan.ui.utils.BakeryConst;
 public class OrdersGridDataProvider extends FilterablePageableDataProvider<Order, OrdersGridDataProvider.OrderFilter> {
 
 	public static class OrderFilter implements Serializable {
+
 		private String filter;
 		private boolean showPrevious;
 
