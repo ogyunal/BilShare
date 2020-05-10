@@ -69,6 +69,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+<<<<<<< HEAD
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-core</artifactId>
@@ -94,11 +95,16 @@
             <artifactId>spring-jdbc</artifactId>
             <version>5.2.5.RELEASE</version>
         </dependency>
+=======
+>>>>>>> ed96bedffb0c4f5b0d4bf85beef3ccb527e31bde
 
 
         <!-- Added to provide logging output as Vaadin uses -->
         <!-- the unbound SLF4J no-operation (NOP) logger implementation -->
-
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+        </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>

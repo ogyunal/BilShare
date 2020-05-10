@@ -2,7 +2,7 @@ package com.bilshare.bilshare.bookstore.ui;
 
 import com.bilshare.bilshare.bookstore.ui.MyProfile.ProfileView;
 import com.bilshare.bilshare.bookstore.ui.addingAdvert.AddAdvertView;
-//import com.bilshare.bilshare.bookstore.ui.chat.ChatView;
+
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Key;
@@ -78,7 +78,7 @@ public class MainLayout extends AppLayout implements RouterLayout {
                 VaadinIcon.INFO_CIRCLE.create()));
 
         //addToDrawer(createMenuLink(ChatView.class, ChatView.VIEW_NAME,
-                VaadinIcon.CHAT.create();
+             //   VaadinIcon.CHAT.create()));
 
         addToDrawer(createMenuLink(ProfileView.class, ProfileView.VIEW_NAME,VaadinIcon.USER.create()));
         addToDrawer(createMenuLink(AddAdvertView.class, AddAdvertView.VIEW_NAME, VaadinIcon.PLUS_CIRCLE.create()));

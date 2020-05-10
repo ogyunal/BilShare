@@ -17,7 +17,7 @@ import com.bilshare.bilshare.backend.service.OrderService;
 import com.bilshare.bilshare.ui.crud.EntityPresenter;
 import com.bilshare.bilshare.ui.dataproviders.OrdersGridDataProvider;
 import com.bilshare.bilshare.ui.dataproviders.OrdersGridDataProvider.OrderFilter;
-import com.bilshare.bilshare.ui.utils.BakeryConst;
+import com.bilshare.bilshare.ui.utils.BilShareConst;
 import com.bilshare.bilshare.ui.views.storefront.beans.OrderCardHeader;
 
 @SpringComponent
@@ -85,7 +85,7 @@ public class OrderPresenter {
 	}
 
 	void edit() {
-		UI.getCurrent().navigate(BakeryConst.PAGE_STOREFRONT_EDIT + "/" + entityPresenter.getEntity().getId());
+		UI.getCurrent().navigate(BilShareConst.PAGE_STOREFRONT_EDIT + "/" + entityPresenter.getEntity().getId());
 	}
 
 	void back() {

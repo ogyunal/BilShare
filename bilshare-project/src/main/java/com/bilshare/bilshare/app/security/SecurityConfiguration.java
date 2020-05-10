@@ -14,11 +14,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
-
-import com.bilshare.bilshare.backend.data.Role;
 import com.bilshare.bilshare.backend.data.entity.User;
 import com.bilshare.bilshare.backend.repositories.UserRepository;
-import com.bilshare.bilshare.ui.utils.BakeryConst;
+import com.bilshare.bilshare.ui.utils.BilShareConst;
 
 /**
  * Configures spring security, doing the following:
@@ -35,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	private static final String LOGIN_PROCESSING_URL = "/login";
 	private static final String LOGIN_FAILURE_URL = "/login?error";
 	private static final String LOGIN_URL = "/login";
-	private static final String LOGOUT_SUCCESS_URL = "/" + BakeryConst.PAGE_STOREFRONT;
+	private static final String LOGOUT_SUCCESS_URL = "/" + BilShareConst.PAGE_STOREFRONT;
 
 	private final UserDetailsService userDetailsService;
 
@@ -92,8 +90,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				// Allow all flow internal requests.
 				.requestMatchers(SecurityUtils::isFrameworkInternalRequest).permitAll()
 
-				// Allow all requests by logged in users.
-				.anyRequest().hasAnyAuthority(Role.getAllRoles())
 
 				// Configure the login page.
 				.and().formLogin().loginPage(LOGIN_URL).permitAll().loginProcessingUrl(LOGIN_PROCESSING_URL)

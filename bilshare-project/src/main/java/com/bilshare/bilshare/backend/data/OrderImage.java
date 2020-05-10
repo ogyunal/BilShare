@@ -4,7 +4,7 @@ import java.util.Locale;
 
 import com.vaadin.flow.shared.util.SharedUtil;
 
-public enum OrderState {
+public enum OrderImage {
 	NEW, CONFIRMED, READY, DELIVERED, PROBLEM, CANCELLED;
 
 	/**

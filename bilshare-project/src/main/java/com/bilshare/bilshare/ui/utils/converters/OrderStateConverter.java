@@ -8,25 +8,25 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import com.vaadin.flow.templatemodel.ModelEncoder;
-import com.bilshare.bilshare.backend.data.OrderState;
+import com.bilshare.bilshare.backend.data.OrderImage;
 
-public class OrderStateConverter implements ModelEncoder<OrderState, String> {
+public class OrderStateConverter implements ModelEncoder<OrderImage, String> {
 
-	private Map<String, OrderState> values;
+	private Map<String, OrderImage> values;
 
 	public OrderStateConverter() {
-		values = Arrays.stream(OrderState.values())
-				.collect(Collectors.toMap(OrderState::toString, Function.identity()));
+		values = Arrays.stream(OrderImage.values())
+				.collect(Collectors.toMap(OrderImage::toString, Function.identity()));
 	}
 
 	@Override
-	public OrderState decode(String presentationValue) {
+	public OrderImage decode(String presentationValue) {
 		return convertIfNotNull(presentationValue, values::get);
 	}
 
 	@Override
-	public String encode(OrderState modelValue) {
-		return convertIfNotNull(modelValue, OrderState::toString);
+	public String encode(OrderImage modelValue) {
+		return convertIfNotNull(modelValue, OrderImage::toString);
 	}
 
 }

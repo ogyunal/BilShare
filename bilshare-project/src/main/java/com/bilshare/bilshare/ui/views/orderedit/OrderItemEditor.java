@@ -23,19 +23,17 @@ import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.shared.Registration;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.bilshare.bilshare.backend.data.entity.OrderItem;
-import com.bilshare.bilshare.backend.data.entity.Product;
+
 import com.bilshare.bilshare.ui.utils.FormattingUtils;
 import com.bilshare.bilshare.ui.views.storefront.events.CommentChangeEvent;
 import com.bilshare.bilshare.ui.views.storefront.events.DeleteEvent;
 import com.bilshare.bilshare.ui.views.storefront.events.PriceChangeEvent;
-import com.bilshare.bilshare.ui.views.storefront.events.ProductChangeEvent;
+
 
 @Tag("order-item-editor")
 @JsModule("./src/views/orderedit/order-item-editor.js")
 public class OrderItemEditor extends PolymerTemplate<TemplateModel> implements HasValueAndElement<ComponentValueChangeEvent<OrderItemEditor,OrderItem>, OrderItem> {
 
-	@Id("products")
-	private ComboBox<Product> products;
 
 	@Id("delete")
 	private Button delete;
@@ -54,22 +52,17 @@ public class OrderItemEditor extends PolymerTemplate<TemplateModel> implements H
     private final AbstractFieldSupport<OrderItemEditor,OrderItem> fieldSupport;
 
 	private BeanValidationBinder<OrderItem> binder = new BeanValidationBinder<>(OrderItem.class);
-	public OrderItemEditor(DataProvider<Product, String> productDataProvider) {
+	public OrderItemEditor() {
 		this.fieldSupport =  new AbstractFieldSupport<>(this, null,
 				Objects::equals, c ->  {});
-		products.setDataProvider(productDataProvider);
-		products.addValueChangeListener(e -> {
-			setPrice();
-			fireEvent(new ProductChangeEvent(this, e.getValue()));
-		});
+
 		amount.addValueChangeListener(e -> setPrice());
 		comment.addValueChangeListener(e -> fireEvent(new CommentChangeEvent(this, e.getValue())));
 
 		binder.forField(amount).bind("quantity");
 		amount.setRequiredIndicatorVisible(true);
 		binder.forField(comment).bind("comment");
-		binder.forField(products).bind("product");
-		products.setRequired(true);
+
 
 		delete.addClickListener(e -> fireEvent(new DeleteEvent(this)));
 		setPrice();
@@ -78,11 +71,7 @@ public class OrderItemEditor extends PolymerTemplate<TemplateModel> implements H
 	private void setPrice() {
 		int oldValue = totalPrice;
 		Integer selectedAmount = amount.getValue();
-		Product product = products.getValue();
 		totalPrice = 0;
-		if (selectedAmount != null && product != null) {
-			totalPrice = selectedAmount * product.getPrice();
-		}
 		price.setText(FormattingUtils.formatAsCurrency(totalPrice));
 		if (oldValue != totalPrice) {
 			fireEvent(new PriceChangeEvent(this, oldValue, totalPrice));
@@ -93,10 +82,7 @@ public class OrderItemEditor extends PolymerTemplate<TemplateModel> implements H
 	public void setValue(OrderItem value) {
 		fieldSupport.setValue(value);
 		binder.setBean(value);
-		boolean noProductSelected = value == null || value.getProduct() == null;
-		amount.setEnabled(!noProductSelected);
-		delete.setEnabled(!noProductSelected);
-		comment.setEnabled(!noProductSelected);
+
 		setPrice();
 	}
 
@@ -113,9 +99,6 @@ public class OrderItemEditor extends PolymerTemplate<TemplateModel> implements H
 		return addListener(PriceChangeEvent.class, listener);
 	}
 
-	public Registration addProductChangeListener(ComponentEventListener<ProductChangeEvent> listener) {
-		return addListener(ProductChangeEvent.class, listener);
-	}
 
 	public Registration addCommentChangeListener(ComponentEventListener<CommentChangeEvent> listener) {
 		return addListener(CommentChangeEvent.class, listener);

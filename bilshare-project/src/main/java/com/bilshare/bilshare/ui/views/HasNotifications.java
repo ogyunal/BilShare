@@ -5,7 +5,7 @@ import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.Notification.Position;
-import com.bilshare.bilshare.ui.utils.BakeryConst;
+import com.bilshare.bilshare.ui.utils.BilShareConst;
 
 /**
  * Interface for views showing notifications to users
@@ -27,7 +27,7 @@ public interface HasNotifications extends HasElement {
 			close.addClickListener(event -> notification.close());
 			notification.open();
 		} else {
-			Notification.show(message, BakeryConst.NOTIFICATION_DURATION, Position.BOTTOM_STRETCH);
+			Notification.show(message, BilShareConst.NOTIFICATION_DURATION, Position.BOTTOM_STRETCH);
 		}
 	}
 }

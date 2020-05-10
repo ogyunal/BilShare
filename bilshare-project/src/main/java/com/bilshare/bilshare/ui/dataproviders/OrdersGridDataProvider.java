@@ -19,7 +19,7 @@ import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.spring.annotation.UIScope;
 import com.bilshare.bilshare.backend.data.entity.Order;
 import com.bilshare.bilshare.backend.service.OrderService;
-import com.bilshare.bilshare.ui.utils.BakeryConst;
+import com.bilshare.bilshare.ui.utils.BilShareConst;
 
 /**
  * A pageable order data provider.
@@ -27,6 +27,11 @@ import com.bilshare.bilshare.ui.utils.BakeryConst;
 @SpringComponent
 @UIScope
 public class OrdersGridDataProvider extends FilterablePageableDataProvider<Order, OrdersGridDataProvider.OrderFilter> {
+
+	@Override
+	protected int sizeInBackEnd(Query<Order, OrderFilter> query) {
+		return 0;
+	}
 
 	public static class OrderFilter implements Serializable {
 		private String filter;
@@ -57,7 +62,7 @@ public class OrdersGridDataProvider extends FilterablePageableDataProvider<Order
 	@Autowired
 	public OrdersGridDataProvider(OrderService orderService) {
 		this.orderService = orderService;
-		setSortOrders(BakeryConst.DEFAULT_SORT_DIRECTION, BakeryConst.ORDER_SORT_FIELDS);
+		setSortOrders(BilShareConst.DEFAULT_SORT_DIRECTION, BilShareConst.ORDER_SORT_FIELDS);
 	}
 
 	private void setSortOrders(Sort.Direction direction, String[] properties) {
@@ -86,13 +91,6 @@ public class OrdersGridDataProvider extends FilterablePageableDataProvider<Order
 	@Override
 	protected List<QuerySortOrder> getDefaultSortOrders() {
 		return defaultSortOrders;
-	}
-
-	@Override
-	protected int sizeInBackEnd(Query<Order, OrderFilter> query) {
-		OrderFilter filter = query.getFilter().orElse(OrderFilter.getEmptyFilter());
-		return (int) orderService
-				.countAnyMatchingAfterDueDate(Optional.ofNullable(filter.getFilter()), getFilterDate(filter.isShowPrevious()));
 	}
 
 	private Optional<LocalDate> getFilterDate(boolean showPrevious) {

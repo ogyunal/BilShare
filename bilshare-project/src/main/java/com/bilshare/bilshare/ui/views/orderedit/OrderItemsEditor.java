@@ -15,14 +15,14 @@ import com.vaadin.flow.component.internal.AbstractFieldSupport;
 import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.shared.Registration;
 import com.bilshare.bilshare.backend.data.entity.OrderItem;
-import com.bilshare.bilshare.backend.data.entity.Product;
+
 import com.bilshare.bilshare.ui.views.storefront.events.TotalPriceChangeEvent;
 
 public class OrderItemsEditor extends Div implements HasValueAndElement<ComponentValueChangeEvent<OrderItemsEditor,List<OrderItem>>, List<OrderItem>> {
 
 	private OrderItemEditor empty;
 
-	private DataProvider<Product, String> productDataProvider;
+
 
 	private int totalPrice = 0;
 
@@ -30,8 +30,7 @@ public class OrderItemsEditor extends Div implements HasValueAndElement<Componen
 
 	private final AbstractFieldSupport<OrderItemsEditor,List<OrderItem>> fieldSupport;
 	
-	public OrderItemsEditor(DataProvider<Product, String> productDataProvider) {
-		this.productDataProvider = productDataProvider;
+	public OrderItemsEditor() {
 		this.fieldSupport = new AbstractFieldSupport<>(this, Collections.emptyList(),
 				Objects::equals, c ->  {}); 
 	}
@@ -51,10 +50,10 @@ public class OrderItemsEditor extends Div implements HasValueAndElement<Componen
 	}
 
 	private OrderItemEditor createEditor(OrderItem value) {
-		OrderItemEditor editor = new OrderItemEditor(productDataProvider);
+		OrderItemEditor editor = new OrderItemEditor();
 		getElement().appendChild(editor.getElement());
 		editor.addPriceChangeListener(e -> updateTotalPriceOnItemPriceChange(e.getOldValue(), e.getNewValue()));
-		editor.addProductChangeListener(e -> productChanged(e.getSource(), e.getProduct()));
+
 		editor.addCommentChangeListener(e -> setHasChanges(true));
 		editor.addDeleteListener(e -> {
 			OrderItemEditor orderItemEditor = e.getSource();
@@ -62,7 +61,7 @@ public class OrderItemsEditor extends Div implements HasValueAndElement<Componen
 				remove(orderItemEditor);
 				OrderItem orderItem = orderItemEditor.getValue();
 				setValue(getValue().stream().filter(element -> element != orderItem).collect(Collectors.toList()));
-				updateTotalPriceOnItemPriceChange(orderItem.getTotalPrice(), 0);
+
 				setHasChanges(true);
 			}
 		});
@@ -82,12 +81,12 @@ public class OrderItemsEditor extends Div implements HasValueAndElement<Componen
 		return fieldSupport.getValue();
 	}
 
-	private void productChanged(OrderItemEditor item, Product product) {
+	private void productChanged(OrderItemEditor item) {
 		setHasChanges(true);
 		if (empty == item) {
 			createEmptyElement();
 			OrderItem orderItem = new OrderItem();
-			orderItem.setProduct(product);
+
 			item.setValue(orderItem);
 			setValue(Stream.concat(getValue().stream(),Stream.of(orderItem)).collect(Collectors.toList()));
 		}

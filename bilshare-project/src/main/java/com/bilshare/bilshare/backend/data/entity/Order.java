@@ -1,9 +1,6 @@
 package com.bilshare.bilshare.backend.data.entity;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.NamedEntityGraphs;
@@ -25,15 +21,13 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.BatchSize;
 
-import com.bilshare.bilshare.backend.data.OrderState;
+import com.bilshare.bilshare.backend.data.OrderImage;
 
 @Entity(name = "OrderInfo") // "Order" is a reserved word
 @NamedEntityGraphs({@NamedEntityGraph(name = Order.ENTITY_GRAPTH_BRIEF, attributeNodes = {
 		@NamedAttributeNode("customer"),
-		@NamedAttributeNode("pickupLocation")
 }),@NamedEntityGraph(name = Order.ENTITY_GRAPTH_FULL, attributeNodes = {
 		@NamedAttributeNode("customer"),
-		@NamedAttributeNode("pickupLocation"),
 		@NamedAttributeNode("items"),
 		@NamedAttributeNode("history")
 })})
@@ -43,15 +37,6 @@ public class Order extends AbstractEntity implements OrderSummary {
 	public static final String ENTITY_GRAPTH_BRIEF = "Order.brief";
 	public static final String ENTITY_GRAPTH_FULL = "Order.full";
 
-	@NotNull(message = "{bakery.due.date.required}")
-	private LocalDate dueDate;
-
-	@NotNull(message = "{bakery.due.time.required}")
-	private LocalTime dueTime;
-
-	@NotNull(message = "{bakery.pickup.location.required}")
-	@ManyToOne
-	private PickupLocation pickupLocation;
 
 	@NotNull
 	@OneToOne(cascade = CascadeType.ALL)
@@ -65,18 +50,12 @@ public class Order extends AbstractEntity implements OrderSummary {
 	@Valid
 	private List<OrderItem> items;
 	@NotNull(message = "{bakery.status.required}")
-	private OrderState state;
+	private OrderImage orderImage;
 
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@OrderColumn
-	@JoinColumn
-	private List<HistoryItem> history;
 
 	public Order(User createdBy) {
-		this.state = OrderState.NEW;
+		this.orderImage = OrderImage.NEW;
 		setCustomer(new Customer());
-		addHistoryItem(createdBy, "Order placed");
 		this.items = new ArrayList<>();
 	}
 
@@ -84,41 +63,6 @@ public class Order extends AbstractEntity implements OrderSummary {
 		// Empty constructor is needed by Spring Data / JPA
 	}
 
-	public void addHistoryItem(User createdBy, String comment) {
-		HistoryItem item = new HistoryItem(createdBy, comment);
-		item.setNewState(state);
-		if (history == null) {
-			history = new LinkedList<>();
-		}
-		history.add(item);
-	}
-
-	@Override
-	public LocalDate getDueDate() {
-		return dueDate;
-	}
-
-	public void setDueDate(LocalDate dueDate) {
-		this.dueDate = dueDate;
-	}
-
-	@Override
-	public LocalTime getDueTime() {
-		return dueTime;
-	}
-
-	public void setDueTime(LocalTime dueTime) {
-		this.dueTime = dueTime;
-	}
-
-	@Override
-	public PickupLocation getPickupLocation() {
-		return pickupLocation;
-	}
-
-	public void setPickupLocation(PickupLocation pickupLocation) {
-		this.pickupLocation = pickupLocation;
-	}
 
 	@Override
 	public Customer getCustomer() {
@@ -138,35 +82,19 @@ public class Order extends AbstractEntity implements OrderSummary {
 		this.items = items;
 	}
 
-	public List<HistoryItem> getHistory() {
-		return history;
-	}
-
-	public void setHistory(List<HistoryItem> history) {
-		this.history = history;
-	}
-
 	@Override
-	public OrderState getState() {
-		return state;
+	public OrderImage getImage() {
+		return orderImage;
 	}
 
-	public void changeState(User user, OrderState state) {
-		boolean createHistory = this.state != state && this.state != null && state != null;
-		this.state = state;
-		if (createHistory) {
-			addHistoryItem(user, "Order " + state);
-		}
+	public void changeImage(User user, OrderImage orderImage) {
+		boolean createHistory = this.orderImage != orderImage && this.orderImage != null && orderImage != null;
+		this.orderImage = orderImage;
 	}
 
 	@Override
 	public String toString() {
-		return "Order{" + "dueDate=" + dueDate + ", dueTime=" + dueTime + ", pickupLocation=" + pickupLocation
-				+ ", customer=" + customer + ", items=" + items + ", state=" + state + '}';
+		return "Order{" + ", customer=" + customer + ", items=" + items + ", state=" + orderImage + '}';
 	}
 
-	@Override
-	public Integer getTotalPrice() {
-		return items.stream().map(i -> i.getTotalPrice()).reduce(0, Integer::sum);
-	}
 }

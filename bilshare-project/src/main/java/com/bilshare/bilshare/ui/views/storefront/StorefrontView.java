@@ -26,17 +26,17 @@ import com.bilshare.bilshare.app.HasLogger;
 import com.bilshare.bilshare.backend.data.entity.Order;
 import com.bilshare.bilshare.ui.MainView;
 import com.bilshare.bilshare.ui.components.SearchBar;
-import com.bilshare.bilshare.ui.utils.BakeryConst;
+import com.bilshare.bilshare.ui.utils.BilShareConst;
 import com.bilshare.bilshare.ui.views.EntityView;
 import com.bilshare.bilshare.ui.views.orderedit.OrderDetails;
 import com.bilshare.bilshare.ui.views.orderedit.OrderEditor;
 
 @Tag("storefront-view")
 @JsModule("./src/views/storefront/storefront-view.js")
-@Route(value = BakeryConst.PAGE_STOREFRONT, layout = MainView.class)
-@RouteAlias(value = BakeryConst.PAGE_STOREFRONT_EDIT, layout = MainView.class)
-@RouteAlias(value = BakeryConst.PAGE_ROOT, layout = MainView.class)
-@PageTitle(BakeryConst.TITLE_STOREFRONT)
+@Route(value = BilShareConst.PAGE_STOREFRONT, layout = MainView.class)
+@RouteAlias(value = BilShareConst.PAGE_STOREFRONT_EDIT, layout = MainView.class)
+@RouteAlias(value = BilShareConst.PAGE_ROOT, layout = MainView.class)
+@PageTitle(BilShareConst.TITLE_STOREFRONT)
 public class StorefrontView extends PolymerTemplate<TemplateModel>
 		implements HasLogger, HasUrlParameter<Long>, EntityView<Order> {
 
@@ -63,7 +63,6 @@ public class StorefrontView extends PolymerTemplate<TemplateModel>
 		this.orderEditor = orderEditor;
 
 		searchBar.setActionText("New order");
-		searchBar.setCheckboxText("Show past orders");
 		searchBar.setPlaceHolder("Search");
 
 		grid.setSelectionMode(Grid.SelectionMode.NONE);
@@ -72,10 +71,9 @@ public class StorefrontView extends PolymerTemplate<TemplateModel>
 				.withProperty("orderCard", OrderCard::create)
 				.withProperty("header", order -> presenter.getHeaderByOrderId(order.getId()))
 				.withEventHandler("cardClick",
-						order -> UI.getCurrent().navigate(BakeryConst.PAGE_STOREFRONT + "/" + order.getId())));
+						order -> UI.getCurrent().navigate(BilShareConst.PAGE_STOREFRONT + "/" + order.getId())));
 
-		getSearchBar().addFilterChangeListener(
-				e -> presenter.filterChanged(getSearchBar().getFilter(), getSearchBar().isCheckboxChecked()));
+
 		getSearchBar().addActionClickListener(e -> presenter.createNewOrder());
 
 		presenter.init(this);
@@ -99,7 +97,7 @@ public class StorefrontView extends PolymerTemplate<TemplateModel>
 
 	@Override
 	public void setParameter(BeforeEvent event, @OptionalParameter Long orderId) {
-		boolean editView = event.getLocation().getPath().contains(BakeryConst.PAGE_STOREFRONT_EDIT);
+		boolean editView = event.getLocation().getPath().contains(BilShareConst.PAGE_STOREFRONT_EDIT);
 		if (orderId != null) {
 			presenter.onNavigation(orderId, editView);
 		} else if (dialog.isOpened()) {
@@ -108,7 +106,7 @@ public class StorefrontView extends PolymerTemplate<TemplateModel>
 	}
 
 	void navigateToMainView() {
-		getUI().ifPresent(ui -> ui.navigate(BakeryConst.PAGE_STOREFRONT));
+		getUI().ifPresent(ui -> ui.navigate(BilShareConst.PAGE_STOREFRONT));
 	}
 
 	@Override

@@ -35,13 +35,11 @@ import com.vaadin.flow.data.validator.BeanValidator;
 import com.vaadin.flow.shared.Registration;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.templatemodel.TemplateModel;
-import com.bilshare.bilshare.backend.data.OrderState;
+import com.bilshare.bilshare.backend.data.OrderImage;
 import com.bilshare.bilshare.backend.data.entity.Order;
-import com.bilshare.bilshare.backend.data.entity.PickupLocation;
-import com.bilshare.bilshare.backend.data.entity.Product;
+
 import com.bilshare.bilshare.backend.data.entity.User;
-import com.bilshare.bilshare.backend.service.PickupLocationService;
-import com.bilshare.bilshare.backend.service.ProductService;
+
 import com.bilshare.bilshare.ui.crud.CrudEntityDataProvider;
 import com.bilshare.bilshare.ui.dataproviders.DataProviderUtil;
 import com.bilshare.bilshare.ui.events.CancelEvent;
@@ -72,16 +70,8 @@ public class OrderEditor extends PolymerTemplate<OrderEditor.Model> {
 	private Span orderNumber;
 
 	@Id("status")
-	private ComboBox<OrderState> status;
+	private ComboBox<OrderImage> status;
 
-	@Id("dueDate")
-	private DatePicker dueDate;
-
-	@Id("dueTime")
-	private ComboBox<LocalTime> dueTime;
-
-	@Id("pickupLocation")
-	private ComboBox<PickupLocation> pickupLocation;
 
 	@Id("customerName")
 	private TextField customerName;
@@ -110,7 +100,7 @@ public class OrderEditor extends PolymerTemplate<OrderEditor.Model> {
 	private final LocalTimeConverter localTimeConverter = new LocalTimeConverter();
 
 	@Autowired
-	public OrderEditor(PickupLocationService locationService, ProductService productService) {
+	/*public OrderEditor(PickupLocationService locationService, ProductService productService) {
 		DataProvider<PickupLocation, String> locationDataProvider = new CrudEntityDataProvider<>(locationService);
 		DataProvider<Product, String> productDataProvider = new CrudEntityDataProvider<>(productService);
 		itemsEditor = new OrderItemsEditor(productDataProvider);
@@ -120,14 +110,14 @@ public class OrderEditor extends PolymerTemplate<OrderEditor.Model> {
 		cancel.addClickListener(e -> fireEvent(new CancelEvent(this, false)));
 		review.addClickListener(e -> fireEvent(new ReviewEvent(this)));
 
-		status.setItemLabelGenerator(createItemLabelGenerator(OrderState::getDisplayName));
-		status.setDataProvider(DataProvider.ofItems(OrderState.values()));
+		status.setItemLabelGenerator(createItemLabelGenerator(OrderImage::getDisplayName));
+		status.setDataProvider(DataProvider.ofItems(OrderImage.values()));
 		status.addValueChangeListener(
-				e -> getModel().setStatus(DataProviderUtil.convertIfNotNull(e.getValue(), OrderState::name)));
+				e -> getModel().setStatus(DataProviderUtil.convertIfNotNull(e.getValue(), OrderImage::name)));
 		binder.forField(status)
 				.withValidator(new BeanValidator(Order.class, "state"))
-				.bind(Order::getState, (o, s) -> {
-					o.changeState(currentUser, s);
+				.bind(Order::getImage, (o, s) -> {
+					o.changeImage(currentUser, s);
 				});
 
 		dueDate.setRequired(true);
@@ -163,7 +153,7 @@ public class OrderEditor extends PolymerTemplate<OrderEditor.Model> {
 				review.setEnabled(hasChanges());
 			}
 		});
-	}
+	}*/
 
 	public boolean hasChanges() {
 		return binder.hasChanges() || itemsEditor.hasChanges();
@@ -189,8 +179,8 @@ public class OrderEditor extends PolymerTemplate<OrderEditor.Model> {
 		title.setVisible(isNew);
 		metaContainer.setVisible(!isNew);
 
-		if (order.getState() != null) {
-			getModel().setStatus(order.getState().name());
+		if (order.getImage() != null) {
+			getModel().setStatus(order.getImage().name());
 		}
 
 		review.setEnabled(false);

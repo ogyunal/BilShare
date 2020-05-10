@@ -51,37 +51,13 @@ public class OrderCard {
 	public OrderCard(OrderSummary order) {
 		this.order = order;
 		LocalDate now = LocalDate.now();
-		LocalDate date = order.getDueDate();
-		recent = date.equals(now) || date.equals(now.minusDays(1));
-		inWeek = !recent && now.getYear() == date.getYear() && now.get(WEEK_OF_YEAR_FIELD) == date.get(WEEK_OF_YEAR_FIELD);
+
 	}
 
-	public String getPlace() {
-		return recent || inWeek ? order.getPickupLocation().getName() : null;
-	}
 
-	public String getTime() {
-		return recent ? HOUR_FORMATTER.format(order.getDueTime()) : null;
-	}
-
-	public String getShortDay() {
-		return inWeek ? SHORT_DAY_FORMATTER.format(order.getDueDate()) : null;
-	}
-
-	public String getSecondaryTime() {
-		return inWeek ? HOUR_FORMATTER.format(order.getDueTime()) : null;
-	}
-
-	public String getMonth() {
-		return recent || inWeek ? null : MONTH_AND_DAY_FORMATTER.format(order.getDueDate());
-	}
-
-	public String getFullDay() {
-		return recent || inWeek ? null : WEEKDAY_FULLNAME_FORMATTER.format(order.getDueDate());
-	}
 
 	public String getState() {
-		return stateConverter.encode(order.getState());
+		return stateConverter.encode(order.getImage());
 	}
 
 	public String getFullName() {

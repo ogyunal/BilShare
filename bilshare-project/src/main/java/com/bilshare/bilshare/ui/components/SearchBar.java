@@ -48,15 +48,10 @@ public class SearchBar extends PolymerTemplate<SearchBar.Model> {
 			getModel().setCheckboxChecked(false);
 		});
 
-		getElement().addPropertyChangeListener("checkboxChecked", e -> fireEvent(new FilterChanged(this, false)));
 	}
 
 	public String getFilter() {
 		return textField.getValue();
-	}
-
-	public boolean isCheckboxChecked() {
-		return getModel().isCheckboxChecked();
 	}
 
 	public void setPlaceHolder(String placeHolder) {
@@ -65,10 +60,6 @@ public class SearchBar extends PolymerTemplate<SearchBar.Model> {
 
 	public void setActionText(String actionText) {
 		getModel().setButtonText(actionText);
-	}
-
-	public void setCheckboxText(String checkboxText) {
-		getModel().setCheckboxText(checkboxText);
 	}
 
 	public void addFilterChangeListener(ComponentEventListener<FilterChanged> listener) {

@@ -107,12 +107,7 @@ public class OrderCardHeaderGenerator {
 		HeaderWrapper current = headerIterator.next();
 		for (Order order : orders) {
 			// If last selected, discard orders that match it.
-			if (current.getSelected() != null && current.matches(order.getDueDate())) {
-				continue;
-			}
-			while (current != null && !current.matches(order.getDueDate())) {
-				current = headerIterator.hasNext() ? headerIterator.next() : null;
-			}
+
 			if (current == null) {
 				break;
 			}

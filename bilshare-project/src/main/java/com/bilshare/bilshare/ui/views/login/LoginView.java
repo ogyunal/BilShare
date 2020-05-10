@@ -1,6 +1,9 @@
 package com.bilshare.bilshare.ui.views.login;
 
+
+import com.vaadin.flow.component.button.*;
 import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.login.LoginI18n;
 import com.vaadin.flow.component.login.LoginOverlay;
 import com.vaadin.flow.component.page.Viewport;
@@ -11,15 +14,16 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.bilshare.bilshare.app.security.SecurityUtils;
-import com.bilshare.bilshare.ui.utils.BakeryConst;
+import com.bilshare.bilshare.ui.utils.BilShareConst;
 import com.bilshare.bilshare.ui.views.storefront.StorefrontView;
 
 @Route
 @PageTitle("BilShare Project")
 @JsModule("./styles/shared-styles.js")
-@Viewport(BakeryConst.VIEWPORT)
+@Viewport(BilShareConst.VIEWPORT)
 public class LoginView extends LoginOverlay
 	implements AfterNavigationObserver, BeforeEnterObserver {
+
 
 	public LoginView() {
 		LoginI18n i18n = LoginI18n.createDefault();
@@ -36,6 +40,10 @@ public class LoginView extends LoginOverlay
 		setI18n(i18n);
 		setForgotPasswordButtonVisible(false);
 		setAction("login");
+
+
+
+
 	}
 	
 	@Override

@@ -1,11 +1,10 @@
 package com.bilshare.bilshare.ui;
 
-import static com.bilshare.bilshare.ui.utils.BakeryConst.TITLE_DASHBOARD;
-import static com.bilshare.bilshare.ui.utils.BakeryConst.TITLE_LOGOUT;
-import static com.bilshare.bilshare.ui.utils.BakeryConst.TITLE_PRODUCTS;
-import static com.bilshare.bilshare.ui.utils.BakeryConst.TITLE_STOREFRONT;
-import static com.bilshare.bilshare.ui.utils.BakeryConst.TITLE_USERS;
-import static com.bilshare.bilshare.ui.utils.BakeryConst.VIEWPORT;
+import static com.bilshare.bilshare.ui.utils.BilShareConst.TITLE_DASHBOARD;
+import static com.bilshare.bilshare.ui.utils.BilShareConst.TITLE_LOGOUT;
+import static com.bilshare.bilshare.ui.utils.BilShareConst.TITLE_STOREFRONT;
+import static com.bilshare.bilshare.ui.utils.BilShareConst.TITLE_USERS;
+import static com.bilshare.bilshare.ui.utils.BilShareConst.VIEWPORT;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
@@ -23,11 +22,8 @@ import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.server.VaadinServlet;
 import com.bilshare.bilshare.app.security.SecurityUtils;
-import com.bilshare.bilshare.ui.components.OfflineBanner;
 import com.bilshare.bilshare.ui.views.HasConfirmation;
-import com.bilshare.bilshare.ui.views.admin.products.ProductsView;
 import com.bilshare.bilshare.ui.views.admin.users.UsersView;
-import com.bilshare.bilshare.ui.views.dashboard.DashboardView;
 import com.bilshare.bilshare.ui.views.storefront.StorefrontView;
 
 import java.util.ArrayList;
@@ -101,12 +97,9 @@ public class MainView extends AppLayout {
 		final List<Tab> tabs = new ArrayList<>(4);
 		tabs.add(createTab(VaadinIcon.EDIT, TITLE_STOREFRONT,
 						StorefrontView.class));
-		tabs.add(createTab(VaadinIcon.CLOCK,TITLE_DASHBOARD, DashboardView.class));
+
 		if (SecurityUtils.isAccessGranted(UsersView.class)) {
 			tabs.add(createTab(VaadinIcon.USER,TITLE_USERS, UsersView.class));
-		}
-		if (SecurityUtils.isAccessGranted(ProductsView.class)) {
-			tabs.add(createTab(VaadinIcon.CALENDAR, TITLE_PRODUCTS, ProductsView.class));
 		}
 		final String contextPath = VaadinServlet.getCurrent().getServletContext().getContextPath();
 		final Tab logoutTab = createTab(createLogoutLink(contextPath));

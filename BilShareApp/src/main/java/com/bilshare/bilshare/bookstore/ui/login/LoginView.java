@@ -35,6 +35,7 @@ public class LoginView extends FlexLayout {
     private SignupView signupView = new SignupView(uds);
     private Dialog signupPopup;
     private Button signup = new Button("Sign-up");
+
     public LoginView() {
         accessControl = AccessControlFactory.getInstance().createAccessControl();
         buildUI();
@@ -82,7 +83,7 @@ public class LoginView extends FlexLayout {
                 "Log in as \"admin\" to have full access. Log in with any " +
                         "other username to have read-only access. For all " +
                         "users, the password is same as the username. If you don't" +
-                        "have an account you can sign-up here. (Double click on the button)");
+                        "have an account you can sign-up here. (Click on the button)");
         loginInfoText.setWidth("100%");
         loginInformation.add(loginInfoHeader);
         loginInformation.add(loginInfoText);

@@ -18,7 +18,7 @@ import elemental.json.Json;
 
 import java.util.function.Consumer;
 
-public abstract class AbstractBakeryCrudView<E extends AbstractEntity> extends Crud<E>
+public abstract class AbstractCrudView<E extends AbstractEntity> extends Crud<E>
         implements HasUrlParameter<Long>, HasNotifications {
 
     private static final String DISCARD_MESSAGE = "There are unsaved modifications to the %s. Discard changes?";
@@ -32,8 +32,8 @@ public abstract class AbstractBakeryCrudView<E extends AbstractEntity> extends C
 
     protected abstract void setupGrid(Grid<E> grid);
 
-    public AbstractBakeryCrudView(Class<E> beanType, FilterableCrudService<E> service,
-                                  Grid<E> grid, CrudEditor<E> editor, CurrentUser currentUser) {
+    public AbstractCrudView(Class<E> beanType, FilterableCrudService<E> service,
+                            Grid<E> grid, CrudEditor<E> editor, CurrentUser currentUser) {
         super(beanType, grid, editor);
         this.grid = grid;
         grid.setSelectionMode(Grid.SelectionMode.NONE);

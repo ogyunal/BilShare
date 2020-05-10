@@ -1,6 +1,6 @@
 package com.bilshare.bilshare.ui.views.admin.users;
 
-import static com.bilshare.bilshare.ui.utils.BakeryConst.PAGE_USERS;
+import static com.bilshare.bilshare.ui.utils.BilShareConst.PAGE_USERS;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -19,17 +19,15 @@ import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.bilshare.bilshare.app.security.CurrentUser;
-import com.bilshare.bilshare.backend.data.Role;
 import com.bilshare.bilshare.backend.data.entity.User;
 import com.bilshare.bilshare.backend.service.UserService;
 import com.bilshare.bilshare.ui.MainView;
-import com.bilshare.bilshare.ui.crud.AbstractBakeryCrudView;
-import com.bilshare.bilshare.ui.utils.BakeryConst;
+import com.bilshare.bilshare.ui.crud.AbstractCrudView;
+import com.bilshare.bilshare.ui.utils.BilShareConst;
 
 @Route(value = PAGE_USERS, layout = MainView.class)
-@PageTitle(BakeryConst.TITLE_USERS)
-@Secured(Role.ADMIN)
-public class UsersView extends AbstractBakeryCrudView<User> {
+@PageTitle(BilShareConst.TITLE_USERS)
+public class UsersView extends AbstractCrudView<User> {
 
 	@Autowired
 	public UsersView(UserService service, CurrentUser currentUser, PasswordEncoder passwordEncoder) {
@@ -55,23 +53,16 @@ public class UsersView extends AbstractBakeryCrudView<User> {
 		TextField last = new TextField("Last name");
 		PasswordField password = new PasswordField("Password");
 		password.getElement().setAttribute("colspan", "2");
-		ComboBox<String> role = new ComboBox<>();
-		role.getElement().setAttribute("colspan", "2");
-		role.setLabel("Role");
 
-		FormLayout form = new FormLayout(email, first, last, password, role);
+
+		FormLayout form = new FormLayout(email, first, last, password);
 
 		BeanValidationBinder<User> binder = new BeanValidationBinder<>(User.class);
 
-		ListDataProvider<String> roleProvider = DataProvider.ofItems(Role.getAllRoles());
-		role.setItemLabelGenerator(s -> s != null ? s : "");
-		role.setDataProvider(roleProvider);
 
 		binder.bind(first, "firstName");
 		binder.bind(last, "lastName");
 		binder.bind(email, "email");
-		binder.bind(role, "role");
-
 		binder.forField(password)
 				.withValidator(pass -> pass.matches("^(|(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,})$"),
 				"need 6 or more chars, mixing digits, lowercase and uppercase letters")
