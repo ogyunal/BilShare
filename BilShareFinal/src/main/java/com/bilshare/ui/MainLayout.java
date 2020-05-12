@@ -1,6 +1,7 @@
 package com.bilshare.ui;
 
 import com.bilshare.ui.views.AddAdvert.AddAdvertView;
+import com.bilshare.ui.views.MyProfileView.ProfileView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -85,7 +86,7 @@ public class MainLayout extends AppLayout {
                 ListView.class));
 
         tabs.add(createTab(VaadinIcon.USER, "My Profile",
-                DashboardView.class));
+                ProfileView.class));
 
         tabs.add(createTab(VaadinIcon.PLUS_CIRCLE, "Add An Advert",
                 AddAdvertView.class));
