@@ -1,18 +1,32 @@
-# Java Web App tutorial demo application source code
+# CS102 ~ Design Project ~ Spring 2019/20
+[Computer Engineering Department, Bilkent University](http://w3.cs.bilkent.edu.tr/en/).  
+The information and code in this repository are submitted in partial fulfillment of the CS102 Semester Design Project. Except where explicitly stated, the work is that of the group members listed below (who are expected to follow ethical academic & professional practice).
+****
+## g3J ~~ BilShare ~~
+****
 
-This repository contains the source code for the [Java Web App development tutorial series](https://bit.ly/2W6c8CO).
+## Project Description
+Buying and selling second-hand books and lecture notes is one of the most common transactions among university students as some of the firsthand books are very expensive or cannot be found in the bookstores. Besides, some students prefer to buy the lecture notes rather than take notes and others prefer to take notes and sell them. However, the process of meeting the customer with a reliable seller is frustrating and hard. Up to this day, some social media platforms are used for this aim like the Bilkent Duyuru which is created by the students. However, the problem about these platforms is that the content and adverts within these platforms is quite messy and students have difficulties to find a relevant advert. Therefore, we propose a platform that can be used only for buying and selling second-hand books and lecture notes. In this way, students can easily negotiate about the deals and a win- win condition can be provided for the seller and the buyer. Buyers will be able to filtrate through the adverts and easily find the relevant advert from a reliable seller while, on the other hand, the sellers will be able to reach the customer much more effectively. The platform is mainly for Bilkent students. However, in the future, the scope can be extended to teachers or assistants.
+![Image of Infrastructure](https://github.com/ogyunal/BilShare/blob/master/bilShareInfrastructure.png)
 
-*Live demo:* https://crm.demo.vaadin.com
+   
+## Project Status
++ **Group/project Selection:** completed (29.02.2020)
++ **Requirements:** completed (31.03.2020)
++ **UI Design:** completed (date)
++ **Detailed Design:** in progress
++ **Implementation:** not started!
++ **Reflections:** not yet!
 
-[![Open in online IDE ](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/vaadin-learning-center/crm-tutorial) 
+[Group Meetings Log](group/meetingslog.md)
+#### Group Members
+- [Oğulcan Ünal](group/ogulcan_log.md)
+- [Melih Obut](group/melih_log.md)
+- [Elif Çenesiz](group/elif_log.md)
+- [Berk Türkçapar](group/berk_log.md)
+- [İdil Yılmaz](group/idil_log.md)
+- [Yağmur Eryılmaz](group/yagmur_log.md)
 
-## Branch per chapter
-You can find the completed source for each chapter in separate branches. 
-The main branch will be updated to contain the finished, application once all chapters have been published. 
-
-
-## Text tutorial
-You can find a text version of the tutorial in the [Vaadin Learning Center](https://vaad.in/37pHRmY).
-
-## Video tutorial
-You can find a video version of the tutorial on [YouTube](https://www.youtube.com/playlist?list=PLcRrh9hGNallPtT2VbUAsrWqvkQ-XE22h)
+****
+**Instructor:** David Davenport   **TA:**  Laleh Eskandarian
+****

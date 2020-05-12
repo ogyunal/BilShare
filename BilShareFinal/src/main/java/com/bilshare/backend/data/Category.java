@@ -1,8 +1,6 @@
 package com.bilshare.backend.data;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
 
 public enum Category {

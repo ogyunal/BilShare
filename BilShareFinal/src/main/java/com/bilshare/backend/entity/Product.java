@@ -1,13 +1,10 @@
 package com.bilshare.backend.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import com.bilshare.backend.data.Type;
-
 
 
 @Entity
@@ -45,7 +42,6 @@ public class Product extends AbstractEntity implements Cloneable {
     //@NotNull(message = "Image not found")
     @Column(name = "image")
     private String image;
-
 
     //@Email
     //@NotNull
