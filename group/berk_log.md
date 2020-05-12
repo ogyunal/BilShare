@@ -17,4 +17,6 @@ Most of the UI seems to be looking good. However we realize there is a much bigg
 ### ~ 05.05.2020 ~
 I have successfully installed MySQL to my computer. Although I couldn't really understand at the beginnig, I was able to create databases and tables from the terminal. However, it seems like connecting the app to the database won't be easy. I have started creating repository and service classes for connection to database.   
 
+### ~ 11.05.2020 ~
+We have connected our database to a cloud so that all users would be able to have the same data when using the application. We have used AWS in order to connect it to a cloud. By using the JPA Repository class, we are able to save, delete and update products in our database. Now, we have to implement a similar database connection for the log-in page and sign-up page. However, we are not able to save the image to our database just yet. 
 ****
