@@ -16,8 +16,6 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-
-
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
@@ -42,17 +40,26 @@ public class ProductService {
         productRepository.delete(product);
     }
 
-    public void save(Product product) {
+    /*public void save(Product product) {
         if (product == null) {
             LOGGER.log(Level.SEVERE,
                 "Product is null.");
             return;
         }
         productRepository.save(product);
+    }*/
+
+    public void save(Product product) {
+        Product newProduct = new Product(product.getSeller());
+        //Product newProduct = new Product();
+        newProduct.setProductName(product.getProductName());
+        newProduct.setPrice(product.getPrice());
+        newProduct.setType(product.getType());
+        newProduct.setAdditionalInfo(product.getAdditionalInfo());
+        productRepository.save(product);
     }
 
     public void getStats() {
-
     }
 
 }

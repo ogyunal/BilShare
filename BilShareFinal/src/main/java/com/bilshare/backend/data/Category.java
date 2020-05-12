@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 public enum Category {
     ENGINEERING("Engineering"), MANAGEMENT("Management"), LAW("Law"),
-    COMPUTER_SCIENCE("Computer Science"), ECONOMICS("Economics"), PHYSICS("Physics"),
+    COMPUTER_SCIENCE("Computer Science"), ECONOMICS("Economics"), MATHEMATICS("Mathematics"), PHYSICS("Physics"),
     CHEMISTRY("Chemistry"), BIOLOGY("Biology"), LANGUAGE("Language"), MUSIC("Music");
 
     @Column
@@ -22,4 +22,3 @@ public enum Category {
         return name;
     }
 }
-

@@ -4,10 +4,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.bilshare.backend.entity.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    User findByEmailIgnoreCase(String email);
+    /*User findByEmailIgnoreCase(String email);
 
     Page<User> findBy(Pageable pageable);
 
@@ -15,5 +17,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
             String emailLike, String firstNameLike, String lastNameLike, String roleLike, Pageable pageable);
 
     long countByEmailLikeIgnoreCaseOrFirstNameLikeIgnoreCaseOrLastNameLikeIgnoreCaseOrRoleLikeIgnoreCase(
-            String emailLike, String firstNameLike, String lastNameLike, String roleLike);
+            String emailLike, String firstNameLike, String lastNameLike, String roleLike);*/
 }

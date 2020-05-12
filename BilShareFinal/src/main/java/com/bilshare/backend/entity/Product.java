@@ -26,9 +26,9 @@ public class Product extends AbstractEntity implements Cloneable {
     private double price;
 
 
-@NotNull(message = "You have to specify the Category")
-@Column
-private String category;
+    @NotNull(message = "You have to specify the Category")
+    @Column
+    private String category;
 
     @Column(name="additional_info")
     private String additionalInfo;
@@ -40,19 +40,17 @@ private String category;
 
     @NotNull(message = "User not found")
     @Column(name = "seller")
-
     private String seller;
 
-    @NotNull(message = "Image not found")
+    //@NotNull(message = "Image not found")
     @Column(name = "image")
-
     private String image;
 
 
-    @Email
-    @NotNull
-    @NotEmpty
-    private String email = "";
+    //@Email
+    //@NotNull
+    //@NotEmpty
+    //private String email = "";
 
     public Product() {
     }
@@ -77,13 +75,13 @@ private String category;
         this.price = price;
     }
 
-    public String getEmail() {
+    /*public String getEmail() {
         return email;
-    }
+    }*/
 
-    public void setEmail(String email) {
+    /*public void setEmail(String email) {
         this.email = email;
-    }
+    }*/
 
     public String getType() {
         return type;

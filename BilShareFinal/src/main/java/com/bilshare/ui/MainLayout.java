@@ -1,5 +1,6 @@
 package com.bilshare.ui;
 
+import com.bilshare.ui.views.AddAdvert.AddAdvertView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -80,14 +81,14 @@ public class MainLayout extends AppLayout {
     private static Tab[] getAvailableTabs() {
         final List<Tab> tabs = new ArrayList<>(4);
 
-        tabs.add(createTab(VaadinIcon.BOOK, "Store Front",
+        tabs.add(createTab(VaadinIcon.BOOK, "Advert List",
                 ListView.class));
 
         tabs.add(createTab(VaadinIcon.USER, "My Profile",
                 DashboardView.class));
 
         tabs.add(createTab(VaadinIcon.PLUS_CIRCLE, "Add An Advert",
-                DashboardView.class));
+                AddAdvertView.class));
 
         tabs.add(createTab(VaadinIcon.EDIT, "Contact Us",
                 DashboardView.class));

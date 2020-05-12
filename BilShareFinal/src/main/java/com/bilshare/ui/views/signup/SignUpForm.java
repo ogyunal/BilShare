@@ -36,22 +36,19 @@ public class SignUpForm extends VerticalLayout {
     @Autowired
     private UserService userService;
 
-    private PasswordField passwordField1;
-    private PasswordField passwordField2;
+    private PasswordField passwordField1 = new PasswordField("Password");
+    private PasswordField passwordField2 = new PasswordField("Password Again");
 
-    private UserService service;
     private BeanValidationBinder<User> binder;
 
-    private User newUser;
+    private H3 title = new H3("BilShare Sign-up Form");
 
-    H3 title = new H3("BilShare Sign-up Form");
+    private TextField firstnameField = new TextField("First Name");
+    private TextField lastnameField = new TextField("Last Name");
+    private TextField usernameField = new TextField("Username");
 
-    TextField firstnameField = new TextField("First Name");
-    TextField lastnameField = new TextField("Last Name");
-    TextField usernameField = new TextField("Username");
-
-    AvatarField avatarField = new AvatarField("Select Avatar image");
-    EmailField emailField = new EmailField("Email");
+    private AvatarField avatarField = new AvatarField("Select Avatar image");
+    private EmailField emailField = new EmailField("Email");
 
 
 
@@ -66,9 +63,6 @@ public class SignUpForm extends VerticalLayout {
     public SignUpForm(UserService userService) {
 
         this.userService = userService;
-
-        passwordField1 = new PasswordField("Password");
-        passwordField2 = new PasswordField("Password Again");
 
 
         Span errorMessage = new Span();
@@ -119,7 +113,7 @@ public class SignUpForm extends VerticalLayout {
          * automatically validate all JSR-303 definitions, meaning we can concentrate on
          * custom things such as the passwords in this class.
          */
-        binder = new BeanValidationBinder<User>(User.class);
+        binder = new BeanValidationBinder<>(User.class);
 
         // Basic name fields that are required to fill in
         binder.forField(firstnameField).asRequired().bind("firstName");
@@ -165,14 +159,9 @@ public class SignUpForm extends VerticalLayout {
 
         // And finally the submit button
         submitButton.addClickListener(e -> {
-                validateAndSave();
-                showSuccess();
-
+            validateAndSave();
         });
 
-    }
-    public SignUpForm() {
-    //Empty constructor needed for jpa
     }
 
     /**
@@ -232,20 +221,25 @@ public class SignUpForm extends VerticalLayout {
         return ValidationResult.error(errorMsg);
     }*/
 
-   private void validateAndSave() {
+    private void validateAndSave() {
         if (binder.isValid()) {
-            newUser = new User();
+            User newUser = new User();
             newUser.setFirstName(firstnameField.getValue());
             newUser.setLastName(lastnameField.getValue());
             newUser.setEmail(emailField.getValue());
             newUser.setPassword(passwordField1.getValue());
             newUser.setUsername(usernameField.getValue());
             userService.save(newUser);
+            showSuccess();
+        }
+        else
+        {
+            Notification.show("Save error");
         }
     }
 
     // Events
-    public static abstract class SignUpFormEvent extends ComponentEvent<SignUpForm> {
+    /*public static abstract class SignUpFormEvent extends ComponentEvent<SignUpForm> {
         private User user;
 
         protected SignUpFormEvent(SignUpForm source, User user) {
@@ -280,6 +274,6 @@ public class SignUpForm extends VerticalLayout {
     public <T extends ComponentEvent<?>> Registration addListener(Class<T> eventType,
                                                                   ComponentEventListener<T> listener) {
         return getEventBus().addListener(eventType, listener);
-    }
+    }*/
 }
 

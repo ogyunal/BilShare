@@ -9,6 +9,7 @@ import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.*;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
@@ -26,23 +27,23 @@ import com.bilshare.backend.data.Type;
 public class ProductForm extends FormLayout {
 
     TextField productName = new TextField("Product Name");
-    TextField additionalInfo = new TextField("Additional Info");
+    TextArea additionalInfo = new TextArea("Additional Info");
     EmailField email = new EmailField("Email");
     ComboBox<String> type = new ComboBox<>("Type");
     ComboBox<String> category = new ComboBox("Category");
     private NumberField price  = new NumberField("Price");
     private TextField seller;
-
+    private Product newProduct;
 
 
     Button save = new Button("Save");
     Button delete = new Button("Delete");
-    Button close = new Button("Cancel");
+    Button clean = new Button("Clean");
 
     @Autowired
-    private ProductService productService;
+    ProductService productService;
 
-    Binder<Product> binder = new BeanValidationBinder<>(Product.class);
+    Binder<Product> binder;
 
     public ProductForm(ProductService productService) {
         binder = new BeanValidationBinder<>(Product.class);
@@ -65,7 +66,7 @@ public class ProductForm extends FormLayout {
 
         // Category CheckBox
         category.setItems(Category.ENGINEERING.toString(), Category.COMPUTER_SCIENCE.toString(), Category.PHYSICS.toString(),
-                Category.BIOLOGY.toString(), Category.CHEMISTRY.toString(), Category.ECONOMICS.toString(),
+                Category.BIOLOGY.toString(), Category.CHEMISTRY.toString(), Category.ECONOMICS.toString(), Category.MATHEMATICS.toString(),
                 Category.LANGUAGE.toString(), Category.LAW.toString(), Category.MANAGEMENT.toString(), Category.MUSIC.toString());
 
 
@@ -76,7 +77,7 @@ public class ProductForm extends FormLayout {
         binder.bindInstanceFields(this);
 
         add(productName, price, type,
-                category, additionalInfo, seller, createButtonsLayout());
+                category, additionalInfo, seller);
 
     }
 
@@ -84,31 +85,64 @@ public class ProductForm extends FormLayout {
         binder.setBean(product);
     }
 
-    private Component createButtonsLayout() {
+    public void createButtonsLayout() {
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         delete.addThemeVariants(ButtonVariant.LUMO_ERROR);
-        close.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+        clean.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
 
         save.addClickShortcut(Key.ENTER);
-        close.addClickShortcut(Key.ESCAPE);
+        //close.addClickShortcut(Key.ESCAPE);
 
-        save.addClickListener(click -> validateAndSave());
-        delete.addClickListener(click -> fireEvent(new DeleteEvent(this, binder.getBean())));
-        close.addClickListener(click -> fireEvent(new CloseEvent(this)));
+        save.addClickListener(click -> {validateAndSave(); cleanForm();});
+        //delete.addClickListener(click -> fireEvent(new DeleteEvent(this, binder.getBean())));
+        clean.addClickListener(click -> cleanForm());
 
         binder.addStatusChangeListener(evt -> save.setEnabled(binder.isValid()));
+        HorizontalLayout buttonLayout = new HorizontalLayout();
+        buttonLayout.add(save, clean);
+        buttonLayout.setAlignItems(FlexComponent.Alignment.CENTER);
+        buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+        add(buttonLayout);
 
-        return new HorizontalLayout(save, delete, close);
     }
 
     private void validateAndSave() {
-        if (binder.isValid()) {
-            fireEvent(new SaveEvent(this, binder.getBean()));
+        if ( binder.isValid()) {
+            newProduct = new Product(seller.getValue());
+            newProduct.setProductName(productName.getValue());
+            newProduct.setPrice(price.getValue());
+            newProduct.setCategory(category.getValue());
+            newProduct.setType(type.getValue());
+            newProduct.setAdditionalInfo(additionalInfo.getValue());
+            productService.save(newProduct);
+            Notification.show("Successfully saved");
+            setProduct(null);
+        } else {
+            Notification.show("Save error");
         }
     }
 
+    private void cleanForm(){
+        productName.setValue("");
+        price.setValue(0.0);
+        category.setValue("");
+        additionalInfo.setValue("");
+        type.setValue("");
+        seller.setValue("");
+    }
+
+    public void readOnly(boolean readOnly){
+        productName.setReadOnly(readOnly);
+        price.setReadOnly(readOnly);
+        category.setReadOnly(readOnly);
+        additionalInfo.setReadOnly(readOnly);
+        type.setReadOnly(readOnly);
+        seller.setLabel("Seller");
+        seller.setReadOnly(readOnly);
+    }
+
     // Events
-    public static abstract class ProductFormEvent extends ComponentEvent<ProductForm> {
+    /*public static abstract class ProductFormEvent extends ComponentEvent<ProductForm> {
       private Product product;
 
       protected ProductFormEvent(ProductForm source, Product product) {
@@ -143,5 +177,5 @@ public class ProductForm extends FormLayout {
     public <T extends ComponentEvent<?>> Registration addListener(Class<T> eventType,
                                                                   ComponentEventListener<T> listener) {
       return getEventBus().addListener(eventType, listener);
-    }
+    }*/
 }

@@ -22,14 +22,13 @@ public class UserService {
     private static final String DELETING_SELF_NOT_PERMITTED = "You cannot delete your own account";
 
     @Autowired
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
 
-    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public Page<User> findAnyMatching(Optional<String> filter, Pageable pageable) {
+    /*public Page<User> findAnyMatching(Optional<String> filter, Pageable pageable) {
         if (filter.isPresent()) {
             String repositoryFilter = "%" + filter.get() + "%";
             return getRepository()
@@ -38,7 +37,7 @@ public class UserService {
         } else {
             return find(pageable);
         }
-    }
+    }*/
 
     public long count() {
         return userRepository.count();
@@ -48,21 +47,19 @@ public class UserService {
         return userRepository;
     }
 
-    public Page<User> find(Pageable pageable) {
+    /*public Page<User> find(Pageable pageable) {
         return getRepository().findBy(pageable);
-    }
+    }*/
 
     public void save(User user) {
-        User newUser;
-        newUser = new User();
+        User newUser = new User();
         newUser.setFirstName(user.getFirstName());
         newUser.setLastName(user.getLastName());
         newUser.setEmail(user.getEmail());
         newUser.setPassword(user.getPassword());
-        newUser.setUsername(user.getUsername());
-        newUser.setRole(user.getRole());
-        newUser.setLocked(true);
-        userRepository.save(user);
+        newUser.setUsername(user.getUsername());;
+        //newUser.setLocked(true);
+        userRepository.save(newUser);
     }
 
     public User createNew(User currentUser) {

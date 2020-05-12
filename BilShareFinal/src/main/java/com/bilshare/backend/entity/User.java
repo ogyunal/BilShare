@@ -10,7 +10,7 @@ import java.util.Objects;
 @Table(name = "USERS")
 public class User extends AbstractEntity {
 
-    @NotEmpty
+    @NotNull
     @Size(min = 4, max = 255)
     @Column(unique = true)
     private String username;
@@ -20,17 +20,17 @@ public class User extends AbstractEntity {
     @Column(name = "password")
     private String password;
 
-    @NotBlank
+    @NotNull
     @Size(max = 255)
     @Column(name = "first_name")
     private String firstName;
 
-    @NotBlank
+    @NotNull
     @Size(max = 255)
     @Column(name = "last_name")
     private String lastName;
 
-    @NotBlank
+    @NotNull
     @Email
     @Column(name = "email")
     private String email;
@@ -40,16 +40,16 @@ public class User extends AbstractEntity {
 
     //@NotBlank
     @Size(max = 255)
-    @Column(name = "role")
-    private String role;
+    //@Column(name = "role")
+    //private String role;
 
-    private boolean locked = false;
+    //private boolean locked = false;
 
-    @PrePersist
-    @PreUpdate
-    private void prepareData(){
-        this.username = username == null ? null : username.toLowerCase();
-    }
+    //@PrePersist
+    //@PreUpdate
+    //private void prepareData(){
+    //this.username = username == null ? null : username.toLowerCase();
+    //}
 
     public User() {
         // An empty constructor is needed for all beans
@@ -79,13 +79,13 @@ public class User extends AbstractEntity {
         this.lastName = lastName;
     }
 
-    public String getRole() {
+    /*public String getRole() {
         return role;
     }
 
     public void setRole(String role) {
         this.role = role;
-    }
+    }*/
 
     public String getUsername() {
         return username;
@@ -111,13 +111,13 @@ public class User extends AbstractEntity {
         this.avatar = avatar;
     }*/
 
-    public boolean isLocked() {
+    /*public boolean isLocked() {
         return locked;
     }
 
     public void setLocked(boolean locked) {
         this.locked = locked;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {
@@ -131,17 +131,19 @@ public class User extends AbstractEntity {
             return false;
         }
         User that = (User) o;
-        return locked == that.locked &&
+        return //locked == that.locked &&
                 Objects.equals(username, that.username) &&
-                Objects.equals(firstName, that.firstName) &&
-                Objects.equals(lastName, that.lastName) &&
-                Objects.equals(role, that.role);
+                        Objects.equals(firstName, that.firstName) &&
+                        Objects.equals(lastName, that.lastName);
+        //&&
+        //Objects.equals(role, that.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), username, firstName, lastName,
-                role,
-                locked);
+        return Objects.hash(super.hashCode(), username, firstName, lastName
+                //role,
+                //locked
+        );
     }
 }

@@ -44,34 +44,32 @@ public class ListView extends VerticalLayout {
         configureGrid();
 
         form = new ProductForm(productService);
-        form.addListener(ProductForm.SaveEvent.class, this::saveProduct);
-        form.addListener(ProductForm.DeleteEvent.class, this::saveProduct);
-        form.addListener(ProductForm.CloseEvent.class, e -> closeEditor());
+        form.readOnly(true);
+        //form.addListener(ProductForm.SaveEvent.class, this::saveProduct);
+        //form.addListener(ProductForm.DeleteEvent.class, this::saveProduct);
+        //form.addListener(ProductForm.CloseEvent.class, e -> closeEditor());
 
         showProdDialog.add(form);
         showProdDialog.setWidth("40");
         showProdDialog.setHeight("100");
+        showProdDialog.close();
 
-        Div content = new Div(grid, form);
-        content.addClassName("content");
-        content.setSizeFull();
-
-        add(getToolBar(), content);
+        add(getToolBar(), grid, showProdDialog);
         updateList();
         closeEditor();
     }
 
-    private void saveProduct(ProductForm.DeleteEvent evt) {
-        productService.delete(evt.getProduct());
-        updateList();
-        closeEditor();
-    }
-
-    private void saveProduct(ProductForm.SaveEvent evt) {
-        productService.save(evt.getProduct());
-        updateList();
-        closeEditor();
-    }
+//    private void saveProduct(ProductForm.DeleteEvent evt) {
+//        productService.delete(evt.getProduct());
+//        updateList();
+//        closeEditor();
+//    }
+//
+//    private void saveProduct(ProductForm.SaveEvent evt) {
+//        productService.save(evt.getProduct());
+//        updateList();
+//        closeEditor();
+//    }
 
     private HorizontalLayout getToolBar() {
         filterText.setPlaceholder("Filter by name...");
@@ -88,10 +86,10 @@ public class ListView extends VerticalLayout {
         return toolbar;
     }
 
-    private void addProduct() {
+    /*private void addProduct() {
         grid.asSingleSelect().clear();
         editProduct(new Product());
-    }
+    }*/
 
     private void configureGrid() {
         grid.addClassName("product-grid");
@@ -104,20 +102,22 @@ public class ListView extends VerticalLayout {
         grid.asSingleSelect().addValueChangeListener(evt -> showProduct(evt.getValue()));
     }
 
-    private void editProduct(Product product) {
+    /*private void editProduct(Product product) {
         if (product == null) {
             closeEditor();
         } else {
             form.setProduct(product);
-            form.setVisible(true);
-            addClassName("editing");
+            //form.setVisible(true);
+            //addClassName("editing");
+            showProdDialog.open();
         }
-    }
+    }*/
 
     private void closeEditor() {
         form.setProduct(null);
-        form.setVisible(false);
-        removeClassName("editing");
+        //form.setVisible(false);
+        //removeClassName("editing");
+        showProdDialog.close();
     }
 
     private void updateList() {
@@ -125,10 +125,9 @@ public class ListView extends VerticalLayout {
     }
 
     public void showProduct(Product product) {
-            form.setProduct(product);
-            form.setVisible(true);
-            showProdDialog.open();
-            addClassName("editing");
+        form.setProduct(product);
+        //form.setVisible(true);
+        showProdDialog.open();
     }
 
 }

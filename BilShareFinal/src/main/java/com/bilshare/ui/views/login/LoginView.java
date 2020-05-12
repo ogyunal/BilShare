@@ -53,6 +53,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         setAlignItems(Alignment.CENTER);
 
         login.setAction("login");
+        login.setForgotPasswordButtonVisible(false);
 
         signUpButton.addClickListener(buttonClickEvent -> signUpDialog.open());
 
@@ -63,26 +64,25 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         signUpDialog.setHeight("100");
 
         add(
-            image,
-            login,
-                signUpButton
+                image,
+                login, signUpButton
 
         );
 
     }
 
-    private void saveUser(SignUpForm.SaveEvent evt) {
-        userService.save(evt.getUser());
-    }
+    //private void saveUser(SignUpForm.SaveEvent evt) {
+    //  userService.save(evt.getUser());
+    //}
 
 
     @Override
     public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
         if(!beforeEnterEvent.getLocation()
-        .getQueryParameters()
-        .getParameters()
-        .getOrDefault("error", Collections.emptyList())
-        .isEmpty()) {
+                .getQueryParameters()
+                .getParameters()
+                .getOrDefault("error", Collections.emptyList())
+                .isEmpty()) {
             login.setError(true);
         }
     }
