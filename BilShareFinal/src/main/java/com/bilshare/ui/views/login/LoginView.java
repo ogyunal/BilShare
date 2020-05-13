@@ -37,7 +37,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     UserService userService;
 
     final String resolvedImage = VaadinService.getCurrent().resolveResource(
-            "icons/bilShareLogo.png", VaadinSession.getCurrent().getBrowser());
+            "https://imagehost.imageupload.net/2020/05/13/icon.png", VaadinSession.getCurrent().getBrowser());
 
 
     final Image image = new Image(resolvedImage, "");

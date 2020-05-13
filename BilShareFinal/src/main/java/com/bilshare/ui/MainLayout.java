@@ -1,6 +1,7 @@
 package com.bilshare.ui;
 
 import com.bilshare.ui.views.AddAdvert.AddAdvertView;
+import com.bilshare.ui.views.ContactUs.ContactUsView;
 import com.bilshare.ui.views.MyProfileView.ProfileView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
@@ -33,8 +34,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @PWA(
-    name = "Vaadin CRM",
-    shortName = "CRM",
+    name = "BilShare",
+    shortName = "BilShare",
 
     offlineResources = {
         "./styles/offline.css",
@@ -55,16 +56,8 @@ public class MainLayout extends AppLayout {
     }
 
 
-    final String rsvldImage = VaadinService.getCurrent().resolveResource(
-            "icons/bilShareLogoBaykus.png", VaadinSession.getCurrent().getBrowser());
-
-
-    final Image baykus = new Image(rsvldImage, "");
-
-
     final String resolvedImage = VaadinService.getCurrent().resolveResource(
-            "icons/bilShareLogoYazı.png", VaadinSession.getCurrent().getBrowser());
-
+            "https://imagehost.imageupload.net/2020/05/13/Webp.net-resizeimage.png", VaadinSession.getCurrent().getBrowser());
 
     final Image image = new Image(resolvedImage, "");
 
@@ -72,9 +65,9 @@ public class MainLayout extends AppLayout {
 
     private static Tabs createMenuTabs() {
         final Tabs tabs = new Tabs();
-        tabs.setFlexGrowForEnclosedTabs(1);
         tabs.setOrientation(Tabs.Orientation.HORIZONTAL);
         tabs.add(getAvailableTabs());
+        tabs.setFlexGrowForEnclosedTabs(1);
 
         return tabs;
     }
@@ -92,8 +85,10 @@ public class MainLayout extends AppLayout {
                 AddAdvertView.class));
 
         tabs.add(createTab(VaadinIcon.EDIT, "Contact Us",
-                DashboardView.class));
+                ContactUsView.class));
 
+        tabs.add(createTab(VaadinIcon.EDIT, "About",
+                DashboardView.class));
 
 
         /*if (SecurityUtils.isAccessGranted(UsersView.class)) {
