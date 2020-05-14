@@ -39,7 +39,7 @@ public class User extends AbstractEntity {
     //private AvatarImage avatar;
 
     //@NotBlank
-    @Size(max = 255)
+    //@Size(max = 255)
     //@Column(name = "role")
     //private String role;
 

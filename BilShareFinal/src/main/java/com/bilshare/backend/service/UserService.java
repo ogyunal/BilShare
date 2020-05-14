@@ -55,9 +55,9 @@ public class UserService {
         User newUser = new User();
         newUser.setFirstName(user.getFirstName());
         newUser.setLastName(user.getLastName());
-        newUser.setEmail(user.getEmail());
+        //newUser.setEmail(user.getEmail());
         newUser.setPassword(user.getPassword());
-        newUser.setUsername(user.getUsername());;
+        newUser.setUsername(user.getUsername());
         //newUser.setLocked(true);
         userRepository.save(newUser);
     }
@@ -67,5 +67,3 @@ public class UserService {
     }
 
 }
-
-
