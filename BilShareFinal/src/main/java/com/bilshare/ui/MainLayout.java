@@ -2,7 +2,6 @@ package com.bilshare.ui;
 
 import com.bilshare.ui.views.About.AboutView;
 import com.bilshare.ui.views.AddAdvert.AddAdvertView;
-import com.bilshare.ui.views.ContactUs.ContactUsView;
 import com.bilshare.ui.views.MyProfileView.ProfileView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
@@ -94,9 +93,6 @@ public class MainLayout extends AppLayout {
                 AddAdvertView.class));
 
         tabs.add(createTab(VaadinIcon.EDIT, "Contact Us",
-                ContactUsView.class));
-
-        tabs.add(createTab(VaadinIcon.INFO_CIRCLE, "About",
                 AboutView.class));
 
 
