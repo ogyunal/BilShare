@@ -1,5 +1,8 @@
 package com.bilshare.backend.entity;
 
+import com.bilshare.backend.data.AvatarImage;
+import com.bilshare.ui.views.signup.AvatarField;
+
 import javax.persistence.*;
 
 import javax.validation.constraints.Min;
@@ -41,7 +44,9 @@ public class Product extends AbstractEntity implements Cloneable {
 
     //@NotNull(message = "Image not found")
     @Column(name = "image")
-    private String image;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] image;
 
     //@Email
     //@NotNull
@@ -111,11 +116,11 @@ public class Product extends AbstractEntity implements Cloneable {
         return seller;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
-    public String getImage(){
+    public byte[] getImage(){
         return image;
     }
 

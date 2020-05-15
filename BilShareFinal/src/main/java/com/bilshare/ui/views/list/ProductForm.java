@@ -1,6 +1,8 @@
 package com.bilshare.ui.views.list;
 
 
+import com.bilshare.backend.data.AvatarImage;
+import com.bilshare.ui.views.signup.AvatarField;
 import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -35,9 +37,15 @@ public class ProductForm extends FormLayout {
     private NumberField price  = new NumberField("Price");
     private TextField seller;
     private Product newProduct;
+    private AvatarField imageField = new AvatarField("Select Product image");
 
+    private AvatarImage productImage = new AvatarImage();
 
-    Button save = new Button("Save");
+    public AvatarImage getProductImage() {
+        return productImage;
+    }
+
+    Button save = new Button("Add Advert");
     Button delete = new Button("Delete");
     Button clean = new Button("Clean");
 
@@ -78,7 +86,7 @@ public class ProductForm extends FormLayout {
         binder.bindInstanceFields(this);
 
         add(productName, price, type,
-                category, additionalInfo, seller);
+                category, additionalInfo, seller, imageField);
 
     }
 
@@ -115,6 +123,7 @@ public class ProductForm extends FormLayout {
             newProduct.setCategory(category.getValue());
             newProduct.setType(type.getValue());
             newProduct.setAdditionalInfo(additionalInfo.getValue());
+            newProduct.setImage(imageField.);
             productService.save(newProduct);
             setProduct(null);
         } else {
@@ -144,6 +153,8 @@ public class ProductForm extends FormLayout {
         additionalInfo.setReadOnly(readOnly);
         type.setReadOnly(readOnly);
         seller.setLabel("Seller");
+        imageField.setVisible(false);
+        productImage.getImage();
         seller.setReadOnly(readOnly);
     }
 
