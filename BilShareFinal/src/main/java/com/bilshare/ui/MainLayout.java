@@ -58,7 +58,7 @@ public class MainLayout extends AppLayout {
 
 
     final String rsvldImage = VaadinService.getCurrent().resolveResource(
-            "icons/bilShareLogoBaykus.png", VaadinSession.getCurrent().getBrowser());
+            "https://imagehost.imageupload.net/2020/05/13/Webp.net-resizeimage.png", VaadinSession.getCurrent().getBrowser());
 
 
     final Image baykus = new Image(rsvldImage, "");
