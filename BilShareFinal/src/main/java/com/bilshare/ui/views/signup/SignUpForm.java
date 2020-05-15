@@ -209,7 +209,8 @@ public class SignUpForm extends VerticalLayout {
     /**
      * Method that demonstrates using an external validator. Here we ask the backend
      * if this handle is already in use.
-     *//*
+     */
+    /*
     private ValidationResult validateHandle(String handle, ValueContext ctx) {
 
         String errorMsg = service.validateHandle(handle);

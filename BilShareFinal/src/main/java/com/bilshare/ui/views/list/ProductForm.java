@@ -9,6 +9,7 @@ import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.*;
@@ -93,7 +94,7 @@ public class ProductForm extends FormLayout {
         save.addClickShortcut(Key.ENTER);
         //close.addClickShortcut(Key.ESCAPE);
 
-        save.addClickListener(click -> {validateAndSave(); cleanForm();});
+        save.addClickListener(click -> {validateAndSave(); showSuccess(); cleanForm();});
         //delete.addClickListener(click -> fireEvent(new DeleteEvent(this, binder.getBean())));
         clean.addClickListener(click -> cleanForm());
 
@@ -115,11 +116,16 @@ public class ProductForm extends FormLayout {
             newProduct.setType(type.getValue());
             newProduct.setAdditionalInfo(additionalInfo.getValue());
             productService.save(newProduct);
-            Notification.show("Successfully saved");
             setProduct(null);
         } else {
             Notification.show("Save error");
         }
+    }
+
+    private void showSuccess() {
+        Notification notification = Notification.show("Your Advert Has Been Created ");
+        notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+        UI.getCurrent().navigate("");
     }
 
     private void cleanForm(){
