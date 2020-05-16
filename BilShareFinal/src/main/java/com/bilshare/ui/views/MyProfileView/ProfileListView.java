@@ -42,21 +42,20 @@ public class ProfileListView extends VerticalLayout {
         addClassName("list-view");
         setSizeFull();
         configureGrid();
-
-        form = new ProductForm(productService);
-        form.readOnly(true);
+        //form = new ProductForm(productService);
+       //form.readOnly(true);
         //form.addListener(ProductForm.SaveEvent.class, this::saveProduct);
         //form.addListener(ProductForm.DeleteEvent.class, this::saveProduct);
         //form.addListener(ProductForm.CloseEvent.class, e -> closeEditor());
 
-        showProdDialog.add(form);
+        //showProdDialog.add(form);
         showProdDialog.setWidth("40");
         showProdDialog.setHeight("100");
         showProdDialog.close();
 
         add(getToolBar(), grid, showProdDialog);
         updateList();
-        closeEditor();
+        //closeEditor();
     }
 
 //    private void saveProduct(ProductForm.DeleteEvent evt) {
@@ -99,7 +98,7 @@ public class ProfileListView extends VerticalLayout {
 
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
-        grid.asSingleSelect().addValueChangeListener(evt -> showProduct(evt.getValue()));
+        //grid.asSingleSelect().addValueChangeListener(evt -> showProduct(evt.getValue()));
     }
 
     /*private void editProduct(Product product) {
@@ -127,7 +126,7 @@ public class ProfileListView extends VerticalLayout {
     }
 
     public void showProduct(Product product) {
-        form.setProduct(product);
+        //form.setProduct(product);
         //form.setVisible(true);
         showProdDialog.open();
     }
