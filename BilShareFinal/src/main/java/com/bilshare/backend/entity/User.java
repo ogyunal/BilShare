@@ -39,7 +39,7 @@ public class User extends AbstractEntity {
     //private AvatarImage avatar;
 
     //@NotBlank
-    @Size(max = 255)
+    //@Size(max = 255)
     //@Column(name = "role")
     //private String role;
 
@@ -109,15 +109,15 @@ public class User extends AbstractEntity {
 
     public void setAvatar(AvatarImage avatar) {
         this.avatar = avatar;
-    }*/
+    }*//*
 
-    /*public boolean isLocked() {
+    *//*public boolean isLocked() {
         return locked;
     }
 
     public void setLocked(boolean locked) {
         this.locked = locked;
-    }*/
+    }*//*
 
     @Override
     public boolean equals(Object o) {
@@ -145,5 +145,5 @@ public class User extends AbstractEntity {
                 //role,
                 //locked
         );
-    }
+    }*/
 }

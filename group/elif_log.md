@@ -11,7 +11,7 @@ I worked on designing UI using the Vaadin framework and we created a UI for the 
 ### ~ 04.05.2020 ~
 I made research about connecting a java program to a database and storing information on a cloud rather than a local repository.
 
-#### ~ date ~
-blah, blah, blah...
+#### ~ 12.05.2020 ~
+We designed UI of the "Contact us" and "About" pages with Yağmur.
 
 ****
