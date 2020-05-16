@@ -1,7 +1,9 @@
 package com.bilshare.backend.service;
 
 import com.bilshare.backend.entity.Product;
+import com.bilshare.backend.entity.User;
 import com.bilshare.backend.repository.ProductRepository;
+import com.vaadin.flow.component.grid.Grid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,6 +62,17 @@ public class ProductService {
     }
 
     public void getStats() {
+
+    }
+
+    public List <Product> findBySeller(String sellerName )
+    {
+        return productRepository.findBySeller(sellerName);
+    }
+
+    public List <Product> search (String filterText )
+    {
+        return productRepository.search(filterText);
     }
 
 }

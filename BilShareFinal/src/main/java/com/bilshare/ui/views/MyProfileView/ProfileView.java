@@ -1,8 +1,10 @@
 package com.bilshare.ui.views.MyProfileView;
 
+//import com.bilshare.backend.CurrentUser;
 import com.bilshare.backend.service.ProductService;
 import com.bilshare.ui.MainLayout;
 import com.bilshare.ui.views.list.ListView;
+
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.accordion.Accordion;
@@ -25,16 +27,17 @@ public class ProfileView extends FlexLayout
     @Autowired
     private ProductService productService;
     public static final String VIEW_NAME = "My Profile";
-    private ListView currentAdverts ;
+    private ProfileListView currentAdverts ;
     private ListView soldMaterials ;
     private  ListView purchasedMaterials ;
     private Label firstName = new Label ("Name");
     private Label lastName= new Label ("Surname");
     private Label department= new Label ("Department");
+    private String username;
 
     public ProfileView(ProductService productService)
     {
-        this.productService=productService;
+        this.productService = productService;
         buildUI();
     }
 
@@ -47,12 +50,15 @@ public class ProfileView extends FlexLayout
         profileInfo.add(department);
         //profileInfo.add(photo);
         Accordion accordion = new Accordion();
-        currentAdverts = new ListView(productService);
-        accordion.add("My Current Adverts", currentAdverts);
+        currentAdverts = new ProfileListView(productService);
+
+        //accordion.add("My Current Adverts", currentAdverts);
         profileInfo.add(accordion);
         setSizeFull();
-        add(profileInfo);
+        //add(profileInfo);
+        add(currentAdverts);
         accordion.setWidthFull();
+
 
 
     }
