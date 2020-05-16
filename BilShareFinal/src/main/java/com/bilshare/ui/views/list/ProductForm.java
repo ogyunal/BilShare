@@ -1,6 +1,8 @@
 package com.bilshare.ui.views.list;
 
 
+import com.bilshare.backend.data.AvatarImage;
+import com.bilshare.ui.views.signup.AvatarField;
 import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -9,6 +11,7 @@ import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.*;
@@ -34,9 +37,15 @@ public class ProductForm extends FormLayout {
     private NumberField price  = new NumberField("Price");
     private TextField seller;
     private Product newProduct;
+    private AvatarField imageField = new AvatarField("Select Product image");
 
+    private AvatarImage productImage = new AvatarImage();
 
-    Button save = new Button("Save");
+    public AvatarImage getProductImage() {
+        return productImage;
+    }
+
+    Button save = new Button("Add Advert");
     Button delete = new Button("Delete");
     Button clean = new Button("Clean");
 
@@ -77,7 +86,7 @@ public class ProductForm extends FormLayout {
         binder.bindInstanceFields(this);
 
         add(productName, price, type,
-                category, additionalInfo, seller);
+                category, additionalInfo, seller, imageField);
 
     }
 
@@ -93,7 +102,7 @@ public class ProductForm extends FormLayout {
         save.addClickShortcut(Key.ENTER);
         //close.addClickShortcut(Key.ESCAPE);
 
-        save.addClickListener(click -> {validateAndSave(); cleanForm();});
+        save.addClickListener(click -> {validateAndSave(); showSuccess(); cleanForm();});
         //delete.addClickListener(click -> fireEvent(new DeleteEvent(this, binder.getBean())));
         clean.addClickListener(click -> cleanForm());
 
@@ -114,12 +123,18 @@ public class ProductForm extends FormLayout {
             newProduct.setCategory(category.getValue());
             newProduct.setType(type.getValue());
             newProduct.setAdditionalInfo(additionalInfo.getValue());
+            //newProduct.setImage(imageField.);
             productService.save(newProduct);
-            Notification.show("Successfully saved");
             setProduct(null);
         } else {
             Notification.show("Save error");
         }
+    }
+
+    private void showSuccess() {
+        Notification notification = Notification.show("Your Advert Has Been Created ");
+        notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+        UI.getCurrent().navigate("");
     }
 
     private void cleanForm(){
@@ -138,6 +153,8 @@ public class ProductForm extends FormLayout {
         additionalInfo.setReadOnly(readOnly);
         type.setReadOnly(readOnly);
         seller.setLabel("Seller");
+        imageField.setVisible(false);
+        productImage.getImage();
         seller.setReadOnly(readOnly);
     }
 

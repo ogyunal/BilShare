@@ -30,8 +30,8 @@ public class DashboardView extends VerticalLayout {
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
         add(
-            getProductStats()
-            //getCategoriesChart()
+                getProductStats()
+                //getCategoriesChart()
         );
     }
 

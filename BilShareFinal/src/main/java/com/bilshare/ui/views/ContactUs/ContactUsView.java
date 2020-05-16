@@ -44,20 +44,20 @@ public class ContactUsView extends FormLayout {
 
     public ContactUsView()
     {
-    userName= new TextField("Your Username");
-    email = new EmailField("Your Email");
-    problems = new TextArea("Any Problems?");
-    category = new ComboBox<>("Problem Category");
+        userName= new TextField("Your Username");
+        email = new EmailField("Your Email");
+        problems = new TextArea("Any Problems?");
+        category = new ComboBox<>("Problem Category");
 
-    // Category CheckBox
-    category.setItems("Adding advert", "Technical problems", "Inappropriate content", "Purchasing Material", "Viewing Advert","Other");
+        // Category CheckBox
+        category.setItems("Adding advert", "Technical problems", "Inappropriate content", "Purchasing Material", "Viewing Advert","Other");
 
 
-    // seller username
-    userName.setPlaceholder("Type your username here...");
-    email.setPlaceholder("Type your email here...");
+        // seller username
+        userName.setPlaceholder("Type your username here...");
+        email.setPlaceholder("Type your email here...");
 
-    add(userName,email,category,problems,submit,clean);
+        add(userName,email,category,problems,submit,clean);
         createButtonsLayout();
     }
 

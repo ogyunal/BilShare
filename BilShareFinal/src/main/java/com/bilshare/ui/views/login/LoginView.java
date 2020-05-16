@@ -6,6 +6,14 @@ import com.bilshare.backend.service.UserService;
 import com.bilshare.ui.views.list.ProductForm;
 import com.bilshare.ui.views.signup.SignUpForm;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.HtmlImport;
+
+import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.textfield.PasswordField;
+import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.dom.Element;
+
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -25,6 +33,7 @@ import com.vaadin.flow.server.VaadinSession;
 import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 
 @Route("login")
 @PageTitle("Login | BilShare")
@@ -37,7 +46,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     UserService userService;
 
     final String resolvedImage = VaadinService.getCurrent().resolveResource(
-            "icons/bilShareLogo.png", VaadinSession.getCurrent().getBrowser());
+            "https://imagehost.imageupload.net/2020/05/13/icon.png", VaadinSession.getCurrent().getBrowser());
 
 
     final Image image = new Image(resolvedImage, "");
@@ -53,7 +62,22 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         setAlignItems(Alignment.CENTER);
 
         login.setAction("login");
-        login.setForgotPasswordButtonVisible(false);
+        login.setForgotPasswordButtonVisible(true);
+        /*login.addLoginListener(e -> {
+
+            *try {
+                final Authentication authentication = authenticationManager
+                        .authenticate(new UsernamePasswordAuthenticationToken(e.getUsername(), e.getPassword()));
+                if(authentication != null) {
+                    login.close();
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                    getUI().get().navigate("/");
+                }
+            } catch (AuthenticationException ex) {
+                login.setError(true);
+            }
+
+        });*/
 
         signUpButton.addClickListener(buttonClickEvent -> signUpDialog.open());
 
