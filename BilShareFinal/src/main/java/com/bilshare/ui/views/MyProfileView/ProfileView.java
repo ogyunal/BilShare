@@ -13,6 +13,7 @@ import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -20,12 +21,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Route(value = "myProfileView", layout = MainLayout.class)
 @PageTitle("My Profile")
-public class ProfileView extends FlexLayout
+public class ProfileView extends HorizontalLayout
 {
     @Autowired
     private ProductService productService;
     public static final String VIEW_NAME = "My Profile";
-    private ListView currentAdverts ;
+    private ProfileListView currentAdverts ;
     private ListView soldMaterials ;
     private  ListView purchasedMaterials ;
     private Label firstName = new Label ("Name");
@@ -45,14 +46,19 @@ public class ProfileView extends FlexLayout
         profileInfo.add(firstName);
         profileInfo.add(lastName);
         profileInfo.add(department);
+        profileInfo.setWidth("1200");
         //profileInfo.add(photo);
-        Accordion accordion = new Accordion();
-        currentAdverts = new ListView(productService);
-        accordion.add("My Current Adverts", currentAdverts);
-        profileInfo.add(accordion);
-        setSizeFull();
         add(profileInfo);
-        accordion.setWidthFull();
+        VerticalLayout adverts = new VerticalLayout();
+        adverts.add(new Label("Current Adverts"));
+        currentAdverts = new ProfileListView(productService);
+        adverts.add(currentAdverts);
+        add(adverts);
+        setSizeFull();
+
+
+
+
 
 
     }

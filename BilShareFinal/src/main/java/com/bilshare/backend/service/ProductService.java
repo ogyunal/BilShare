@@ -62,4 +62,19 @@ public class ProductService {
     public void getStats() {
     }
 
+
+
+    public List <Product> findBySeller(String sellerName, String filterText ) {
+        if (filterText == null || filterText.isEmpty()) {
+            return productRepository.findBySeller(sellerName);
+        }
+        return productRepository.findBySellerSearch(sellerName,filterText);
+    }
+
+    public List <Product> search (String filterText ) {
+        return productRepository.search(filterText);
+    }
+
+
+
 }
