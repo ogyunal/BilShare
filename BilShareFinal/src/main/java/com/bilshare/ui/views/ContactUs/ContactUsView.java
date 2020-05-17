@@ -42,7 +42,7 @@ public class ContactUsView extends VerticalLayout {
     {
         initView();
         IFrame iFrame = new IFrame();
-        iFrame.setSrc("https://form.jotform.com/201366581719965");
+        iFrame.setSrc("https://form.jotform.com/201366581719965");
         iFrame.setWidth("100%");
         iFrame.setHeight("1100px");
         add(iFrame);
