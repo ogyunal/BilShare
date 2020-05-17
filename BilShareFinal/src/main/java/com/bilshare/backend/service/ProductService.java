@@ -74,6 +74,23 @@ public class ProductService {
     public List <Product> search (String filterText ) {
         return productRepository.search(filterText);
     }
+    public void setName (String productName, String newName)
+    {
+        productRepository.setName(productName,newName);
+    }
+    public void setPrice (String productName, Double newPrice)
+    {
+        productRepository.setPrice(productName,newPrice);
+    }
+    public void setInfo (String productName, String newInfo){ productRepository.setInfo(productName,newInfo); }
+    public void setCategory (String productName, String newCategory)
+    {
+        productRepository.setCategory(productName,newCategory);
+    }
+    public void setType (String productName, String newType)
+    {
+        productRepository.setType(productName,newType);
+    }
 
 
 
