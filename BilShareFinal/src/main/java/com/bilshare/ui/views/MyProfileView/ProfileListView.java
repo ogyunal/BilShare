@@ -1,7 +1,4 @@
 package com.bilshare.ui.views.MyProfileView;
-
-
-
 import com.bilshare.backend.entity.Product;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -10,14 +7,12 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
-
 import com.bilshare.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
 
 @Component
-
 @RestController
 public class ProfileListView extends VerticalLayout {
 
@@ -37,10 +32,6 @@ public class ProfileListView extends VerticalLayout {
         setSizeFull();
         configureGrid();
         form = new ProfileProductForm(productService);
-       //form.readOnly(true);
-        //form.addListener(ProductForm.SaveEvent.class, this::saveProduct);
-        //form.addListener(ProductForm.DeleteEvent.class, this::saveProduct);
-        //form.addListener(ProductForm.CloseEvent.class, e -> closeEditor());
 
         showProdDialog.add(form);
         showProdDialog.setWidth("40");
@@ -52,18 +43,6 @@ public class ProfileListView extends VerticalLayout {
         //closeEditor();
     }
 
-//    private void saveProduct(ProductForm.DeleteEvent evt) {
-//        productService.delete(evt.getProduct());
-//        updateList();
-//        closeEditor();
-//    }
-//
-//    private void saveProduct(ProductForm.SaveEvent evt) {
-//        productService.save(evt.getProduct());
-//        updateList();
-//        closeEditor();
-//    }
-
     private HorizontalLayout getToolBar() {
         filterText.setPlaceholder("Filter by name...");
 
@@ -72,17 +51,10 @@ public class ProfileListView extends VerticalLayout {
         filterText.addValueChangeListener(e -> updateList());
         setSizeFull();
 
-        //Button addProduct = new Button("Add Advert", click -> addProduct());
-
         HorizontalLayout toolbar = new HorizontalLayout(filterText);//, addProduct);
         toolbar.addClassName("toolbar");
         return toolbar;
     }
-
-    /*private void addProduct() {
-        grid.asSingleSelect().clear();
-        editProduct(new Product());
-    }*/
 
     private void configureGrid() {
         grid.addClassName("product-grid");
@@ -95,16 +67,6 @@ public class ProfileListView extends VerticalLayout {
         grid.asSingleSelect().addValueChangeListener(evt -> showProduct(evt.getValue()));
     }
 
-    /*private void editProduct(Product product) {
-        if (product == null) {
-            closeEditor();
-        } else {
-            form.setProduct(product);
-            //form.setVisible(true);
-            //addClassName("editing");
-            showProdDialog.open();
-        }
-    }*/
 
     private void closeEditor() {
         form.setProduct(null);

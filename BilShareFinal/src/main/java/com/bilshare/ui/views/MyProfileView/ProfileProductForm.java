@@ -48,7 +48,6 @@ public class ProfileProductForm extends FormLayout {
     Button clean = new Button("Clean");
     Button update ;
 
-
     @Autowired
     ProductService productService;
 
@@ -92,7 +91,7 @@ public class ProfileProductForm extends FormLayout {
         update.addClickListener(evt-> productService.setPrice(productName.getValue(),price.getValue()));
         update.addClickListener(evt-> productService.setInfo(productName.getValue(),additionalInfo.getValue()));
         update.addClickListener(evt-> productService.setName(productName.getValue(),productName.getValue()));
-
+        update.addClickShortcut(Key.ENTER);
 
         add(productName, price, type,
                 category, additionalInfo, seller,update);
@@ -155,28 +154,7 @@ public class ProfileProductForm extends FormLayout {
         type.setValue("");
         seller.setValue("");
     }
-    public void update()
-    {
-//        type.addValueChangeListener(evt-> productService.setType(productName.getValue(),type.getValue()));
-//        category.addValueChangeListener(evt-> productService.setType(productName.getValue(),category.getValue()));
-//        price.addValueChangeListener(evt-> productService.setType(productName.getValue(),price.getLabel()));
-//        additionalInfo.addValueChangeListener(evt-> productService.setType(productName.getValue(),additionalInfo.getValue()));
 
-    }
-
-
-
-//    public void readOnly(boolean readOnly){
-//        productName.setReadOnly(readOnly);
-//        price.setReadOnly(readOnly);
-//        category.setReadOnly(readOnly);
-//        additionalInfo.setReadOnly(readOnly);
-//        type.setReadOnly(readOnly);
-//        seller.setLabel("Seller");
-//        //imageField.setVisible(false);
-//        productImage.getImage();
-//        seller.setReadOnly(readOnly);
-//    }
 
     // Events
     /*public static abstract class ProductFormEvent extends ComponentEvent<ProductForm> {
