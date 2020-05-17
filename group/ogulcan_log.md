@@ -9,7 +9,7 @@ On this page I will keep a weekly record of what I have done for the CS102 group
 Started to learn and work on how html&css is displayed on the frontend, created the base maven project that runs within tomcat server that has the template start for our project.
 
 ### ~ 28.04.2020 ~
-This week i worked on data services and figured out how cloud databases work with mysql.
+This week i worked on data services and figured out how cloud databases work with mysql. Learned how CRUD operations take place using JPA Repository-Entity-Service Pattern.
 
 ### ~ 01.05.2020 ~
 As a group, we all handled the version control system within our IDE's and started working on signup&login page. Learned more about the AWS Systems such as Elastic Beanstalk and Relational Database Services.
