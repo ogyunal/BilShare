@@ -8,10 +8,12 @@ import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Route(value = "addAdvert", layout = MainLayout.class)
+@PageTitle("Add Advert | BilShare")
 public class AddAdvertView extends VerticalLayout {
 
     @Autowired

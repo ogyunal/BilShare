@@ -23,7 +23,7 @@ import java.awt.event.ItemEvent;
 import java.awt.font.TextLayout;
 
 @Route(value = "about", layout = MainLayout.class)
-@PageTitle("About")
+@PageTitle("About | BilShare")
 public class AboutView extends VerticalLayout {
 
     Label info;

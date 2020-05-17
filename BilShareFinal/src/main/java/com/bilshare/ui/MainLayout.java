@@ -35,8 +35,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @PWA(
-    name = "Vaadin CRM",
-    shortName = "CRM",
+    name = "BilShare",
+    shortName = "BilShare",
 
     offlineResources = {
         "./styles/offline.css",

@@ -20,7 +20,7 @@ import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Route(value = "myProfileView", layout = MainLayout.class)
-@PageTitle("My Profile")
+@PageTitle("My Profile | BilShare")
 public class ProfileView extends HorizontalLayout
 {
     @Autowired

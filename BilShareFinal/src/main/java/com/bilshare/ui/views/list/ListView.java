@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Component
 @Scope("prototype")
 @Route(value = "", layout = MainLayout.class)
-@PageTitle("Store Front | BilShare")
+@PageTitle("Advert List | BilShare")
 @RestController
 public class ListView extends VerticalLayout {
 
@@ -114,7 +114,7 @@ public class ListView extends VerticalLayout {
                 .setComparator(Comparator.comparing(Product::getPrice))
                 .setFlexGrow(3);
 
-        grid.setColumns("type", "category");
+        grid.setColumns("seller", "price", "productName", "type", "category");
 
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
