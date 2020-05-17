@@ -9,6 +9,7 @@ import com.bilshare.ui.views.list.ProductForm;
 import com.bilshare.ui.views.signup.AvatarField;
 import com.bilshare.ui.views.login.LoginView;
 
+
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.UI;
@@ -28,6 +29,7 @@ import com.vaadin.flow.data.binder.*;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.shared.Registration;
+import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -160,6 +162,7 @@ public class SignUpForm extends VerticalLayout {
         // And finally the submit button
         submitButton.addClickListener(e -> {
             validateAndSave();
+            LoginView.signUpDialog.close();
         });
 
     }
@@ -232,6 +235,7 @@ public class SignUpForm extends VerticalLayout {
             newUser.setUsername(usernameField.getValue());
             userService.save(newUser);
             showSuccess();
+
         }
         else
         {

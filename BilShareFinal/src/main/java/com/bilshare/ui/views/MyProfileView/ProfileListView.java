@@ -5,6 +5,7 @@ package com.bilshare.ui.views.MyProfileView;
 import com.bilshare.backend.entity.Product;
 import com.bilshare.ui.MainLayout;
 import com.bilshare.ui.views.list.ProductForm;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
@@ -120,7 +121,7 @@ public class ProfileListView extends VerticalLayout {
     }
 
     private void updateList() {
-        grid.setItems(productService.findBySeller("user",filterText.getValue()));
+        grid.setItems(productService.findBySeller("seller",filterText.getValue()));
 
 
     }

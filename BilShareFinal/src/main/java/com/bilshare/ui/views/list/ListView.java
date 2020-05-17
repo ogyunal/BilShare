@@ -99,14 +99,13 @@ public class ListView extends VerticalLayout {
     private void configureGrid() {
         grid.addClassName("product-grid");
         grid.setSizeFull();
-        grid.removeColumnByKey("category");
-        grid.setColumns("image", "seller", "productName");
 
         final DecimalFormat decimalFormat = new DecimalFormat();
         decimalFormat.setMaximumFractionDigits(2);
         decimalFormat.setMinimumFractionDigits(2);
-
+        grid.setColumns("image", "productName", "seller", "type", "category");
         // To change the text alignment of the column, a template is used.
+
         final String priceTemplate = "<div style='text-align: right'>[[item.price]]</div>";
         grid.addColumn(TemplateRenderer.<Product>of(priceTemplate)
                 .withProperty("price", product -> decimalFormat.format(product.getPrice()) + " ₺"))
@@ -114,7 +113,7 @@ public class ListView extends VerticalLayout {
                 .setComparator(Comparator.comparing(Product::getPrice))
                 .setFlexGrow(3);
 
-        grid.setColumns("seller", "price", "productName", "type", "category");
+
 
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 

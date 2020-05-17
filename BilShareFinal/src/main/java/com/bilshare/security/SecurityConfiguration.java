@@ -9,7 +9,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+
 
 @EnableWebSecurity
 @Configuration
@@ -20,9 +25,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	private static final String LOGIN_URL = "/login";
 	private static final String LOGOUT_SUCCESS_URL = "/login";
 
-	/**
+	@Autowired
+	UserDetailsService userDetailsService;
+
+/**
 	 * Require login to access internal pages and configure login form.
 	 */
+/*	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+				.antMatchers("/admin").hasRole("ADMIN")
+				.antMatchers("/user").hasAnyRole("ADMIN", "USER")
+				.antMatchers("/").permitAll()
+				.and().formLogin();
+	}*/
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// Not using Spring CSRF here to be able to use plain HTML for the login page
@@ -43,15 +59,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 				// Configure the login page.
 				.and().formLogin()
-                        .loginPage(LOGIN_URL).permitAll()
-                        .loginProcessingUrl(LOGIN_PROCESSING_URL)
-				        .failureUrl(LOGIN_FAILURE_URL)
+				.loginPage(LOGIN_URL).permitAll()
+				.loginProcessingUrl(LOGIN_PROCESSING_URL)
+				.failureUrl(LOGIN_FAILURE_URL)
 
 				// Configure logout
 				.and().logout().logoutSuccessUrl(LOGOUT_SUCCESS_URL);
 	}
 
-	@Bean
+
+/*	@Bean
 	@Override
 	public UserDetailsService userDetailsService() {
 		UserDetails user =
@@ -61,7 +78,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 						.build();
 
 		return new InMemoryUserDetailsManager(user);
-	}
+	}*/
 
 	/**
 	 * Allows access to static resources, bypassing Spring security.
@@ -91,4 +108,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				// (development mode) H2 debugging console
 				"/h2-console/**");
 	}
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService);
+	}
+
+
+	@Bean
+	public PasswordEncoder getPasswordEncoder() {
+		return NoOpPasswordEncoder.getInstance();
+	}
+
+
 }

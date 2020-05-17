@@ -15,8 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
 
-@Route(value = "dashboard", layout = MainLayout.class)
 @PageTitle("Dashboard | Bilshare")
+@Route(value = "dashboard", layout = MainLayout.class)
 public class DashboardView extends VerticalLayout {
 
     @Autowired

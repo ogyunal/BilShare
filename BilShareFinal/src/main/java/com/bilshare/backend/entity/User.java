@@ -35,6 +35,7 @@ public class User extends AbstractEntity implements Cloneable {
     @Column(name = "email")
     private String email;
 
+
     //@Column(name = "avatar_image")
     //private AvatarImage avatar;
 
@@ -52,7 +53,6 @@ public class User extends AbstractEntity implements Cloneable {
     //}
 
     public User() {
-        // An empty constructor is needed for all beans
     }
 
     public String getPassword() {
@@ -102,6 +102,8 @@ public class User extends AbstractEntity implements Cloneable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 
     /*public AvatarImage getAvatar() {
         return avatar;

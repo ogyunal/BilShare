@@ -32,7 +32,9 @@ import com.vaadin.flow.server.VaadinSession;
 
 import java.util.Collections;
 
+import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
 
 @Route("login")
@@ -50,7 +52,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
 
     final Image image = new Image(resolvedImage, "");
-    private Dialog signUpDialog = new Dialog();
+    public static Dialog signUpDialog = new Dialog();
 
     Button signUpButton = new Button("Don't Have an Account?");
 
