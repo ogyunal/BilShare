@@ -86,11 +86,11 @@ public class ProfileProductForm extends FormLayout {
         update = new Button("Update");
 
 
-        update.addClickListener(evt-> productService.setType(productName.getValue(),type.getValue()));
-        update.addClickListener(evt-> productService.setCategory(productName.getValue(),category.getValue()));
-        update.addClickListener(evt-> productService.setPrice(productName.getValue(),price.getValue()));
-        update.addClickListener(evt-> productService.setInfo(productName.getValue(),additionalInfo.getValue()));
-        update.addClickListener(evt-> productService.setName(productName.getValue(),productName.getValue()));
+        update.addClickListener(evt-> productService.setType(binder.getBean(),type.getValue()));
+        update.addClickListener(evt-> productService.setCategory(binder.getBean(),category.getValue()));
+        update.addClickListener(evt-> productService.setPrice(binder.getBean(),price.getValue()));
+        update.addClickListener(evt-> productService.setInfo(binder.getBean(),additionalInfo.getValue()));
+        update.addClickListener(evt-> productService.setName(binder.getBean(),productName.getValue()));
         update.addClickShortcut(Key.ENTER);
 
         add(productName, price, type,

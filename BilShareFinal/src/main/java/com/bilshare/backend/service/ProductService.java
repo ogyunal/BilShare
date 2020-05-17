@@ -74,22 +74,22 @@ public class ProductService {
     public List <Product> search (String filterText ) {
         return productRepository.search(filterText);
     }
-    public void setName (String productName, String newName)
+    public void setName (Product p, String newName)
     {
-        productRepository.setName(productName,newName);
+        productRepository.setName(p.getId(),newName);
     }
-    public void setPrice (String productName, Double newPrice)
+    public void setPrice (Product p, Double newPrice)
     {
-        productRepository.setPrice(productName,newPrice);
+        productRepository.setPrice(p.getId(),newPrice);
     }
-    public void setInfo (String productName, String newInfo){ productRepository.setInfo(productName,newInfo); }
-    public void setCategory (String productName, String newCategory)
+    public void setInfo (Product p, String newInfo){ productRepository.setInfo(p.getId(),newInfo); }
+    public void setCategory (Product p, String newCategory)
     {
-        productRepository.setCategory(productName,newCategory);
+        productRepository.setCategory(p.getId(),newCategory);
     }
-    public void setType (String productName, String newType)
+    public void setType (Product p, String newType)
     {
-        productRepository.setType(productName,newType);
+        productRepository.setType(p.getId(),newType);
     }
 
 
