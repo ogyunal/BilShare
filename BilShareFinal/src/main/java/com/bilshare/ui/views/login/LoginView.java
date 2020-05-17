@@ -54,7 +54,8 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
     Button signUpButton = new Button("Don't Have an Account?");
 
-    public LoginView() {
+    public LoginView(UserService userService) {
+        this.userService = userService;
         addClassName("login-view");
         setSizeFull();
 

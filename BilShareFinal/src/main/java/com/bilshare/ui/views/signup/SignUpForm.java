@@ -227,7 +227,7 @@ public class SignUpForm extends VerticalLayout {
             User newUser = new User();
             newUser.setFirstName(firstnameField.getValue());
             newUser.setLastName(lastnameField.getValue());
-            //newUser.setEmail(emailField.getValue());
+            newUser.setEmail(emailField.getValue());
             newUser.setPassword(passwordField1.getValue());
             newUser.setUsername(usernameField.getValue());
             userService.save(newUser);

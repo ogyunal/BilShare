@@ -8,15 +8,15 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "USERS")
-public class User extends AbstractEntity {
+public class User extends AbstractEntity implements Cloneable {
 
     @NotNull
-    @Size(min = 4, max = 255)
-    @Column(unique = true)
+    @Size(min = 2, max = 255)
+    @Column(unique = true ,name = "username")
     private String username;
 
-    @NotNull
-    @Size(min = 4, max = 255)
+
+    @Size(min = 2, max = 255)
     @Column(name = "password")
     private String password;
 
