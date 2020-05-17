@@ -17,3 +17,5 @@ On this page I will keep a weekly record of what I have done for the CS102 group
 09.05.2020 - Finishing the SignUp page for the database , i also connect to our database, bilsharedev and changin my resouce-properties.
 
 11.05.2020- Writing our UML Class Diagram with all methods,classes, including interfaces and super classes, that we create and briefing what we have done our project.
+
+15.05.2020 - Trying to write chatView and the add the main layout to the chat image.
