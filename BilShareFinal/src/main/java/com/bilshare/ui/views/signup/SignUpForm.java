@@ -28,7 +28,9 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.*;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.shared.Registration;
+import com.vaadin.flow.spring.annotation.UIScope;
 import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -65,7 +67,7 @@ public class SignUpForm extends VerticalLayout {
     public SignUpForm(UserService userService) {
 
         this.userService = userService;
-
+        userService = VaadinSession.getCurrent().getAttribute(UserService.class);
 
         Span errorMessage = new Span();
 

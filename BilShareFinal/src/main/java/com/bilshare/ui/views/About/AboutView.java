@@ -32,8 +32,9 @@ public class AboutView extends VerticalLayout {
         VerticalLayout aboutInfo = new VerticalLayout();
         setAlignItems(Alignment.CENTER);
         info = new Label();
-        info.setText("Bilshare is a web app that enables college students to sell and buy second hand course materials.\n " +
-                "This app is created by Oğulcan Ünal,Yağmur Eryılmaz Elif Çenesiz, Berk Türkçapar, Melih Obut and İdil Yılmaz.");
+        info.setText("\nBilshare is a web app that enables college students to sell and buy second hand course materials.\n " +
+                "\nThis app is created by Oğulcan Ünal,Yağmur Eryılmaz Elif Çenesiz, Berk Türkçapar, Melih Obut and İdil Yılmaz.\n" +
+                "\nCONTACT US AT: contact@bil-share.com");
         aboutInfo.add(info);
         add(aboutInfo );
     }
