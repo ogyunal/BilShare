@@ -1,4 +1,5 @@
 package com.bilshare.ui.views.MyProfileView;
+import com.bilshare.backend.CurrentUser;
 import com.bilshare.backend.entity.Product;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -76,7 +77,7 @@ public class ProfileListView extends VerticalLayout {
     }
 
     private void updateList() {
-        grid.setItems(productService.findBySeller("user",filterText.getValue()));
+        grid.setItems(productService.findBySeller(CurrentUser.getUser().getUsername(),filterText.getValue()));
         form.update.addClickListener(evt-> showProdDialog.close());
         form.update.addClickListener(evt-> UI.getCurrent().getPage().reload());
         form.delete.addClickListener(evt-> UI.getCurrent().getPage().reload());
