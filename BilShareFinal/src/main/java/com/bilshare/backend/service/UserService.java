@@ -1,5 +1,6 @@
 package com.bilshare.backend.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 
@@ -64,6 +65,13 @@ public class UserService {
 
     public User createNew(User currentUser) {
         return new User();
+    }
+
+
+
+    public User findByLogin (String username,String password)
+    {
+        return userRepository.findByLogin(username,password);
     }
 
 }

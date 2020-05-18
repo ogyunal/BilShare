@@ -1,28 +1,28 @@
 package com.bilshare.ui.views.list;
 
 
+import com.bilshare.backend.CurrentUser;
 import com.bilshare.backend.data.AvatarImage;
 import com.bilshare.ui.views.signup.AvatarField;
 import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
-import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.*;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.value.ValueChangeMode;
-import com.vaadin.flow.shared.Registration;
 import com.bilshare.backend.entity.Product;
 import com.bilshare.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.bilshare.backend.entity.Product;
 import com.bilshare.backend.data.Category;
 import com.bilshare.backend.data.Type;
 
@@ -35,9 +35,11 @@ public class ProductForm extends FormLayout {
     ComboBox<String> type = new ComboBox<>("Type");
     ComboBox<String> category = new ComboBox("Category");
     private NumberField price  = new NumberField("Price");
-    private TextField seller;
+
     private Product newProduct;
     private AvatarField imageField = new AvatarField("Select Product image");
+    private Image photo ;
+    private VerticalLayout image = new VerticalLayout();
 
     private AvatarImage productImage = new AvatarImage();
 
@@ -80,13 +82,15 @@ public class ProductForm extends FormLayout {
 
 
         // seller username
-        seller = new TextField("Your Username");
-        seller.setPlaceholder("Type your username here...");
+
 
         binder.bindInstanceFields(this);
 
+
+        //image.add(photo);
         add(productName, price, type,
-                category, additionalInfo, seller, imageField);
+                category, additionalInfo,imageField);
+
 
     }
 
@@ -117,13 +121,14 @@ public class ProductForm extends FormLayout {
 
     private void validateAndSave() {
         if ( binder.isValid()) {
-            newProduct = new Product(seller.getValue());
+            productImage = imageField.getValue();
+            newProduct = new Product(CurrentUser.getUser().getUsername());
             newProduct.setProductName(productName.getValue());
             newProduct.setPrice(price.getValue());
             newProduct.setCategory(category.getValue());
             newProduct.setType(type.getValue());
             newProduct.setAdditionalInfo(additionalInfo.getValue());
-            //newProduct.setImage(imageField.);
+            //newProduct.setImage(productImage.getImage());
             productService.save(newProduct);
             setProduct(null);
         } else {
@@ -143,7 +148,7 @@ public class ProductForm extends FormLayout {
         category.setValue("");
         additionalInfo.setValue("");
         type.setValue("");
-        seller.setValue("");
+
     }
 
     public void readOnly(boolean readOnly){
@@ -152,11 +157,16 @@ public class ProductForm extends FormLayout {
         category.setReadOnly(readOnly);
         additionalInfo.setReadOnly(readOnly);
         type.setReadOnly(readOnly);
-        seller.setLabel("Seller");
+
         imageField.setVisible(false);
-        productImage.getImage();
-        seller.setReadOnly(readOnly);
+
+
+
     }
+
+
+
+
 
     // Events
     /*public static abstract class ProductFormEvent extends ComponentEvent<ProductForm> {

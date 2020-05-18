@@ -1,18 +1,11 @@
 package com.bilshare.ui.views.MyProfileView;
 
+import com.bilshare.backend.CurrentUser;
 import com.bilshare.backend.service.ProductService;
+import com.bilshare.backend.service.UserService;
 import com.bilshare.ui.MainLayout;
 import com.bilshare.ui.views.list.ListView;
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.accordion.Accordion;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.details.DetailsVariant;
-import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
@@ -25,26 +18,32 @@ public class ProfileView extends HorizontalLayout
 {
     @Autowired
     private ProductService productService;
+    @Autowired
+    private UserService userService;
     public static final String VIEW_NAME = "My Profile";
     private ProfileListView currentAdverts ;
     private ListView soldMaterials ;
     private  ListView purchasedMaterials ;
-    private Label firstName = new Label ("Name");
-    private Label lastName= new Label ("Surname");
-    private Label department= new Label ("Department");
+    private Label firstName ;
+    private Label lastName ;
 
-    public ProfileView(ProductService productService)
+    public ProfileView(ProductService productService, UserService userService)
     {
-        this.productService=productService;
+        this.productService = productService;
+        this.userService = userService;
+
         buildUI();
     }
 
     private void buildUI()
     {
+        firstName = new Label ((userService.findByLogin(CurrentUser.getUser().getUsername(), CurrentUser.getUser().getPassword())).getFirstName());
+
+        lastName= new Label ("Surname");
         VerticalLayout profileInfo = new VerticalLayout();
         profileInfo.add(firstName);
         profileInfo.add(lastName);
-        profileInfo.add(department);
+
         profileInfo.setWidth("1200");
         //profileInfo.add(photo);
         add(profileInfo);

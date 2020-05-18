@@ -1,26 +1,14 @@
 package com.bilshare.ui.views.login;
 
 
-import com.bilshare.backend.service.ProductService;
+import com.bilshare.backend.CurrentUser;
+import com.bilshare.backend.entity.User;
 import com.bilshare.backend.service.UserService;
-import com.bilshare.ui.views.list.ProductForm;
 import com.bilshare.ui.views.signup.SignUpForm;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.dependency.HtmlImport;
-
-import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.component.textfield.PasswordField;
-import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.UI;
-import com.vaadin.flow.dom.Element;
 
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.login.LoginI18n;
-import com.vaadin.flow.component.login.LoginOverlay;
-import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
@@ -30,12 +18,11 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinService;
 import com.vaadin.flow.server.VaadinSession;
 
+
 import java.util.Collections;
 
-import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.security.core.Authentication;
+
 
 @Route("login")
 @PageTitle("Login | BilShare")
@@ -96,6 +83,13 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
         );
 
+        login.addLoginListener(e-> {
+            String username = e.getUsername();
+            String password = e.getPassword();
+            CurrentUser.setUser(username,password);
+        });
+
+
     }
 
     //private void saveUser(SignUpForm.SaveEvent evt) {
@@ -113,4 +107,18 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
             login.setError(true);
         }
     }
+
+    public  User getCurrentUser()
+    {
+        var lambdaContext = new Object() {
+            String username;
+            String password;
+        };
+        login.addLoginListener(e-> {
+            lambdaContext.username = e.getUsername();
+            lambdaContext.password = e.getPassword();
+        });
+        return userService.findByLogin(lambdaContext.username,lambdaContext.password);
+    }
+
 }
