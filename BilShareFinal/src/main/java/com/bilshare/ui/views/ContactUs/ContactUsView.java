@@ -32,7 +32,6 @@ import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-
 @Route(value = "contactUsView", layout = MainLayout.class)
 @PageTitle("Contact Us | BilShare")
 public class ContactUsView extends VerticalLayout {
