@@ -79,7 +79,7 @@ public class ProfileListView extends VerticalLayout {
         grid.setItems(productService.findBySeller("user",filterText.getValue()));
         form.update.addClickListener(evt-> showProdDialog.close());
         form.update.addClickListener(evt-> UI.getCurrent().getPage().reload());
-
+        form.delete.addClickListener(evt-> UI.getCurrent().getPage().reload());
 
     }
 

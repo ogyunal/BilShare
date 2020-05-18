@@ -13,6 +13,7 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -25,6 +26,8 @@ import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import static com.vaadin.flow.component.icon.VaadinIcon.*;
 
 public class ProfileProductForm extends FormLayout {
     TextField productName = new TextField("Product Name");
@@ -43,10 +46,8 @@ public class ProfileProductForm extends FormLayout {
         return productImage;
     }
 
-    Button save = new Button("Add Advert");
-    Button delete = new Button("Delete");
-    Button clean = new Button("Clean");
     Button update ;
+    Button delete;
 
     @Autowired
     ProductService productService;
@@ -83,18 +84,31 @@ public class ProfileProductForm extends FormLayout {
         seller.setPlaceholder("Type your username here...");
 
         binder.bindInstanceFields(this);
-        update = new Button("Update");
+
+        update = new Button("Update", VaadinIcon.UPLOAD.create());
+        update.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
 
-        update.addClickListener(evt-> productService.setType(binder.getBean(),type.getValue()));
-        update.addClickListener(evt-> productService.setCategory(binder.getBean(),category.getValue()));
-        update.addClickListener(evt-> productService.setPrice(binder.getBean(),price.getValue()));
-        update.addClickListener(evt-> productService.setInfo(binder.getBean(),additionalInfo.getValue()));
-        update.addClickListener(evt-> productService.setName(binder.getBean(),productName.getValue()));
+        update.addClickListener(evt-> {
+                    productService.setType(binder.getBean(),type.getValue());
+                    productService.setCategory(binder.getBean(),category.getValue());
+                    productService.setPrice(binder.getBean(),price.getValue());
+                    productService.setInfo(binder.getBean(),additionalInfo.getValue());
+                    productService.setName(binder.getBean(),productName.getValue());
+                    showSuccess();
+        });
+
         update.addClickShortcut(Key.ENTER);
 
+        delete = new Button("Delete Product", VaadinIcon.CLOSE_CIRCLE.create());
+        delete.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        delete.addClickListener(evt-> {
+                    productService.delete(binder.getBean());
+                    showDeleteSuccess();
+                });
+
         add(productName, price, type,
-                category, additionalInfo, seller,update);
+                category, additionalInfo, seller, update, delete);
 
     }
 
@@ -103,47 +117,19 @@ public class ProfileProductForm extends FormLayout {
         binder.setBean(product);
     }
 
-//    public void createButtonsLayout() {
-//        save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-//        delete.addThemeVariants(ButtonVariant.LUMO_ERROR);
-//        clean.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
-//
-//        save.addClickShortcut(Key.ENTER);
-//        //close.addClickShortcut(Key.ESCAPE);
-//
-//        save.addClickListener(click -> {validateAndSave(); showSuccess(); cleanForm();});
-//        //delete.addClickListener(click -> fireEvent(new DeleteEvent(this, binder.getBean())));
-//        clean.addClickListener(click -> cleanForm());
-//
-//        binder.addStatusChangeListener(evt -> save.setEnabled(binder.isValid()));
-//        HorizontalLayout buttonLayout = new HorizontalLayout();
-//        buttonLayout.add(save, clean);
-//        buttonLayout.setAlignItems(FlexComponent.Alignment.CENTER);
-//        buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-//        add(buttonLayout);
-//
-//    }
 
-    private void validateAndSave() {
-        if ( binder.isValid()) {
-            newProduct = new Product(seller.getValue());
-            newProduct.setProductName(productName.getValue());
-            newProduct.setPrice(price.getValue());
-            newProduct.setCategory(category.getValue());
-            newProduct.setType(type.getValue());
-            newProduct.setAdditionalInfo(additionalInfo.getValue());
-            //newProduct.setImage(imageField.);
-            productService.save(newProduct);
-            setProduct(null);
-        } else {
-            Notification.show("Save error");
+    private void showSuccess() {
+        if (binder.isValid()){
+            Notification notification = Notification.show("Your Advert Has Been Updated ");
+            notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+            UI.getCurrent().navigate("myProfileView");
         }
     }
 
-    private void showSuccess() {
-        Notification notification = Notification.show("Your Advert Has Been Created ");
-        notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
-        UI.getCurrent().navigate("");
+    private void showDeleteSuccess() {
+        Notification notification = Notification.show("Your Advert Has Been Deleted ");
+        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+        UI.getCurrent().navigate("myProfileView");
     }
 
     private void cleanForm(){
@@ -154,43 +140,4 @@ public class ProfileProductForm extends FormLayout {
         type.setValue("");
         seller.setValue("");
     }
-
-
-    // Events
-    /*public static abstract class ProductFormEvent extends ComponentEvent<ProductForm> {
-      private Product product;
-
-      protected ProductFormEvent(ProductForm source, Product product) {
-        super(source, false);
-        this.product = product;
-      }
-
-      public Product getProduct() {
-        return product;
-      }
-    }
-
-    public static class SaveEvent extends ProductFormEvent {
-      SaveEvent(ProductForm source, Product product) {
-        super(source, product);
-      }
-    }
-
-    public static class DeleteEvent extends ProductFormEvent {
-      DeleteEvent(ProductForm source, Product product) {
-        super(source, product);
-      }
-
-    }
-
-    public static class CloseEvent extends ProductFormEvent {
-      CloseEvent(ProductForm source) {
-        super(source, null);
-      }
-    }
-
-    public <T extends ComponentEvent<?>> Registration addListener(Class<T> eventType,
-                                                                  ComponentEventListener<T> listener) {
-      return getEventBus().addListener(eventType, listener);
-    }*/
 }
