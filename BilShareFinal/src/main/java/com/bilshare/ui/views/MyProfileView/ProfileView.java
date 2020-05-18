@@ -41,7 +41,6 @@ public class ProfileView extends HorizontalLayout
 
     private void buildUI()
     {
-
         VerticalLayout profileInfo = new VerticalLayout();
         profileInfo.add(firstName);
         profileInfo.add(lastName);
@@ -55,12 +54,6 @@ public class ProfileView extends HorizontalLayout
         adverts.add(currentAdverts);
         add(adverts);
         setSizeFull();
-
-
-
-
-
-
     }
 
 }
