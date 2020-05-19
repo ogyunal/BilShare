@@ -5,7 +5,6 @@ import com.bilshare.backend.data.Category;
 import com.bilshare.backend.data.Type;
 import com.bilshare.backend.entity.Product;
 import com.bilshare.backend.service.ProductService;
-import com.bilshare.ui.views.signup.AvatarField;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -16,8 +15,6 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextArea;
@@ -27,27 +24,17 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.vaadin.flow.component.icon.VaadinIcon.*;
-
 public class ProfileProductForm extends FormLayout {
     TextField productName = new TextField("Product Name");
     TextArea additionalInfo = new TextArea("Additional Info");
-    EmailField email = new EmailField("Email");
     ComboBox<String> type = new ComboBox<>("Type");
     ComboBox<String> category = new ComboBox("Category");
     private NumberField price  = new NumberField("Price");
-    private TextField seller;
-    private Product newProduct;
-    //private AvatarField imageField = new AvatarField("Select Product image");
 
     private AvatarImage productImage = new AvatarImage();
 
-    public AvatarImage getProductImage() {
-        return productImage;
-    }
-
-    Button update;
-    Button delete;
+    private Button update;
+    private Button delete;
 
     @Autowired
     ProductService productService;
@@ -78,11 +65,6 @@ public class ProfileProductForm extends FormLayout {
                 Category.BIOLOGY.toString(), Category.CHEMISTRY.toString(), Category.ECONOMICS.toString(), Category.MATHEMATICS.toString(),
                 Category.LANGUAGE.toString(), Category.LAW.toString(), Category.MANAGEMENT.toString(), Category.MUSIC.toString());
 
-
-        // seller username
-        seller = new TextField("Your Username");
-        seller.setPlaceholder("Type your username here...");
-
         binder.bindInstanceFields(this);
 
         update = new Button("Update", VaadinIcon.UPLOAD.create());
@@ -108,7 +90,7 @@ public class ProfileProductForm extends FormLayout {
                 });
 
         add(productName, price, type,
-                category, additionalInfo, seller, update, delete);
+                category, additionalInfo, update, delete);
 
     }
 
@@ -117,19 +99,22 @@ public class ProfileProductForm extends FormLayout {
         binder.setBean(product);
     }
 
+    public AvatarImage getProductImage() {
+        return productImage;
+    }
 
     private void showSuccess() {
         if (binder.isValid()){
             Notification notification = Notification.show("Your Advert Has Been Updated ");
             notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
-            UI.getCurrent().navigate("myProfileView");
+            UI.getCurrent().getPage().reload();
         }
     }
 
     private void showDeleteSuccess() {
         Notification notification = Notification.show("Your Advert Has Been Deleted ");
         notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
-        UI.getCurrent().navigate("myProfileView");
+        UI.getCurrent().getPage().reload();
     }
 
     private void cleanForm(){
@@ -138,6 +123,5 @@ public class ProfileProductForm extends FormLayout {
         category.setValue("");
         additionalInfo.setValue("");
         type.setValue("");
-        seller.setValue("");
     }
 }

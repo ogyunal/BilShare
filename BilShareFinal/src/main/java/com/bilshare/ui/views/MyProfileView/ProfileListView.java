@@ -93,9 +93,6 @@ public class ProfileListView extends VerticalLayout {
      */
     private void updateList() {
         grid.setItems(productService.findBySeller(CurrentUser.getUser().getUsername(),filterText.getValue()));
-        form.update.addClickListener(evt-> showProdDialog.close());
-        form.update.addClickListener(evt-> UI.getCurrent().getPage().reload());
-        form.delete.addClickListener(evt-> UI.getCurrent().getPage().reload());
     }
     /**
      *showProduct() shows product in the dialog
