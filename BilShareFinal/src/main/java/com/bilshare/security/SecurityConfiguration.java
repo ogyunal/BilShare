@@ -30,7 +30,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	UserDetailsService userDetailsService;
 
-/**
+	/**
 	 * Require login to access internal pages and configure login form.
 	 */
 	@Override

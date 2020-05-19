@@ -23,7 +23,6 @@ public class AboutView extends VerticalLayout {
     // properties
     private Label info;
     private VerticalLayout aboutInfo;
-
     Anchor ogulcanLinkedin = new Anchor();
     Anchor elifLinkedin = new Anchor();
     Anchor berkLinkedin = new Anchor();
@@ -49,7 +48,7 @@ public class AboutView extends VerticalLayout {
 
         //setting up the anchors
         ogulcanLinkedin.setText("Oğulcan Ünal");
-        elifLinkedin.setText("Elif Eryılmaz");
+        elifLinkedin.setText("Elif Çenesiz");
         berkLinkedin.setText("Berk Türkçapar");
         yagmurLinkedin.setText("Yağmur Eryılmaz");
         idilLinkedin.setText("İdil Yılmaz");
