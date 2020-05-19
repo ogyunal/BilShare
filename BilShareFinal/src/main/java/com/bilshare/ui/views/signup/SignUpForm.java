@@ -1,21 +1,12 @@
 package com.bilshare.ui.views.signup;
 
-
-import com.bilshare.backend.entity.Product;
 import com.bilshare.backend.entity.User;
 import com.bilshare.backend.service.UserService;
-import com.bilshare.backend.data.AvatarImage;
-import com.bilshare.ui.views.list.ProductForm;
-import com.bilshare.ui.views.signup.AvatarField;
 import com.bilshare.ui.views.login.LoginView;
 
-
-import com.vaadin.flow.component.ComponentEvent;
-import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Span;
@@ -26,18 +17,9 @@ import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.*;
-import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.VaadinSession;
-import com.vaadin.flow.shared.Registration;
-import com.vaadin.flow.spring.annotation.UIScope;
-import org.apache.juli.logging.Log;
-import org.springframework.beans.factory.annotation.Autowired;
-
 
 public class SignUpForm extends VerticalLayout {
 
-    @Autowired
     private UserService userService;
 
     private PasswordField passwordField1 = new PasswordField("Password");
