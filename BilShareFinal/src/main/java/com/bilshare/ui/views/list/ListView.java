@@ -18,9 +18,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
-/*
+
+/**
  * ListView class creating grids and dialog to show product in more detailed version
- *
+ * @author BilShare
+ * @version 1.0
  */
 @Component
 @Scope("prototype")
@@ -29,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ListView extends VerticalLayout {
 
-    //variables
+    //properties
     private Dialog showProdDialog = new Dialog();
     ProductForm form;
     Grid<Product> grid = new Grid<>(Product.class);
@@ -39,25 +41,32 @@ public class ListView extends VerticalLayout {
 
     //constructor
     public ListView(ProductService productService) {
+
+        // initializing the properties
         this.productService = productService;
         addClassName("list-view");
         setSizeFull();
         configureGrid();
         form = new ProductForm(productService);
         form.readOnly(true);
+
+        // adding form to dialog
         showProdDialog.add(form);
+
+        //setting width and height
         showProdDialog.setWidth("40");
         showProdDialog.setHeight("100");
         showProdDialog.close();
+
+        //adding toolbar , grid and dialog to layout
         add(getToolBar(), grid, showProdDialog);
         updateList();
         closeEditor();
     }
 
     //program code
-    /*
+    /**
      *getToolBar() filter products by their name
-     *@param
      *@return toolbar
      */
     private HorizontalLayout getToolBar() {
@@ -70,10 +79,11 @@ public class ListView extends VerticalLayout {
         toolbar.addClassName("toolbar");
         return toolbar;
     }
-    /*
+    /**
      * configureGrid() arrange grid, set columns and add action to grids.
      */
     private void configureGrid() {
+        //setting grid properties
         grid.addClassName("product-grid");
         grid.setSizeFull();
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
@@ -89,22 +99,23 @@ public class ListView extends VerticalLayout {
                 .setComparator(Comparator.comparing(Product::getPrice))
                 .setFlexGrow(3);
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
+        //adding changeListener to all grid
         grid.asSingleSelect().addValueChangeListener(evt -> showProduct(evt.getValue()));
     }
-    /*
+    /**
      *closeEditor() close the dialog form
      */
     private void closeEditor() {
         form.setProduct(null);
         showProdDialog.close();
     }
-    /*
+    /**
      *updateList() after filtering shows the products
      */
     private void updateList() {
         grid.setItems(productService.findAll(filterText.getValue()));
     }
-    /*
+    /**
      *showProduct() shows product in the dialog
      *@param product Product
      */
