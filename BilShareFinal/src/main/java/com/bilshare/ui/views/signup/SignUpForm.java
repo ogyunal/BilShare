@@ -54,8 +54,6 @@ public class SignUpForm extends VerticalLayout {
     private AvatarField avatarField = new AvatarField("Select Avatar image");
     private EmailField emailField = new EmailField("Email");
 
-
-
     /**
      * Flag for disabling first run for password validation
      */
@@ -74,9 +72,7 @@ public class SignUpForm extends VerticalLayout {
         Button submitButton = new Button("Join BilShare");
         submitButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
-        // Create a FormLayout with all our components. The FormLayout doesn't have any
-        // logic (validation, etc.), but it allows us to configure Responsiveness from
-        // Java code and its defaults looks nicer than just using a VerticalLayout.
+        // Create a FormLayout with all our components.
         FormLayout formLayout = new FormLayout(title, firstnameField, lastnameField, usernameField, passwordField1, passwordField2,
                 emailField,
                 avatarField,
@@ -105,52 +101,19 @@ public class SignUpForm extends VerticalLayout {
         // Add the form to the page
         add(formLayout);
 
-        /*
-         * Set up form functionality
-         */
-
-        /*
-         * Binder is a form utility class provided by Vaadin. Here, we use a specialized
-         * version to gain access to automatic Bean Validation (JSR-303). We provide our
-         * data class so that the Binder can read the validation definitions on that
-         * class and create appropriate validators. The BeanValidationBinder can
-         * automatically validate all JSR-303 definitions, meaning we can concentrate on
-         * custom things such as the passwords in this class.
-         */
         binder = new BeanValidationBinder<>(User.class);
 
         // Basic name fields that are required to fill in
         binder.forField(firstnameField).asRequired().bind("firstName");
         binder.forField(lastnameField).asRequired().bind("lastName");
 
-        // The handle has a custom validator, in addition to being required. Some values
-        // are not allowed, such as 'admin'; this is checked in the validator.
-        //binder.forField(usernameField).withValidator(this::validateHandle).asRequired().bind("handle");
-
-        // Here we use our custom Vaadin component to handle the image portion of our
-        // data, since Vaadin can't do that for us. Because the AvatarField is of type
-        // HasValue<AvatarImage>, the Binder can bind it automatically. The avatar is
-        // not required and doesn't have a validator, but could.
-        //binder.forField(avatarField).bind("avatar");
-
         // EmailField uses a Validator that extends one of the built-in ones.
-        // Note that we use 'asRequired(Validator)' instead of
-        // 'withValidator(Validator)'; this method allows 'asRequired' to
-        // be conditional instead of always on. We don't want to require the email if
-        // the user declines marketing messages.
         binder.forField(emailField).asRequired("Value is not a valid email address").bind("email");
 
         // Another custom validator, this time for passwords
         binder.forField(passwordField1).asRequired().withValidator(this::passwordValidator) .bind("password");
-        // We won't bind passwordField2 to the Binder, because it will have the same
-        // value as the first field when correctly filled in. We just use it for
-        // validation.
 
-        // The second field is not connected to the Binder, but we want the binder to
-        // re-check the password validator when the field value changes. The easiest way
-        // is just to do that manually.
         passwordField2.addValueChangeListener(e -> {
-
             // The user has modified the second field, now we can validate and show errors.
             // See passwordValidator() for how this flag is used.
             enablePasswordValidation = true;
@@ -185,7 +148,6 @@ public class SignUpForm extends VerticalLayout {
      * <p>
      * 2) Values in both fields match each other
      */
-
     private ValidationResult passwordValidator(String pass1, ValueContext ctx) {
 
         /*
@@ -215,18 +177,6 @@ public class SignUpForm extends VerticalLayout {
      * Method that demonstrates using an external validator. Here we ask the backend
      * if this handle is already in use.
      */
-    /*
-    private ValidationResult validateHandle(String handle, ValueContext ctx) {
-
-        String errorMsg = service.validateHandle(handle);
-
-        if (errorMsg == null) {
-            return ValidationResult.ok();
-        }
-
-        return ValidationResult.error(errorMsg);
-    }*/
-
     private void validateAndSave() {
         if (binder.isValid()) {
             User newUser = new User();
@@ -237,50 +187,11 @@ public class SignUpForm extends VerticalLayout {
             newUser.setUsername(usernameField.getValue());
             userService.save(newUser);
             showSuccess();
-
         }
         else
         {
             Notification.show("Save error");
         }
     }
-
-    // Events
-    /*public static abstract class SignUpFormEvent extends ComponentEvent<SignUpForm> {
-        private User user;
-
-        protected SignUpFormEvent(SignUpForm source, User user) {
-            super(source, false);
-            this.user = user;
-        }
-
-        public User getUser() {
-            return user;
-        }
-    }
-
-    public static class SaveEvent extends SignUpForm.SignUpFormEvent {
-        SaveEvent(SignUpForm source, User user) {
-            super(source, user);
-        }
-    }
-
-    public static class DeleteEvent extends SignUpForm.SignUpFormEvent {
-        DeleteEvent(SignUpForm source, User user) {
-            super(source, user);
-        }
-
-    }
-
-    public static class CloseEvent extends SignUpForm.SignUpFormEvent {
-        CloseEvent(SignUpForm source) {
-            super(source, null);
-        }
-    }
-
-    public <T extends ComponentEvent<?>> Registration addListener(Class<T> eventType,
-                                                                  ComponentEventListener<T> listener) {
-        return getEventBus().addListener(eventType, listener);
-    }*/
 }
 

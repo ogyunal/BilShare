@@ -33,14 +33,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 /**
 	 * Require login to access internal pages and configure login form.
 	 */
-/*	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-				.antMatchers("/admin").hasRole("ADMIN")
-				.antMatchers("/user").hasAnyRole("ADMIN", "USER")
-				.antMatchers("/").permitAll()
-				.and().formLogin();
-	}*/
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// Not using Spring CSRF here to be able to use plain HTML for the login page
@@ -69,18 +61,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.and().logout().logoutSuccessUrl(LOGOUT_SUCCESS_URL);
 	}
 
-
-/*	@Bean
-	@Override
-	public UserDetailsService userDetailsService() {
-		UserDetails user =
-				User.withUsername("user")
-						.password("{noop}password")
-						.roles("USER")
-						.build();
-
-		return new InMemoryUserDetailsManager(user);
-	}*/
 
 	/**
 	 * Allows access to static resources, bypassing Spring security.
@@ -121,6 +101,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder getPasswordEncoder() {
 		return NoOpPasswordEncoder.getInstance();
 	}
-
-
 }

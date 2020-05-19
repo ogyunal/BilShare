@@ -10,9 +10,7 @@ import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.html.Anchor;
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -31,6 +29,7 @@ import com.vaadin.flow.server.VaadinSession;
 import com.bilshare.security.SecurityUtils;
 import com.vaadin.flow.spring.annotation.UIScope;
 
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +38,6 @@ import java.util.List;
 @PWA(
     name = "BilShare",
     shortName = "BilShare",
-
     offlineResources = {
         "./styles/offline.css",
         "./images/offline.png"
@@ -52,19 +50,14 @@ public class MainLayout extends AppLayout {
     private final Tabs menu;
 
     public MainLayout() {
-
         menu = createMenuTabs();
         addToNavbar(image, menu);
-
     }
 
-
+    //Banner Image For The Navbar
     final String resolvedImage = VaadinService.getCurrent().resolveResource(
             "https://imagehost.imageupload.net/2020/05/16/rsz_abc.png", VaadinSession.getCurrent().getBrowser());
-
-
     final Image image = new Image(resolvedImage, "");
-
 
 
     private static Tabs createMenuTabs() {
@@ -94,12 +87,6 @@ public class MainLayout extends AppLayout {
         tabs.add(createTab(VaadinIcon.INFO_CIRCLE, "About",
                 AboutView.class));
 
-
-
-        /*if (SecurityUtils.isAccessGranted(UsersView.class)) {
-            tabs.add(createTab(VaadinIcon.USER,TITLE_USERS, UsersView.class));
-        }*/
-
         final String contextPath = VaadinServlet.getCurrent().getServletContext().getContextPath();
         final Tab logoutTab = createTab(createLogoutLink(contextPath));
         tabs.add(logoutTab);
@@ -127,6 +114,5 @@ public class MainLayout extends AppLayout {
         a.add(title);
         return a;
     }
-
 }
 

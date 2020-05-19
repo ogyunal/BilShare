@@ -21,6 +21,7 @@ import com.vaadin.flow.server.VaadinSession;
 
 import java.util.Collections;
 
+import com.vaadin.flow.spring.annotation.VaadinSessionScope;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -53,22 +54,6 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
         login.setAction("login");
         login.setForgotPasswordButtonVisible(true);
-        /*login.addLoginListener(e -> {
-
-            *try {
-                final Authentication authentication = authenticationManager
-                        .authenticate(new UsernamePasswordAuthenticationToken(e.getUsername(), e.getPassword()));
-                if(authentication != null) {
-                    login.close();
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
-                    getUI().get().navigate("/");
-                }
-            } catch (AuthenticationException ex) {
-                login.setError(true);
-            }
-
-        });*/
-
         signUpButton.addClickListener(buttonClickEvent -> signUpDialog.open());
 
 
@@ -91,11 +76,6 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
 
     }
-
-    //private void saveUser(SignUpForm.SaveEvent evt) {
-    //  userService.save(evt.getUser());
-    //}
-
 
     @Override
     public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
@@ -120,5 +100,4 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         });
         return userService.findByLogin(lambdaContext.username,lambdaContext.password);
     }
-
 }

@@ -6,6 +6,7 @@ import com.bilshare.ui.MainLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -19,6 +20,7 @@ import java.util.Comparator;
 
 
 import com.bilshare.backend.service.ProductService;
+import com.vaadin.flow.spring.annotation.VaadinSessionScope;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Route(value = "", layout = MainLayout.class)
 @PageTitle("Advert List | BilShare")
 @RestController
+
 public class ListView extends VerticalLayout {
 
     ProductForm form;
@@ -99,6 +102,8 @@ public class ListView extends VerticalLayout {
     private void configureGrid() {
         grid.addClassName("product-grid");
         grid.setSizeFull();
+        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER,
+                GridVariant.LUMO_NO_ROW_BORDERS, GridVariant.LUMO_ROW_STRIPES);
 
         final DecimalFormat decimalFormat = new DecimalFormat();
         decimalFormat.setMaximumFractionDigits(2);
