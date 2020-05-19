@@ -1,12 +1,10 @@
 package com.bilshare.ui.views.login;
 
-
 import com.bilshare.backend.CurrentUser;
 import com.bilshare.backend.entity.User;
 import com.bilshare.backend.service.UserService;
 import com.bilshare.ui.views.signup.SignUpForm;
 import com.vaadin.flow.component.button.Button;
-
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.login.LoginForm;
@@ -17,11 +15,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinService;
 import com.vaadin.flow.server.VaadinSession;
-
-
 import java.util.Collections;
-
-import com.vaadin.flow.spring.annotation.VaadinSessionScope;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
