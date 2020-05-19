@@ -46,7 +46,7 @@ public class ProfileProductForm extends FormLayout {
         return productImage;
     }
 
-    Button update ;
+    Button update;
     Button delete;
 
     @Autowired
