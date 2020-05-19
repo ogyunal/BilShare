@@ -21,7 +21,6 @@ import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
-import com.bilshare.ui.views.dashboard.DashboardView;
 import com.bilshare.ui.views.list.ListView;
 import com.vaadin.flow.server.VaadinService;
 import com.vaadin.flow.server.VaadinServlet;

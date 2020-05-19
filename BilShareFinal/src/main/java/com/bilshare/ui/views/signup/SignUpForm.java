@@ -65,7 +65,6 @@ public class SignUpForm extends VerticalLayout {
     public SignUpForm(UserService userService) {
 
         this.userService = userService;
-        userService = VaadinSession.getCurrent().getAttribute(UserService.class);
 
         Span errorMessage = new Span();
 
