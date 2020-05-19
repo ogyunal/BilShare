@@ -25,9 +25,6 @@ import com.bilshare.ui.views.list.ListView;
 import com.vaadin.flow.server.VaadinService;
 import com.vaadin.flow.server.VaadinServlet;
 import com.vaadin.flow.server.VaadinSession;
-import com.bilshare.security.SecurityUtils;
-import com.vaadin.flow.spring.annotation.UIScope;
-
 
 import javax.swing.*;
 import java.util.ArrayList;
