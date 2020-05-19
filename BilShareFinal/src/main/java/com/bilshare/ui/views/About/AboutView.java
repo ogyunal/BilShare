@@ -47,9 +47,6 @@ public class AboutView extends VerticalLayout {
                 "\nThis app is created by Oğulcan Ünal,Yağmur Eryılmaz Elif Çenesiz, Berk Türkçapar, Melih Obut and İdil Yılmaz.\n" +
                 "\n                     Contact us at: contact@bil-share.com");
 
-
-
-
         //setting up the anchors
         ogulcanLinkedin.setText("Oğulcan Ünal");
         elifLinkedin.setText("Elif Eryılmaz");
