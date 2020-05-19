@@ -17,7 +17,10 @@ On this page I will keep a weekly record of what I have done for the CS102 group
 
 05.05.2020 - BookView class has finished, but there is a problem with binding the values are not showed in corresponding grid.
 
-06.05.2020 - Trying to add a chat box platform for all user to ask their quesiton. It is not finished but in progress.
+06.05.2020 - Try to add a chat box platform for all user to ask their quesiton. It is not finished but in progress.
 
+13.05.2020 - Category and Type classes have changed.
+
+17.05.2020 - BookView class evolved ListView and ProductForm classes.
 
 
