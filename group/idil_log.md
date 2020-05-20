@@ -19,3 +19,7 @@ On this page I will keep a weekly record of what I have done for the CS102 group
 11.05.2020- Writing our UML Class Diagram with all methods,classes, including interfaces and super classes, that we create and briefing what we have done our project.
 
 15.05.2020 - Trying to write chatView and the add the main layout to the chat image.
+
+18.05.2020 - For the last days, trying to create the chat page and i created.
+
+19.05.2020 - For the ui part, i set the buttons and header, however i cannot save the text to the textfield and display them in this page and i stash code for some changes to continue to work with it again.
