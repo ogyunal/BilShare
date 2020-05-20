@@ -23,4 +23,7 @@ On this page I will keep a weekly record of what I have done for the CS102 group
 
 17.05.2020 - BookView class evolved ListView and ProductForm classes.
 
+18.05.2020 - Checked how to store image in the database but it is a bit different from variables.
+
+19.05.2020 - Overall scans have been made throughout the project and deleted unused items.
 
