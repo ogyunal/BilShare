@@ -30,7 +30,7 @@ public class AboutView extends VerticalLayout {
     Anchor idilLinkedin = new Anchor();
     Anchor melihLinkedin = new Anchor();
 
-    //Linkedin Image For The Anchor
+    // Linkedin Image For The Anchor
     final String resolvedImage = VaadinService.getCurrent().resolveResource(
             "https://i.pinimg.com/236x/c0/44/d1/c044d19025e6939e49af34610e2694d7.jpg", VaadinSession.getCurrent().getBrowser());
     final Image linkedinImage = new Image(resolvedImage, "");
@@ -48,11 +48,17 @@ public class AboutView extends VerticalLayout {
 
         //setting up the anchors
         ogulcanLinkedin.setText("Oğulcan Ünal");
+        ogulcanLinkedin.setHref("https://www.linkedin.com/in/oğulcan-ünal-052625189/?originalSubdomain=tr");
         elifLinkedin.setText("Elif Çenesiz");
+        elifLinkedin.setHref("https://www.linkedin.com/in/gamze-elif-çenesiz-765a0b1a3/?originalSubdomain=tr");
         berkLinkedin.setText("Berk Türkçapar");
+        berkLinkedin.setHref("https://www.linkedin.com/in/mehmet-berk-türkçapar-104300196/?originalSubdomain=tr");
         yagmurLinkedin.setText("Yağmur Eryılmaz");
+        yagmurLinkedin.setHref("https://www.linkedin.com/");
         idilLinkedin.setText("İdil Yılmaz");
+        idilLinkedin.setHref("https://www.linkedin.com/in/idil-yılmaz-40744a14b/?originalSubdomain=tr");
         melihLinkedin.setText("Melih Obut");
+        melihLinkedin.setHref("https://www.linkedin.com/in/melih-obut-06506b105/?originalSubdomain=tr");
 
         // adding label to layout
         aboutInfo.add(info, linkedinImage,
