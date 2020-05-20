@@ -16,8 +16,8 @@ I made research about connecting a java program to a database and storing inform
 
 We designed UI of the "Contact us" and "About" pages with Yağmur. In addition, we made configurations on My Profile Page so that users can see and edit their own adverts. In order to provide this, we added methods to Product repository which filter the products according to the username and change the properties of a product by using update query. However, we used an example username 'user' since we didn't manage to obtain the current user's info yet.
 
-#### ~ 18.05.2020 
+#### ~ 18.05.2020 ~
 
-
+Using the information obtained from the login page, we created a class storing the current user information and in profile page display current user's adverts. We also worked on retrieving product images from the database. However, we couldn't display the images on the product forms since we couldn't convert byte array to image.
 
 ****
