@@ -21,5 +21,5 @@ We worked on the GUI of profile view by using Vaadin with my friend Elif. Beside
 We created the ui of "Contact Us" and "About" pages with my friend Elif. Besides, we added a product form in profile page where user can change the properties of his/her advert. We added methods by using query codes to update the database according to user's changes and configured the ProductRepsitory hence ProductService classes. Also we bind the advert list of the profile page to the current user. In this way the list in the profile page is filtered according to the current user's adeverts.
 
 ### 18.05.2020
-We tried to add image to the app but we had some problems. An image can be uploaded but can not be displayed as we can not convert the image data to a visual component and could not fix the problem.
+We tried to add image to the app but we had some problems. An image can be uploaded but can not be displayed as we can not convert the image data to a visual component.
 
