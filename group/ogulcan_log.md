@@ -20,5 +20,8 @@ Reordered the Components such as Navbar, Header and Drawer as our app's needs. D
 ### ~ 15.05.2020 ~
 Overall security, authentication, session management, output validation failures e.g. database record set mismatch, invalid data encoding and application related system improvements.
 
-### ~ 15.05.2020 ~
+### ~ 17.05.2020 ~
 UX and UI Improvements, deployed the production version to AWS Systems on a cloud database, also configured Route53 to handle DNS and NS forwards to get the domain "www.bil-share.com" to work.
+
+### ~ 19.05.2020 ~
+Demonstration of the app was done and uploaded to youtube, core functionality is perfectly working, tiny updates are needed, also there is a bug caused by vaadin that restricts the user by signing up twice, submitted the problem to stack overflow and couple forums, hoping we get an answer...
