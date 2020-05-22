@@ -21,9 +21,62 @@ We all handled the setup on version control for our IDE's and top down designed 
 Today we worked on database and try to bind it to the app. We had a lot of difficulties and each one of us try to find a solution for that problem and made research. We tried to bind mysql in vaious ways. First we used terminal and created tables from there but there were errors and app did not work. After that we created cloud database and downloaded mysql workbench to see the tables. There are still some problems about saving data to the database and we are working on it.
 
 ****
-### Meeting ~ (date, duration)
+### Meeting ~ (05.05.2020, 2 hour)
 ****
-blah, blah, blah...
+**Present:** Everyone
+
+**Discussion:** 
+We tried to fix some of the errors we encountered. We don't have any problem in creating a table, but there are still some problems with connection, we try to solve them.
+
+****
+****
+
+### Meeting ~ (08.05.2020, 2 hour)
+****
+**Present:** Everyone
+
+**Discussion:** 
+We completed creating tables for sign up, log in and products with mysql, we wrote the problem to stackoverflow that we encountered for the connection.
+
+
+****
+****
+
+### Meeting ~ (11.05.2020, 1 hour)
+****
+**Present:** Everyone
+
+**Discussion:** 
+There was a response from stackoverflow for the solution of the problem related to mysql, but it did not work much because the problem was solved already and the database host was changed, we changed the current url to bil-share.com with the use of domain. Also for adding, removing and editing was made for some classes to solve the errors.
+
+****
+****
+
+### Meeting ~ (13.05.2020, 2 hour)
+****
+**Present:** Everyone
+
+**Discussion:** 
+Recent changes related to the site's gui have been made. The logo has been made visible and the arrangements of various classes have been completed, the assert has been adjusted.
+
+****
+****
+
+### Meeting ~ (17.05.2020, 1 hour)
+****
+**Present:** Everyone
+
+**Discussion:** 
+Tables made for Sign-up and log-pages were connected to the database as a result of fixing a few errors.
+
+****
+****
+### Meeting ~ (20.05.2020, 1 hour)
+****
+**Present:** Everyone
+
+**Discussion:** 
+After the correction of the errors related to the code, the video was shot for the demo of the project.
 
 ****
 ****
