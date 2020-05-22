@@ -18,7 +18,7 @@ As a group, we all handled the version control system within our IDE's and start
 Reordered the Components such as Navbar, Header and Drawer as our app's needs. Designed the sign up page as a dialog pop up and created the form to let users sign up (handled by mysql).
 
 ### ~ 15.05.2020 ~
-Overall security, authentication, session management, output validation failures e.g. database record set mismatch, invalid data encoding and application related system improvements.
+Overall security, authentication, session management, output validation failures e.g. database record set mismatch, invalid data encoding (for image storage on adverts) and application related system improvements.
 
 ### ~ 17.05.2020 ~
 UX and UI Improvements, deployed the production version to AWS Systems on a cloud database, also configured Route53 to handle DNS and NS forwards to get the domain "www.bil-share.com" to work.
