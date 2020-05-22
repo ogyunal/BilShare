@@ -21,7 +21,7 @@ We all handled the setup on version control for our IDE's and top down designed 
 Today we worked on database and try to bind it to the app. We had a lot of difficulties and each one of us try to find a solution for that problem and made research. We tried to bind mysql in vaious ways. First we used terminal and created tables from there but there were errors and app did not work. After that we created cloud database and downloaded mysql workbench to see the tables. There are still some problems about saving data to the database and we are working on it.
 
 ****
-### Meeting ~ (05.05.2020, 2 hour)
+### Meeting ~ (05.05.2020, 2 hours)
 ****
 **Present:** Everyone
 
@@ -31,7 +31,7 @@ We tried to fix some of the errors we encountered. We don't have any problem in 
 ****
 ****
 
-### Meeting ~ (08.05.2020, 2 hour)
+### Meeting ~ (08.05.2020, 2 hours)
 ****
 **Present:** Everyone
 
@@ -52,7 +52,7 @@ There was a response from stackoverflow for the solution of the problem related 
 ****
 ****
 
-### Meeting ~ (13.05.2020, 2 hour)
+### Meeting ~ (13.05.2020, 1 hour)
 ****
 **Present:** Everyone
 
@@ -71,7 +71,7 @@ Tables made for Sign-up and log-pages were connected to the database as a result
 
 ****
 ****
-### Meeting ~ (20.05.2020, 1 hour)
+### Meeting ~ (20.05.2020, 2 hours)
 ****
 **Present:** Everyone
 
