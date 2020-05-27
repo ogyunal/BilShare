@@ -1,4 +1,4 @@
-package com.bilshare.ui.views.AddAdvert;
+package com.bilshare.ui.views.addAdvert;
 
 import com.bilshare.backend.service.ProductService;
 import com.bilshare.ui.MainLayout;
@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author BilShare
  * @version 1.0
  */
-
 @Route(value = "addAdvert", layout = MainLayout.class)
 @PageTitle("Add Advert | BilShare")
 public class AddAdvertView extends VerticalLayout {
@@ -27,6 +26,7 @@ public class AddAdvertView extends VerticalLayout {
 
     // constructor
     public AddAdvertView (ProductService productService){
+
         // initializing
         this.productService = productService;
         form = new ProductForm(productService);

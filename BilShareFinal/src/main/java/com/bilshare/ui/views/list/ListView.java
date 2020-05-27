@@ -80,6 +80,7 @@ public class ListView extends VerticalLayout {
         toolbar.addClassName("toolbar");
         return toolbar;
     }
+
     /**
      * configureGrid() arrange grid, set columns and add action to grids.
      */
@@ -103,6 +104,7 @@ public class ListView extends VerticalLayout {
         //adding changeListener to all grid
         grid.asSingleSelect().addValueChangeListener(evt -> showProduct(evt.getValue()));
     }
+
     /**
      *closeEditor() close the dialog form
      */
@@ -110,12 +112,14 @@ public class ListView extends VerticalLayout {
         form.setProduct(null);
         showProdDialog.close();
     }
+
     /**
      *updateList() after filtering shows the products
      */
     private void updateList() {
         grid.setItems(productService.findAll(filterText.getValue()));
     }
+
     /**
      *showProduct() shows product in the dialog
      *@param product Product
