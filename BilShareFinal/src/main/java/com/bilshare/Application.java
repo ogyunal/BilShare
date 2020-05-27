@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * The entry point of the Spring Boot application.
  */
 @SpringBootApplication(exclude = ErrorMvcAutoConfiguration.class)
-//@EnableAutoConfiguration
 @EnableJpaRepositories("com.bilshare.backend.repository")
 public class Application extends SpringBootServletInitializer {
 

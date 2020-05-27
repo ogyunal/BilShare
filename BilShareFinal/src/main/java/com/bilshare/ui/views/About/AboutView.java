@@ -4,7 +4,6 @@ import com.bilshare.ui.MainLayout;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -65,6 +64,6 @@ public class AboutView extends VerticalLayout {
                 ogulcanLinkedin, elifLinkedin, yagmurLinkedin, berkLinkedin, idilLinkedin, melihLinkedin);
 
         // adding layout to view
-        add(aboutInfo );
+        add(aboutInfo);
     }
 }

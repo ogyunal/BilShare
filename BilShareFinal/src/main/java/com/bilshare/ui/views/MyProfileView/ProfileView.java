@@ -3,7 +3,6 @@ package com.bilshare.ui.views.MyProfileView;
 import com.bilshare.backend.service.ProductService;
 import com.bilshare.backend.service.UserService;
 import com.bilshare.ui.MainLayout;
-import com.bilshare.ui.views.list.ListView;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
