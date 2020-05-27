@@ -64,6 +64,6 @@ public class AboutView extends VerticalLayout {
                 ogulcanLinkedin, elifLinkedin, yagmurLinkedin, berkLinkedin, idilLinkedin, melihLinkedin);
 
         // adding layout to view
-        add(aboutInfo );
+        add(aboutInfo);
     }
 }

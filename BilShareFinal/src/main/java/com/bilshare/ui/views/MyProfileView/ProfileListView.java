@@ -1,4 +1,5 @@
 package com.bilshare.ui.views.MyProfileView;
+
 import com.bilshare.backend.CurrentUser;
 import com.bilshare.backend.entity.Product;
 import com.vaadin.flow.component.dialog.Dialog;

@@ -1,4 +1,5 @@
 package com.bilshare.ui.views.list;
+
 import com.bilshare.backend.entity.Product;
 import com.bilshare.ui.MainLayout;
 import com.vaadin.flow.component.dialog.Dialog;
