@@ -1,4 +1,4 @@
-package com.bilshare.ui.views.MyProfileView;
+package com.bilshare.ui.views.myProfile;
 
 import com.bilshare.backend.service.ProductService;
 import com.bilshare.backend.service.UserService;
@@ -17,8 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Route(value = "myProfileView", layout = MainLayout.class)
 @PageTitle("My Profile | BilShare")
-public class ProfileView extends HorizontalLayout
-{
+public class ProfileView extends HorizontalLayout {
+
     //properties
     public static final String VIEW_NAME = "My Profile";
     private ProfileListView currentAdverts ;
@@ -34,8 +34,9 @@ public class ProfileView extends HorizontalLayout
         this.userService = userService;
         buildUI();
     }
+
     /**
-     *buildUI() adding profile informations and adverts of the profile to the layout
+     *buildUI() adding profile information and adverts of the profile to the layout
      */
     private void buildUI()
     {

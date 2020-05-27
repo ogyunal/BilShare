@@ -1,4 +1,4 @@
-package com.bilshare.ui.views.About;
+package com.bilshare.ui.views.about;
 
 import com.bilshare.ui.MainLayout;
 import com.vaadin.flow.component.html.Anchor;

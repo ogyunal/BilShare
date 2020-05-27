@@ -1,10 +1,9 @@
 package com.bilshare.ui;
 
-import com.bilshare.ui.views.About.AboutView;
-import com.bilshare.ui.views.AddAdvert.AddAdvertView;
-import com.bilshare.ui.views.ContactUs.ContactUsView;
-import com.bilshare.ui.views.MyProfileView.ProfileView;
-
+import com.bilshare.ui.views.about.AboutView;
+import com.bilshare.ui.views.addAdvert.AddAdvertView;
+import com.bilshare.ui.views.contactUs.ContactUsView;
+import com.bilshare.ui.views.myProfile.ProfileView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -20,11 +19,14 @@ import com.bilshare.ui.views.list.ListView;
 import com.vaadin.flow.server.VaadinService;
 import com.vaadin.flow.server.VaadinServlet;
 import com.vaadin.flow.server.VaadinSession;
-
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * MainLayout class
+ * @author BilShare
+ * @version 1.0
+ */
 @PWA(
     name = "BilShare",
     shortName = "BilShare",

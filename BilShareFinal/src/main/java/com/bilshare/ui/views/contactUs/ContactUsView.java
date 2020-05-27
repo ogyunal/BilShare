@@ -1,5 +1,5 @@
 
-package com.bilshare.ui.views.ContactUs;
+package com.bilshare.ui.views.contactUs;
 
 import com.bilshare.ui.MainLayout;
 import com.vaadin.flow.component.html.IFrame;

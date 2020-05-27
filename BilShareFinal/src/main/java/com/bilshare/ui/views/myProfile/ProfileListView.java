@@ -1,4 +1,4 @@
-package com.bilshare.ui.views.MyProfileView;
+package com.bilshare.ui.views.myProfile;
 
 import com.bilshare.backend.CurrentUser;
 import com.bilshare.backend.entity.Product;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Component
 @RestController
 public class ProfileListView extends VerticalLayout {
+
     //properties
     ProfileProductForm form;
     Grid<Product> grid = new Grid<>(Product.class);
@@ -50,6 +51,7 @@ public class ProfileListView extends VerticalLayout {
         updateList();
 
     }
+
     //program code
     /**
      *getToolBar() filter users by their name
@@ -89,7 +91,7 @@ public class ProfileListView extends VerticalLayout {
     }
 
     /**
-     *updateList() after filtering shows the user
+     *updateList() after filtering the list displays it
      */
     private void updateList() {
         grid.setItems(productService.findBySeller(CurrentUser.getUser().getUsername(),filterText.getValue()));
@@ -102,5 +104,4 @@ public class ProfileListView extends VerticalLayout {
         form.setProduct(product);
         showProdDialog.open();
     }
-
 }
