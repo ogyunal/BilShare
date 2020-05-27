@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f19fda15-570c-40e3-b346-ddb65da1e6e6" name="Default Changelist" comment="merhaba">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/BilShare.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bilshareson/src/main/java/com/bilshare/bilshare/bookstore/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/bilshareson/src/main/java/com/bilshare/bilshare/bookstore/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BilShareFinal/src/main/java/com/bilshare/ui/views/login/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BilShareFinal/src/main/java/com/bilshare/ui/views/login/LoginView.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

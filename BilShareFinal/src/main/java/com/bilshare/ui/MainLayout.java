@@ -50,6 +50,7 @@ public class MainLayout extends AppLayout {
     final Image image = new Image(resolvedImage, "");
 
 
+    // creating the menu tabs
     private static Tabs createMenuTabs() {
         final Tabs tabs = new Tabs();
         tabs.setFlexGrowForEnclosedTabs(1);
@@ -59,6 +60,7 @@ public class MainLayout extends AppLayout {
         return tabs;
     }
 
+    // add the links to the views
     private static Tab[] getAvailableTabs() {
         final List<Tab> tabs = new ArrayList<>(4);
 
@@ -94,11 +96,13 @@ public class MainLayout extends AppLayout {
         return tab;
     }
 
+    // logout link
     private static Anchor createLogoutLink(String contextPath) {
         final Anchor a = populateLink(new Anchor(), VaadinIcon.ARROW_RIGHT, "Log Out");
         a.setHref(contextPath + "/logout");
         return a;
     }
+
     private static <T extends HasComponents> T populateLink(T a, VaadinIcon icon, String title) {
         a.add(icon.create());
         a.add(title);

@@ -1,6 +1,5 @@
 package com.bilshare.ui.views.list;
 
-
 import com.bilshare.backend.CurrentUser;
 import com.bilshare.backend.data.AvatarImage;
 import com.bilshare.ui.views.signup.AvatarField;

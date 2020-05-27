@@ -5,12 +5,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.server.ServiceInitEvent;
 import com.vaadin.flow.server.VaadinServiceInitListener;
-import com.vaadin.flow.spring.annotation.UIScope;
-import com.vaadin.flow.spring.annotation.VaadinSessionScope;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
-
 
 @Component
 public class ConfigureUIServiceInitListener implements VaadinServiceInitListener {

@@ -47,7 +47,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         setAlignItems(Alignment.CENTER);
 
         login.setAction("login");
-        login.setForgotPasswordButtonVisible(true);
+        login.setForgotPasswordButtonVisible(false);
         signUpButton.addClickListener(buttonClickEvent -> signUpDialog.open());
 
 
