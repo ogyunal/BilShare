@@ -19,4 +19,4 @@ Wait for the application to boot and start
 Open http://localhost:5000/ to view the application
 Default credentials are “admin” for the username and “password” for the password field.
 
-Also you can open www.bil-share.com from your browser in order. to open and use the applicaiton.
+Also you can open www.bil-share.com from your browser in order to open and use the applicaiton.
