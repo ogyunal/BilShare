@@ -27,7 +27,7 @@ For our project, I have done ProductView class which shows more detailed version
 I wrote the Abstract Class, I wrote to connect the User class and the UserService class, the entities in the h2 database. I connected to a and created the properties part in resource according to username and password in mysql.
 
 - Elif Çenesiz
-Me and Yagmur have created the MyProfile view and Inventory view. When we connect the users to our database we will be updating the MyProfileView. 
+Me and Yagmur have created the MyProfile page and Inventory page. When we connect the users to our database we will be updating the MyProfileView. 
 
 - Yağmur Eryılmaz
-Me and Elif worked on creating the MyProfile view and the Inventory view. We are trying to connect the users to our database. After connecting it we will be updating the MyProfile view according to the retrieved data from the database.
+Me and Elif worked on creating the MyProfile and the Inventory pages. We are trying to connect the user data to our database. After connecting it we will be updating the MyProfile view according to the retrieved data from the database and also filtering the list according to the user's current adverts.
