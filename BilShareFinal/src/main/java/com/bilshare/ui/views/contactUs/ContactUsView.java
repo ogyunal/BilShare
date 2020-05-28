@@ -8,7 +8,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 /**
- * Contact Us View  class which enables users to contact with the BilShare
+ * Contact Us View class which enables users to contact with the BilShare
  * @author BilShare
  * @version 1.0
  */
@@ -24,11 +24,13 @@ public class ContactUsView extends VerticalLayout {
         initView();
         //creating an iframe
         IFrame iFrame = new IFrame();
+        // using jotform
         iFrame.setSrc("https://form.jotform.com/201366581719965");
         iFrame.setWidth("100%");
         iFrame.setHeight("1100px");
         add(iFrame);
     }
+
     /**
      * initView() setting alignment
      */
