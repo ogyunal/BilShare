@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * The Service class for MyUserDetails
+ * @author BilShare
+ * @version 1.0
+ */
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 

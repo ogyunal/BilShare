@@ -6,8 +6,6 @@ public class CurrentUser {
     private  static String username;
     private static String password;
 
-
-
     public CurrentUser()
     {
     }

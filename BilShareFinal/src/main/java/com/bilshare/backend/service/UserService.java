@@ -16,6 +16,11 @@ import java.util.logging.Logger;
 import com.bilshare.backend.entity.User;
 import com.bilshare.backend.repository.UserRepository;
 
+/**
+ * The Service class for User Entities
+ * @author BilShare
+ * @version 1.0
+ */
 @Service
 public class UserService {
     private static final Logger LOGGER = Logger.getLogger(UserService.class.getName());
@@ -29,17 +34,6 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    /*public Page<User> findAnyMatching(Optional<String> filter, Pageable pageable) {
-        if (filter.isPresent()) {
-            String repositoryFilter = "%" + filter.get() + "%";
-            return getRepository()
-                    .findByEmailLikeIgnoreCaseOrFirstNameLikeIgnoreCaseOrLastNameLikeIgnoreCaseOrRoleLikeIgnoreCase(
-                            repositoryFilter, repositoryFilter, repositoryFilter, repositoryFilter, pageable);
-        } else {
-            return find(pageable);
-        }
-    }*/
-
     public long count() {
         return userRepository.count();
     }
@@ -48,10 +42,6 @@ public class UserService {
         return userRepository;
     }
 
-    /*public Page<User> find(Pageable pageable) {
-        return getRepository().findBy(pageable);
-    }*/
-
     public void save(User user) {
         User newUser = new User();
         newUser.setFirstName(user.getFirstName());
@@ -59,15 +49,12 @@ public class UserService {
         newUser.setEmail(user.getEmail());
         newUser.setPassword(user.getPassword());
         newUser.setUsername(user.getUsername());
-        //newUser.setLocked(true);
         userRepository.save(newUser);
     }
 
     public User createNew(User currentUser) {
         return new User();
     }
-
-
 
     public User findByLogin (String username,String password)
     {

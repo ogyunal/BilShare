@@ -7,6 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * The Repository class for User Entities
+ * @author BilShare
+ * @version 1.0
+ */
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 

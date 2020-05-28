@@ -12,6 +12,8 @@ import java.util.stream.Stream;
 /**
  * SecurityUtils takes care of all such static operations that have to do with
  * security and querying rights from different beans of the UI.
+ * @author BilShare
+ * @version 1.0
  */
 public final class SecurityUtils {
 

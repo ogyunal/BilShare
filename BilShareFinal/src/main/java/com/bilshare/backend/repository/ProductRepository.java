@@ -10,6 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * The Repository class for Product Entities
+ * @author BilShare
+ * @version 1.0
+ */
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 

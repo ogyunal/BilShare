@@ -9,6 +9,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * The Service class for Product Entities
+ * @author BilShare
+ * @version 1.0
+ */
 @Service
 public class ProductService {
     private static final Logger LOGGER = Logger.getLogger(ProductService.class.getName());
