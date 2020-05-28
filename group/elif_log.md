@@ -14,7 +14,7 @@ I made research about connecting a java program to a database and storing inform
 
 #### ~ 11.05.2020 ~
 
-We designed UI of the "Contact us" and "About" pages with Yağmur. In addition, we made configurations on My Profile Page so that users can see and edit their own adverts. In order to provide this, we added methods to Product repository which filter the products according to the username and change the properties of a product.
+We worked on UI of the "Contact us" and "About" pages with Yağmur. In addition, we made configurations on My Profile Page so that users can see and edit their own adverts. In order to provide this, we added methods to Product repository which filter the products according to the username and change the properties of a product.
 
 #### ~ 18.05.2020 ~
 
